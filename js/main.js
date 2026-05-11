@@ -261,8 +261,8 @@
   function update() {
     const rect    = stage.getBoundingClientRect();
     const viewH   = window.innerHeight;
-    // progress: 0 when bottom of stage hits viewport bottom, 1 when top hits viewport center
-    const raw     = (viewH - rect.top) / (viewH + rect.height * 0.5);
+    // progress: 0 when element enters viewport, 1 when element top reaches ~25% from viewport top
+    const raw     = (viewH - rect.top) / (viewH * 0.72);
     const progress = Math.max(0, Math.min(1, raw));
 
     const rotateX  = 22 * (1 - progress);
