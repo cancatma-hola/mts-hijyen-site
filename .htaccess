@@ -1,0 +1,48 @@
+Options -MultiViews -Indexes
+
+# ============================================================
+#  MTS HİJYEN — Clean URL (.html uzantısını gizle)
+# ============================================================
+
+RewriteEngine On
+
+# Zaten .html uzantısıyla gelen istekleri uzantısız URL'ye yönlendir (301)
+RewriteCond %{THE_REQUEST} \s/([^.]+)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L,NE]
+
+# Uzantısız URL'leri gerçek .html dosyasına yönlendir (dahili)
+RewriteCond %{REQUEST_FILENAME}      !-d
+RewriteCond %{REQUEST_FILENAME}      !-f
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^.]+)$               $1.html [L]
+
+# ============================================================
+#  Güvenlik başlıkları
+# ============================================================
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# ============================================================
+#  Statik dosya önbelleği
+# ============================================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css             "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType image/png            "access plus 3 months"
+  ExpiresByType image/jpeg           "access plus 3 months"
+  ExpiresByType image/svg+xml        "access plus 3 months"
+  ExpiresByType font/woff2           "access plus 1 year"
+</IfModule>
+
+# ============================================================
+#  PHP dosyasını koruya al
+# ============================================================
+<FilesMatch "gonderici\.php$">
+  <IfModule mod_headers.c>
+    Header always set X-Robots-Tag "noindex, nofollow"
+  </IfModule>
+</FilesMatch>
