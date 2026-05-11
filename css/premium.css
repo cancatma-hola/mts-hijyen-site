@@ -177,6 +177,12 @@ body { animation: pageReveal 0.5s ease both; }
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+/* Sup/sub inside gradient text needs its own color reset */
+.hero-stat-num sup,
+.hero-stat-num sub {
+  -webkit-text-fill-color: var(--blue-700);
+  color: var(--blue-700);
+}
 
 /* ============================================================
    HERO TOPBAR — Premium strip
@@ -235,6 +241,7 @@ body { animation: pageReveal 0.5s ease both; }
   background: rgba(255,255,255,0.04) !important;
   border: 1px solid rgba(255,255,255,0.07) !important;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative; /* Required for .why-card-num absolute positioning */
 }
 .why-card:hover {
   background: rgba(37,99,235,0.18) !important;
@@ -575,7 +582,7 @@ body { animation: pageReveal 0.5s ease both; }
   transform: translateY(-4px) !important;
 }
 .mfg-step-num {
-  background: linear-gradient(135deg, var(--blue-700), var(--blue-600)) !important;
+  background: linear-gradient(135deg, var(--blue-400, #60A5FA), var(--blue-300, #93C5FD)) !important;
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
@@ -635,14 +642,25 @@ body { animation: pageReveal 0.5s ease both; }
 
 /* ============================================================
    SECTION HEADERS — Premium refinement
+   IMPORTANT: Only apply light-bg label style to light sections.
+   Dark sections (why, mfg, numbers, cta, footer) use their own
+   label colours from style.css — do NOT override globally.
    ============================================================ */
-.label {
+/* index.html light sections */
+.hero .label,
+.about-section .label,
+.about-preview .label,
+.products-section .label,
+.b2b-section .label,
+.catalog-section .label,
+.contact-section .label,
+.partners-section .label,
+.sectors-section .label,
+/* hakkimizda.html light sections */
+.mv-section .label,
+.values-section .label {
   background: rgba(219,234,254,0.5);
-  padding: 0.3rem 0.9rem 0.3rem 0;
   border-radius: 0 100px 100px 0;
-  color: var(--blue-700) !important;
-}
-.label-enhanced {
   color: var(--blue-700) !important;
 }
 
