@@ -1453,7 +1453,7 @@ a.cc-value:hover { color: var(--blue-700); }
 .mfg-section {
   --cx: 50%;
   --cy: 50%;
-  background: #060E24;
+  background: #0D2060;
   position: relative;
   overflow: hidden;
 }
