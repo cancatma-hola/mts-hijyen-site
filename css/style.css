@@ -323,7 +323,7 @@ input, textarea, select { font-family: inherit; }
 }
 .mobile-nav.open { opacity: 1; pointer-events: all; }
 .mobile-nav-link {
-  font-family: 'Playfair Display', serif;
+  font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 2.2rem;
   font-weight: 700;
   color: rgba(255,255,255,0.7);
@@ -1416,8 +1416,7 @@ a.cc-value:hover { color: var(--blue-700); }
   .form-row { grid-template-columns: 1fr; }
   .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
   .why-grid { grid-template-columns: 1fr; }
-  .hero::after { width: 100%; clip-path: none; opacity: 0.4; }
-  .hero-orb, .hero-badge-float { display: none; }
+  .hero-orb { display: none; }
   .catalog-top { flex-direction: column; align-items: flex-start; }
   .contact-band-grid { grid-template-columns: repeat(2, 1fr) !important; }
   .about-features { grid-template-columns: 1fr !important; }
@@ -2525,15 +2524,15 @@ a.cc-value:hover { color: var(--blue-700); }
   width: 100%;
   height: auto;
 }
-/* ---- Syne Display Font — Hero & Stat Headings ---- */
+/* ---- Hero h1 — DM Sans kurumsal başlık ---- */
 .hero h1 {
-  font-family: 'Syne', 'Playfair Display', Georgia, serif;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
 }
 .hero h1 span {
-  font-family: 'Syne', 'Playfair Display', Georgia, serif;
-  font-weight: 800;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 700;
 }
 .smq-num {
   font-family: 'Syne', 'Playfair Display', Georgia, serif !important;
@@ -3288,4 +3287,179 @@ a.cc-value:hover { color: var(--blue-700); }
   .showcase-stats-row { display: none; }
   .whatsapp-float { bottom: 1.25rem; right: 1.25rem; width: 50px; height: 50px; }
   .whatsapp-float svg { width: 24px; height: 24px; }
+}
+
+/* ============================================================
+   HERO — İki Kolonlu Video Düzeni
+   ============================================================ */
+
+/* Sağ mavi blob'u kaldır — video onun yerini alıyor */
+.hero::after { display: none; }
+.hero-orb-glow { display: none; }
+
+/* İki kolonlu iç ızgara */
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(2rem, 4vw, 4rem);
+  position: relative;
+  z-index: 2;
+}
+
+/* Sol içerik sütunu — max-width limitini kaldır */
+.hero-inner .hero-content {
+  max-width: none;
+}
+
+/* Sağ video sarmalayıcı */
+.hero-video-wrap {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: min(68vh, 540px);
+  box-shadow:
+    0 40px 100px rgba(15,30,64,0.16),
+    0 8px 24px rgba(37,99,235,0.12),
+    0 0 0 1px rgba(200,222,255,0.3);
+  background: linear-gradient(135deg, var(--blue-50) 0%, var(--blue-100) 100%);
+  flex-shrink: 0;
+}
+
+/* Video elementi */
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Video üst degrade örtüsü */
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(15,30,64,0.22) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Floating badge'ler — video sarmalayıcı içinde */
+.hero-video-wrap .hero-badge-float {
+  position: absolute;
+  z-index: 2;
+}
+.hero-video-wrap .hero-badge-float.top {
+  top: 1.5rem;
+  right: -0.75rem;
+  animation: floatY 5s ease-in-out infinite;
+}
+.hero-video-wrap .hero-badge-float.bot {
+  bottom: 2rem;
+  left: -0.75rem;
+  animation: floatY 5s 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   RESPONSIVE — Hero Video
+   ============================================================ */
+@media (max-width: 960px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+  .hero-video-wrap {
+    display: none;
+  }
+  /* Hero::after'ı tekrar göster (tek kolon görünümde arka plan ihtiyacı) */
+  .hero::after {
+    display: block;
+    width: 100%;
+    clip-path: none;
+    opacity: 0.35;
+  }
+}
+
+/* ============================================================
+   MOBILE — Genel UI/UX İyileştirmeleri
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Hero yüksekliği mobilde daha kompakt */
+  .hero {
+    min-height: 92svh;
+    min-height: 92vh;
+    padding-bottom: 3rem;
+  }
+
+  /* Topbar — mobilde son 2 öğeyi gizle, ortalı ve kompakt */
+  .htb-item:nth-child(3),
+  .htb-item:nth-child(4) {
+    display: none;
+  }
+
+  /* Hero içerik hizalama mobilde merkeze */
+  .hero-content {
+    text-align: center;
+  }
+  .hero-badge,
+  .hero-buttons,
+  .hero-stats {
+    justify-content: center;
+  }
+  .hero-desc {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* MFG claim stats — tek kolona geç */
+  .mfg-claim-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  /* Section padding mobilde azalt */
+  .about-section,
+  .products-section,
+  .b2b-section,
+  .catalog-section,
+  .contact-section {
+    padding-top: clamp(3rem, 8vw, 5rem);
+    padding-bottom: clamp(3rem, 8vw, 5rem);
+  }
+
+  /* Dokunmatik hedef boyutları — minimum 44px */
+  .btn,
+  .nav-link,
+  .lang-btn,
+  .hamburger {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 600px) {
+  /* Hero h1 boyutu küçük ekranlar için */
+  .hero h1 {
+    font-size: clamp(1.9rem, 8vw, 2.8rem);
+  }
+
+  /* Stats daha kompakt */
+  .hero-stats {
+    gap: 1rem;
+  }
+
+  /* MFG section başlık boyutu */
+  .mfg-section h2 {
+    font-size: clamp(1.6rem, 5.5vw, 2.2rem);
+  }
+
+  /* Ürünler grid — mobilde tek kolon */
+  .products-full-grid {
+    gap: 1rem;
+  }
+
+  /* Footer spacing */
+  .site-footer {
+    padding-top: 3rem;
+  }
 }
