@@ -85,38 +85,23 @@
 </div>
 
 <section class="hero" aria-label="Ana Bölüm">
-  <!-- Grain + Mesh overlays -->
+
+  <!-- Tam ekran video arka plan -->
+  <div class="hero-video-bg" aria-hidden="true">
+    <!-- CSS animasyonlu temsili placeholder — gerçek video geldiğinde üzerini örter -->
+    <div class="hero-cinematic-placeholder"></div>
+    <video class="hero-video-full" autoplay loop muted playsinline>
+      <source src="video/hero.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+  </div>
+
+  <!-- Film grain dokusu -->
   <div class="hero-grain" aria-hidden="true"></div>
-  <div class="hero-mesh" aria-hidden="true"></div>
-  <div class="hero-orb-glow" aria-hidden="true"></div>
-
-  <!-- Dekoratif halka -->
-  <div class="hero-orb" aria-hidden="true">
-    <div class="hero-orb-center" data-tr="MTS" data-en="MTS" data-de="MTS" data-ar="MTS">MTS</div>
-  </div>
-
-  <!-- Floating badge'ler -->
-  <div class="hero-badge-float top" aria-hidden="true">
-    <div class="hbf-icon">
-      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-    </div>
-    <div>
-      <div class="hbf-num">500<sup>+</sup></div>
-      <div class="hbf-lbl" data-tr="Aktif Müşteri" data-en="Active Clients" data-de="Aktive Kunden" data-ar="عميل نشط">Aktif Müşteri</div>
-    </div>
-  </div>
-  <div class="hero-badge-float bot" aria-hidden="true">
-    <div class="hbf-icon">
-      <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6"/></svg>
-    </div>
-    <div>
-      <div class="hbf-num">1200<sup>+</sup></div>
-      <div class="hbf-lbl" data-tr="Ürün Çeşidi" data-en="Products" data-de="Produkte" data-ar="منتج">Ürün Çeşidi</div>
-    </div>
-  </div>
 
   <div class="container">
     <div class="hero-content">
+
       <div class="hero-badge">
         <span class="hero-badge-dot"></span>
         <span data-tr="Türkiye'nin Güvenilir Hijyen Üreticisi · 2010'dan Beri" data-en="Turkey's Trusted Hygiene Manufacturer · Since 2010" data-de="Türkeis vertrauenswürdiger Hygienehersteller · Seit 2010" data-ar="منتج النظافة الموثوق في تركيا · منذ 2010">Türkiye'nin Güvenilir Hijyen Üreticisi · 2010'dan Beri</span>
@@ -133,12 +118,12 @@
          data-de="Bei MTS Hijyen bieten wir Groß- und Zuverlässigen-Hygienelösungen in Papierprodukten, Chemiereinigern und Verbrauchsmaterialien für unsere Unternehmenskunden in der gesamten Türkei."
          data-ar="في MTS Hijyen نقدم حلول نظافة بالجملة وموثوقة في المنتجات الورقية والمنظفات الكيميائية والمستهلكات لعملائنا التجاريين في جميع أنحاء تركيا.">
         MTS Hijyen olarak kağıt ürünler, kimyasal temizlik maddeleri ve sarf ürünlerde kurumsal ve ticari müşterilerimize İstanbul'dan Türkiye geneline toptan ve güvenilir hijyen çözümleri sunuyoruz.
-      </p> 
+      </p>
 
       <div class="hero-buttons">
         <a href="urunler.html" class="btn btn-primary"
            data-tr="Ürün Gruplarını Keşfet" data-en="Explore Product Groups" data-de="Produktgruppen entdecken" data-ar="استكشف مجموعات المنتجات">Ürün Gruplarını Keşfet</a>
-        <a href="iletisim.html" class="btn btn-outline"
+        <a href="iletisim.html" class="btn btn-outline-white"
            data-tr="Toplu Sipariş Teklifi Al" data-en="Get Bulk Quote" data-de="Großangebot anfordern" data-ar="احصل على عرض بالجملة">Toplu Sipariş Teklifi Al</a>
       </div>
 
@@ -160,6 +145,27 @@
           <div class="hero-stat-label" data-tr="İl Teslimat" data-en="Province Delivery" data-de="Provinzen Lieferung" data-ar="توصيل لكل المحافظات">İl Teslimat</div>
         </div>
       </div>
+
+    </div>
+  </div>
+
+  <!-- Floating badge'ler — video üzerinde sağ taraf -->
+  <div class="hero-badge-float top" aria-hidden="true">
+    <div class="hbf-icon">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    </div>
+    <div>
+      <div class="hbf-num">500<sup>+</sup></div>
+      <div class="hbf-lbl" data-tr="Aktif Müşteri" data-en="Active Clients" data-de="Aktive Kunden" data-ar="عميل نشط">Aktif Müşteri</div>
+    </div>
+  </div>
+  <div class="hero-badge-float bot" aria-hidden="true">
+    <div class="hbf-icon">
+      <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6"/></svg>
+    </div>
+    <div>
+      <div class="hbf-num">1200<sup>+</sup></div>
+      <div class="hbf-lbl" data-tr="Ürün Çeşidi" data-en="Products" data-de="Produkte" data-ar="منتج">Ürün Çeşidi</div>
     </div>
   </div>
 
@@ -170,6 +176,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </div>
   </div>
+
 </section>
 
 <!-- ============================================================  B2B TICKER  ============================================================ -->
