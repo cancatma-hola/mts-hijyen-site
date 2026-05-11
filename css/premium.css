@@ -1,0 +1,797 @@
+/* ============================================================
+   MTS HİJYEN — PREMIUM CRYSTAL WHITE v4.0
+   Kristal Beyaz + Canlı Mavi Masterpiece Layer
+   ============================================================ */
+
+/* ---- Custom Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--off-white); }
+::-webkit-scrollbar-thumb { background: var(--blue-700); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--blue-800); }
+
+/* ---- Page Load Fade-In ---- */
+body { animation: pageReveal 0.5s ease both; }
+@keyframes pageReveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ---- Premium Selection Color ---- */
+::selection { background: rgba(37, 99, 235, 0.15); color: var(--blue-950); }
+
+/* ============================================================
+   HEADER — Glassmorphism Premium
+   ============================================================ */
+.site-header {
+  background: rgba(255, 255, 255, 0.85) !important;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(200, 222, 255, 0.5) !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.site-header.scrolled {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 4px 32px rgba(15, 30, 64, 0.08), 0 1px 0 rgba(200,222,255,0.6) !important;
+}
+
+.logo-mark {
+  background: linear-gradient(135deg, var(--blue-800), var(--blue-600)) !important;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.logo:hover .logo-mark {
+  transform: rotate(-4deg) scale(1.07);
+  box-shadow: 0 6px 20px rgba(37,99,235,0.45);
+}
+
+.nav-link {
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 80%;
+  height: 2px;
+  background: var(--blue-700);
+  border-radius: 2px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.nav-link:hover::after,
+.nav-link.active::after { transform: translateX(-50%) scaleX(1); }
+
+/* ============================================================
+   BUTTONS — Premium Gradient System
+   ============================================================ */
+.btn-primary {
+  background: linear-gradient(135deg, var(--blue-800) 0%, var(--blue-700) 50%, #4F95FF 100%) !important;
+  background-size: 200% 100% !important;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.35), inset 0 1px 0 rgba(255,255,255,0.15) !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.btn-primary:hover::before { transform: translateX(100%); }
+.btn-primary:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 28px rgba(37,99,235,0.45), inset 0 1px 0 rgba(255,255,255,0.2) !important;
+  background-position: right center !important;
+}
+.btn-primary:active { transform: translateY(-1px) !important; }
+
+.btn-outline {
+  position: relative;
+  overflow: hidden;
+  border-color: var(--blue-700) !important;
+  transition: all 0.3s ease !important;
+}
+.btn-outline:hover {
+  background: var(--blue-800) !important;
+  color: white !important;
+  border-color: var(--blue-800) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37,99,235,0.3);
+}
+
+.btn-white:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,0.18) !important;
+  transform: translateY(-3px) !important;
+}
+
+/* ============================================================
+   HERO — Immersive Crystal Premium
+   ============================================================ */
+.hero {
+  background: var(--white) !important;
+  position: relative;
+}
+
+/* Mesh gradient overlay */
+.hero-mesh {
+  position: absolute !important;
+  inset: 0 !important;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 50%, rgba(219,234,254,0.65) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 20% 80%, rgba(239,246,255,0.4) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 40% at 85% 10%, rgba(147,197,253,0.2) 0%, transparent 60%) !important;
+  pointer-events: none !important;
+}
+
+/* Grain texture */
+.hero-grain {
+  position: absolute !important;
+  inset: 0 !important;
+  opacity: 0.025 !important;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E") !important;
+  background-size: 256px !important;
+  pointer-events: none !important;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 6vw, 4.6rem) !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.08 !important;
+}
+.hero h1 em {
+  background: linear-gradient(135deg, var(--blue-700), #4F95FF, var(--blue-600));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+  font-style: normal !important;
+}
+
+.hero-badge {
+  background: rgba(219,234,254,0.7) !important;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(147,197,253,0.5) !important;
+  box-shadow: 0 2px 12px rgba(37,99,235,0.1);
+}
+
+/* Floating badges — premium glass */
+.hero-badge-float {
+  background: rgba(255,255,255,0.88) !important;
+  backdrop-filter: blur(16px) saturate(200%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(200%) !important;
+  box-shadow: 0 8px 32px rgba(15,30,64,0.12), 0 1px 0 rgba(255,255,255,0.9), inset 0 1px 0 rgba(255,255,255,0.5) !important;
+  border: 1px solid rgba(200,222,255,0.4) !important;
+}
+
+.hero-orb {
+  border: 1px solid rgba(147,197,253,0.3) !important;
+}
+
+.hero-stat-num {
+  font-size: clamp(2rem, 4vw, 2.8rem) !important;
+  background: linear-gradient(135deg, var(--blue-900), var(--blue-700));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================================
+   HERO TOPBAR — Premium strip
+   ============================================================ */
+.hero-topbar {
+  background: linear-gradient(90deg, var(--blue-950), var(--blue-900), #0F2A8A) !important;
+}
+
+/* ============================================================
+   B2B TICKER — Vivid Blue
+   ============================================================ */
+.b2b-ticker {
+  background: linear-gradient(90deg, var(--blue-900), var(--blue-800), var(--blue-900)) !important;
+}
+
+/* ============================================================
+   TRUST BAR — Premium floating effect
+   ============================================================ */
+.trust-bar {
+  background: var(--white) !important;
+  border-top: 1px solid rgba(200,222,255,0.5);
+  border-bottom: 1px solid rgba(200,222,255,0.5);
+  box-shadow: 0 4px 24px rgba(15,30,64,0.04), 0 -4px 24px rgba(15,30,64,0.02);
+}
+.trust-item:hover .trust-icon {
+  background: linear-gradient(135deg, var(--blue-800), var(--blue-600));
+  box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+}
+.trust-item:hover .trust-icon svg { stroke: var(--white) !important; }
+
+/* ============================================================
+   PRODUCT CARDS — Premium elevation
+   ============================================================ */
+.product-card {
+  background: var(--white) !important;
+  border: 1px solid rgba(200,222,255,0.4) !important;
+  box-shadow: 0 2px 12px rgba(15,30,64,0.05), 0 1px 3px rgba(15,30,64,0.03) !important;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+.product-card:hover {
+  transform: translateY(-10px) !important;
+  box-shadow:
+    0 20px 60px rgba(15,30,64,0.12),
+    0 8px 24px rgba(37,99,235,0.1),
+    0 0 0 1px rgba(147,197,253,0.3) !important;
+  border-color: rgba(147,197,253,0.5) !important;
+}
+.product-card::before {
+  background: linear-gradient(to right, var(--blue-800), #4F95FF, var(--blue-600)) !important;
+}
+
+/* ============================================================
+   WHY CARDS — Glass premium on dark
+   ============================================================ */
+.why-card {
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(255,255,255,0.07) !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.why-card:hover {
+  background: rgba(37,99,235,0.18) !important;
+  border-color: rgba(37,99,235,0.35) !important;
+  transform: translateY(-8px) !important;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.2) !important;
+}
+.why-card-num {
+  font-size: 3rem !important;
+  font-family: 'Playfair Display', serif !important;
+  font-weight: 700 !important;
+  color: rgba(255,255,255,0.06) !important;
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  line-height: 1;
+  pointer-events: none;
+}
+
+/* ============================================================
+   TILT CARDS — Premium sectors
+   ============================================================ */
+.tilt-card {
+  background: var(--white) !important;
+  border: 1px solid rgba(200,222,255,0.5) !important;
+  box-shadow: 0 4px 20px rgba(15,30,64,0.06) !important;
+  transition: box-shadow 0.3s ease !important;
+  border-radius: var(--radius-lg) !important;
+}
+.tilt-card:hover {
+  box-shadow: 0 16px 48px rgba(15,30,64,0.12), 0 0 0 1px rgba(147,197,253,0.4) !important;
+}
+.tilt-card-inner {
+  padding: 2rem 1.75rem !important;
+}
+.tilt-icon {
+  width: 52px !important; height: 52px !important;
+  background: linear-gradient(135deg, var(--blue-50), var(--blue-100)) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 4px 12px rgba(37,99,235,0.12) !important;
+  transition: all 0.3s ease !important;
+}
+.tilt-card:hover .tilt-icon {
+  background: linear-gradient(135deg, var(--blue-800), var(--blue-600)) !important;
+  box-shadow: 0 6px 20px rgba(37,99,235,0.3) !important;
+}
+.tilt-card:hover .tilt-icon svg { stroke: var(--white) !important; }
+
+/* ============================================================
+   ABOUT CARD — Crystal premium
+   ============================================================ */
+.about-card-main {
+  background: linear-gradient(135deg, var(--blue-950) 0%, #0F1E60 60%, var(--blue-900) 100%) !important;
+  box-shadow: 0 24px 64px rgba(15,30,64,0.2), 0 8px 24px rgba(37,99,235,0.15) !important;
+}
+.about-card-main::before {
+  background: radial-gradient(circle, rgba(79,149,255,0.2), transparent 70%) !important;
+}
+.about-float {
+  background: linear-gradient(135deg, var(--blue-700), var(--blue-600)) !important;
+  box-shadow: 0 8px 28px rgba(37,99,235,0.4) !important;
+}
+
+/* ============================================================
+   B2B CARDS — Crystal white
+   ============================================================ */
+.b2b-card {
+  background: var(--off-white) !important;
+  border: 1px solid rgba(200,222,255,0.5) !important;
+  border-radius: var(--radius-lg) !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative;
+  overflow: hidden;
+}
+.b2b-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--blue-800), #4F95FF);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.b2b-card:hover::before { transform: scaleX(1); }
+.b2b-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 40px rgba(15,30,64,0.1), 0 4px 12px rgba(37,99,235,0.1) !important;
+  border-color: rgba(147,197,253,0.5) !important;
+}
+
+/* ============================================================
+   TESTIMONIAL CARDS
+   ============================================================ */
+.testimonial-card {
+  background: rgba(255,255,255,0.95) !important;
+  border: 1px solid rgba(200,222,255,0.5) !important;
+  box-shadow: 0 4px 20px rgba(15,30,64,0.07) !important;
+  backdrop-filter: blur(10px);
+  border-radius: var(--radius-lg) !important;
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+.testimonial-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 36px rgba(15,30,64,0.12) !important;
+}
+.tc-stars span {
+  font-size: 1rem !important;
+  background: linear-gradient(135deg, #F59E0B, #FBBF24);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.tc-avatar {
+  background: linear-gradient(135deg, var(--blue-800), var(--blue-600)) !important;
+  box-shadow: 0 4px 12px rgba(37,99,235,0.3) !important;
+}
+
+/* ============================================================
+   CTA SECTION — Immersive dark blue
+   ============================================================ */
+.cta-section {
+  background: linear-gradient(135deg, var(--blue-950) 0%, #071340 50%, var(--blue-900) 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(37,99,235,0.15) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 15% 30%, rgba(79,149,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+.cta-section > * { position: relative; z-index: 1; }
+.cta-section h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem) !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* ============================================================
+   CATALOG CARDS — Crystal elevated
+   ============================================================ */
+.catalog-card {
+  background: var(--white) !important;
+  border: 1px solid rgba(200,222,255,0.5) !important;
+  box-shadow: 0 2px 12px rgba(15,30,64,0.05) !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.catalog-card:hover {
+  transform: translateY(-6px) !important;
+  box-shadow: 0 16px 40px rgba(15,30,64,0.1), 0 0 0 1px rgba(147,197,253,0.4) !important;
+  border-color: rgba(147,197,253,0.5) !important;
+}
+
+/* ============================================================
+   CONTACT FORM — Premium floating style
+   ============================================================ */
+.contact-form {
+  background: var(--white) !important;
+  border-radius: var(--radius-xl) !important;
+  padding: 2.5rem !important;
+  box-shadow: 0 8px 40px rgba(15,30,64,0.08), 0 1px 0 rgba(200,222,255,0.5) !important;
+  border: 1px solid rgba(200,222,255,0.4) !important;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  border: 1.5px solid rgba(200,222,255,0.7) !important;
+  border-radius: 10px !important;
+  padding: 0.85rem 1rem !important;
+  transition: all 0.25s ease !important;
+  background: rgba(247,250,255,0.6) !important;
+  font-size: 0.94rem !important;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none !important;
+  border-color: var(--blue-600) !important;
+  background: var(--white) !important;
+  box-shadow: 0 0 0 3px rgba(37,99,235,0.1) !important;
+}
+
+.form-submit {
+  background: linear-gradient(135deg, var(--blue-800), var(--blue-700), #4F95FF) !important;
+  background-size: 200% 100% !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 1rem 2rem !important;
+  font-weight: 700 !important;
+  font-size: 0.96rem !important;
+  color: white !important;
+  width: 100% !important;
+  cursor: pointer !important;
+  transition: all 0.35s ease !important;
+  box-shadow: 0 4px 16px rgba(37,99,235,0.3), inset 0 1px 0 rgba(255,255,255,0.15) !important;
+  position: relative;
+  overflow: hidden;
+}
+.form-submit::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+.form-submit:hover::before { transform: translateX(100%); }
+.form-submit:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 28px rgba(37,99,235,0.4) !important;
+  background-position: right center !important;
+}
+
+/* ============================================================
+   CONTACT CARDS — Crystal style
+   ============================================================ */
+.contact-card,
+.phone-card {
+  background: var(--off-white) !important;
+  border: 1px solid rgba(200,222,255,0.5) !important;
+  border-radius: var(--radius-lg) !important;
+  transition: all 0.3s ease !important;
+}
+.contact-card:hover,
+.phone-card:hover {
+  background: var(--blue-50) !important;
+  border-color: rgba(147,197,253,0.6) !important;
+  box-shadow: 0 6px 20px rgba(37,99,235,0.1) !important;
+  transform: translateX(4px) !important;
+}
+
+/* ============================================================
+   PARTNERS — Premium pill style
+   ============================================================ */
+.partner-item {
+  background: var(--off-white) !important;
+  border: 1px solid rgba(200,222,255,0.5) !important;
+  border-radius: 100px !important;
+  padding: 0.6rem 1.4rem !important;
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  color: var(--text-mid) !important;
+  transition: all 0.3s ease !important;
+}
+.partner-item:hover {
+  background: var(--blue-50) !important;
+  border-color: rgba(147,197,253,0.7) !important;
+  color: var(--blue-800) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.1) !important;
+}
+
+/* ============================================================
+   FOOTER — Deep navy premium
+   ============================================================ */
+.site-footer {
+  background: linear-gradient(180deg, var(--blue-950) 0%, #030A20 100%) !important;
+  border-top: 1px solid rgba(37,99,235,0.15) !important;
+}
+
+.footer-link {
+  transition: all 0.25s ease !important;
+  padding: 0.2rem 0 !important;
+}
+.footer-link:hover {
+  color: var(--blue-400, #60A5FA) !important;
+  padding-left: 6px !important;
+}
+
+.social-btn {
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  transition: all 0.3s ease !important;
+  border-radius: 10px !important;
+  width: 40px !important; height: 40px !important;
+}
+.social-btn:hover {
+  background: linear-gradient(135deg, var(--blue-700), var(--blue-600)) !important;
+  border-color: var(--blue-600) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 6px 16px rgba(37,99,235,0.3) !important;
+}
+
+/* ============================================================
+   NUMBERS SECTION — Editorial contrast
+   ============================================================ */
+.numbers-section {
+  background: linear-gradient(135deg, #020914 0%, var(--blue-950) 50%, #03091C 100%) !important;
+}
+.numbers-item {
+  border: 1px solid rgba(37,99,235,0.12) !important;
+  transition: all 0.35s ease !important;
+}
+.numbers-item:hover {
+  background: rgba(37,99,235,0.06) !important;
+  border-color: rgba(37,99,235,0.25) !important;
+  transform: translateY(-4px) !important;
+}
+.ni-number {
+  font-size: clamp(3.5rem, 6vw, 5.5rem) !important;
+  letter-spacing: -0.03em !important;
+}
+
+/* ============================================================
+   COMPARE SECTION
+   ============================================================ */
+.compare-col--good {
+  border: 1px solid rgba(16,185,129,0.25) !important;
+  background: rgba(16,185,129,0.04) !important;
+}
+.compare-col--good:hover {
+  box-shadow: 0 8px 32px rgba(16,185,129,0.1) !important;
+}
+.compare-col--bad {
+  border: 1px solid rgba(239,68,68,0.15) !important;
+}
+
+/* ============================================================
+   MFG SECTION — Production steps premium
+   ============================================================ */
+.mfg-step {
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(255,255,255,0.06) !important;
+  transition: all 0.3s ease !important;
+}
+.mfg-step:hover {
+  background: rgba(37,99,235,0.12) !important;
+  border-color: rgba(37,99,235,0.25) !important;
+  transform: translateY(-4px) !important;
+}
+.mfg-step-num {
+  background: linear-gradient(135deg, var(--blue-700), var(--blue-600)) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  font-size: 2.2rem !important;
+}
+
+/* ============================================================
+   STICKY CTA — Premium floating button
+   ============================================================ */
+.sticky-cta-btn {
+  background: linear-gradient(135deg, var(--blue-800), var(--blue-700)) !important;
+  box-shadow: 0 6px 24px rgba(37,99,235,0.4), 0 2px 8px rgba(0,0,0,0.15) !important;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+.sticky-cta-btn:hover {
+  transform: scale(1.05) !important;
+  box-shadow: 0 10px 32px rgba(37,99,235,0.5) !important;
+}
+
+/* ============================================================
+   WHATSAPP FLOAT — Premium
+   ============================================================ */
+.whatsapp-float {
+  box-shadow: 0 6px 24px rgba(37,166,75,0.4), 0 2px 8px rgba(0,0,0,0.15) !important;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+.whatsapp-float:hover {
+  transform: scale(1.08) translateY(-4px) !important;
+  box-shadow: 0 12px 36px rgba(37,166,75,0.45) !important;
+}
+
+/* ============================================================
+   SCROLL PROGRESS BAR — Premium
+   ============================================================ */
+.scroll-progress {
+  height: 3px !important;
+  background: linear-gradient(90deg, var(--blue-700), #4F95FF, var(--blue-600)) !important;
+  box-shadow: 0 0 8px rgba(37,99,235,0.4) !important;
+}
+
+/* ============================================================
+   CURSOR — Premium blue dot
+   ============================================================ */
+.cursor-dot {
+  width: 6px !important;
+  height: 6px !important;
+  background: var(--blue-700) !important;
+  box-shadow: 0 0 8px rgba(37,99,235,0.5) !important;
+}
+.cursor-ring {
+  width: 32px !important;
+  height: 32px !important;
+  border: 1.5px solid rgba(37,99,235,0.5) !important;
+}
+.cursor-dot.cursor-hover { background: var(--blue-800) !important; transform: scale(2.5) !important; }
+.cursor-ring.cursor-hover { width: 52px !important; height: 52px !important; border-color: rgba(37,99,235,0.3) !important; }
+
+/* ============================================================
+   SECTION HEADERS — Premium refinement
+   ============================================================ */
+.label {
+  background: rgba(219,234,254,0.5);
+  padding: 0.3rem 0.9rem 0.3rem 0;
+  border-radius: 0 100px 100px 0;
+  color: var(--blue-700) !important;
+}
+.label-enhanced {
+  color: var(--blue-700) !important;
+}
+
+/* ============================================================
+   PAGE HERO — Alt sayfalar
+   ============================================================ */
+.page-hero {
+  background: linear-gradient(135deg, var(--blue-950) 0%, #0F1E60 60%, var(--blue-900) 100%) !important;
+  position: relative;
+  overflow: hidden;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(37,99,235,0.12) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 5% 50%, rgba(79,149,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+.page-hero-content { position: relative; z-index: 1; }
+.page-hero h1 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem) !important;
+  letter-spacing: -0.02em !important;
+}
+
+/* ============================================================
+   MOBILE NAV — Premium full-screen
+   ============================================================ */
+.mobile-nav {
+  background: linear-gradient(135deg, var(--blue-950), #030A20) !important;
+}
+.mobile-nav::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 60% at 50% 40%, rgba(37,99,235,0.12) 0%, transparent 70%);
+}
+.mobile-nav-link {
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.01em !important;
+}
+.mobile-nav-link:hover {
+  color: var(--blue-500, #60A5FA) !important;
+  transform: translateX(8px);
+  transition: all 0.3s ease;
+}
+
+/* ============================================================
+   FADE-UP ANIMATIONS — Smoother
+   ============================================================ */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.fade-up.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* ============================================================
+   SECTION DIVIDERS — Sharper
+   ============================================================ */
+.section-divider svg path { }
+
+/* ============================================================
+   RESPONSIVE FIXES
+   ============================================================ */
+@media (max-width: 768px) {
+  .hero h1 { font-size: clamp(2.2rem, 8vw, 3rem) !important; }
+  .contact-form { padding: 1.5rem !important; }
+  .label { padding: 0.2rem 0.5rem 0.2rem 0; }
+}
+
+/* ============================================================
+   ABOUT SECTION FEATURES — Premium cards
+   ============================================================ */
+.af {
+  background: rgba(247,250,255,0.8) !important;
+  border: 1px solid rgba(200,222,255,0.5) !important;
+  transition: all 0.3s ease !important;
+}
+.af:hover {
+  background: var(--white) !important;
+  border-color: rgba(147,197,253,0.7) !important;
+  box-shadow: 0 6px 20px rgba(37,99,235,0.08) !important;
+  transform: translateY(-2px) !important;
+}
+.af-icon {
+  background: linear-gradient(135deg, var(--blue-800), var(--blue-700)) !important;
+  box-shadow: 0 4px 12px rgba(37,99,235,0.25) !important;
+}
+
+/* ============================================================
+   PARTNERS BAR — Premium gradient fade mask
+   ============================================================ */
+.partners-bar {
+  background: linear-gradient(to right, var(--off-white) 0%, var(--white) 50%, var(--off-white) 100%) !important;
+}
+.partners-track {
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent) !important;
+}
+
+/* ============================================================
+   SHOWCASE CARD — Premium glass
+   ============================================================ */
+.showcase-card {
+  box-shadow: 0 32px 80px rgba(15,30,64,0.18), 0 8px 24px rgba(15,30,64,0.1), 0 0 0 1px rgba(200,222,255,0.3) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
+/* ============================================================
+   WHY SECTION SPOTLIGHT
+   ============================================================ */
+.why-section {
+  background: linear-gradient(135deg, #040D26 0%, var(--blue-950) 50%, #050F2E 100%) !important;
+}
+
+/* ============================================================
+   CERT BADGE — Premium gold
+   ============================================================ */
+.cert-badge {
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A) !important;
+  border: 1px solid #F59E0B !important;
+  box-shadow: 0 2px 8px rgba(245,158,11,0.2) !important;
+}
+.mfg-badge {
+  background: rgba(16,185,129,0.1) !important;
+  border: 1px solid rgba(16,185,129,0.3) !important;
+  border-radius: 8px !important;
+  padding: 0.5rem 0.9rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 0.4rem !important;
+  margin-top: 0.75rem !important;
+}
+
+/* ============================================================
+   MFG BADGE SVG color
+   ============================================================ */
+.mfg-badge svg { width: 16px; height: 16px; stroke: #10B981; }
+.mfg-badge span { font-size: 0.78rem; font-weight: 700; color: #059669; }
