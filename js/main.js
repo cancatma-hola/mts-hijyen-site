@@ -3,12 +3,57 @@
    ============================================================ */
 'use strict';
 
-/* ---- Header scroll ---- */
+/* ---- Header + Topbar scroll: sinematik mod + yön bazlı gizle/göster ---- */
 (function () {
-  const header = document.querySelector('.site-header');
+  const header  = document.querySelector('.site-header');
+  const topbar  = document.querySelector('.hero-topbar');
   if (!header) return;
-  function update() { header.classList.toggle('scrolled', window.scrollY > 30); }
-  window.addEventListener('scroll', update, { passive: true });
+
+  const hasHero       = !!document.querySelector('.hero');
+  const CINEMATIC_OFF = 36 + 74; // topbar + header yüksekliği
+  const HIDE_THRESHOLD = 120;    // bu değerin altında her zaman görünür
+  const MIN_DELTA      = 6;      // titreme önleme
+
+  let lastY   = window.scrollY;
+  let ticking = false;
+
+  if (hasHero) header.classList.add('cinematic');
+
+  function setHidden(hidden) {
+    header.classList.toggle('nav-hidden', hidden);
+    if (topbar) topbar.classList.toggle('nav-hidden', hidden);
+  }
+
+  function update() {
+    const y     = window.scrollY;
+    const delta = y - lastY;
+
+    /* Scrolled (glassmorphism) */
+    header.classList.toggle('scrolled', y > 10);
+
+    /* Cinematic şeffaf mod */
+    if (hasHero) header.classList.toggle('cinematic', y < CINEMATIC_OFF);
+
+    /* Yön bazlı gizle / göster */
+    if (y < HIDE_THRESHOLD) {
+      setHidden(false);
+    } else if (delta > MIN_DELTA) {
+      setHidden(true);
+    } else if (delta < -MIN_DELTA) {
+      setHidden(false);
+    }
+
+    lastY   = y;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+
   update();
 })();
 
@@ -439,19 +484,28 @@
   items.forEach(item => io.observe(item));
 })();
 
-/* ---- Sticky CTA — shows after scrolling past hero ---- */
+/* ---- Sticky CTA — hero'dan sonra veya kaydırmadan sonra göster ---- */
 (function () {
   const hero = document.querySelector('.hero');
   const cta  = document.getElementById('stickyCta');
-  if (!hero || !cta) return;
-  const io = new IntersectionObserver(entries => {
-    const visible = !entries[0].isIntersecting;
+  if (!cta) return;
+
+  function setVisible(visible) {
     cta.classList.toggle('visible', visible);
     cta.setAttribute('aria-hidden', String(!visible));
-    const btn = cta.querySelector('a');
-    if (btn) btn.tabIndex = visible ? 0 : -1;
-  }, { threshold: 0.15 });
-  io.observe(hero);
+    cta.querySelectorAll('a').forEach(btn => { btn.tabIndex = visible ? 0 : -1; });
+  }
+
+  if (hero) {
+    const io = new IntersectionObserver(entries => {
+      setVisible(!entries[0].isIntersecting);
+    }, { threshold: 0.15 });
+    io.observe(hero);
+  } else {
+    function update() { setVisible(window.scrollY > 250); }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
 })();
 
 /* ---- Why Section — Cursor Spotlight ---- */

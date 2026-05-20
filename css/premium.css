@@ -11,7 +11,7 @@
 
 /* ---- Page Load Fade-In ---- */
 body { animation: pageReveal 0.5s ease both; }
-@keyframes pageReveal { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes pageReveal { from { opacity: 0; } to { opacity: 1; } }
 
 /* ---- Premium Selection Color ---- */
 ::selection { background: rgba(37, 99, 235, 0.15); color: var(--blue-950); }
@@ -29,6 +29,13 @@ body { animation: pageReveal 0.5s ease both; }
 .site-header.scrolled {
   background: rgba(255, 255, 255, 0.95) !important;
   box-shadow: 0 4px 32px rgba(15, 30, 64, 0.08), 0 1px 0 rgba(200,222,255,0.6) !important;
+}
+.site-header.cinematic {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-bottom-color: transparent !important;
+  box-shadow: none !important;
 }
 
 .logo-mark {
@@ -172,16 +179,16 @@ body { animation: pageReveal 0.5s ease both; }
 
 .hero-stat-num {
   font-size: clamp(2rem, 4vw, 2.8rem) !important;
-  background: linear-gradient(135deg, var(--blue-900), var(--blue-700));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #FFFFFF !important;
+  -webkit-text-fill-color: #FFFFFF !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
 }
-/* Sup/sub inside gradient text needs its own color reset */
 .hero-stat-num sup,
 .hero-stat-num sub {
-  -webkit-text-fill-color: var(--blue-700);
-  color: var(--blue-700);
+  -webkit-text-fill-color: rgba(255,255,255,0.75) !important;
+  color: rgba(255,255,255,0.75) !important;
 }
 
 /* ============================================================
@@ -202,10 +209,10 @@ body { animation: pageReveal 0.5s ease both; }
    TRUST BAR — Premium floating effect
    ============================================================ */
 .trust-bar {
-  background: var(--white) !important;
-  border-top: 1px solid rgba(200,222,255,0.5);
-  border-bottom: 1px solid rgba(200,222,255,0.5);
-  box-shadow: 0 4px 24px rgba(15,30,64,0.04), 0 -4px 24px rgba(15,30,64,0.02);
+  background: var(--blue-950) !important;
+  border-top: 1px solid rgba(255,255,255,0.06) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15) !important;
 }
 .trust-item:hover .trust-icon {
   background: linear-gradient(135deg, var(--blue-800), var(--blue-600));
@@ -289,6 +296,14 @@ body { animation: pageReveal 0.5s ease both; }
   box-shadow: 0 6px 20px rgba(37,99,235,0.3) !important;
 }
 .tilt-card:hover .tilt-icon svg { stroke: var(--white) !important; }
+
+/* Beyaz arka plan üzerinde okunaklı metin renkleri */
+.tilt-card h3 { color: var(--blue-950) !important; }
+.tilt-card .tilt-card-inner > p { color: var(--text-mid) !important; }
+.tilt-card .tilt-list li { color: var(--text-mid) !important; }
+.tilt-card .tilt-list li::before { background: var(--blue-600) !important; }
+.tilt-card::before { display: none !important; }
+.tilt-card::after { display: none !important; }
 
 /* ============================================================
    ABOUT CARD — Crystal premium

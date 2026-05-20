@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section Preview — MTS Hijyen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #0A0A0F;
+  --white: #FAFAF8;
+  --blue: #1A3BFF;
+  --blue-mid: #2A5CFF;
+  --sky: #60A5FA;
+  --gold: #D4A843;
+  --cream: #F5F0E8;
+  --muted: rgba(10,10,15,0.45);
+}
+html { scroll-behavior: smooth; }
+body { background: #0A0A0F; color: var(--white); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+/* NAV */
+.preview-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  background: rgba(10,10,15,0.85); backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 0 2rem;
+  display: flex; align-items: center; gap: 0;
+  overflow-x: auto; scrollbar-width: none; height: 52px;
+}
+.preview-nav::-webkit-scrollbar { display: none; }
+.preview-nav a {
+  color: rgba(255,255,255,0.45); font-size: 0.7rem; text-decoration: none;
+  font-family: 'Space Grotesk', sans-serif; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  white-space: nowrap; padding: 0 1rem; height: 100%; display: flex; align-items: center;
+  border-right: 1px solid rgba(255,255,255,0.06); transition: color 0.2s;
+}
+.preview-nav a:first-child { padding-left: 0; }
+.preview-nav a:hover { color: var(--white); }
+
+/* SECTION LABEL */
+.sec-label {
+  position: relative; padding: 4rem 3vw 0;
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(255,255,255,0.2);
+  display: flex; align-items: center; gap: 1rem;
+}
+.sec-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+
+/* ============================================
+   SECTION 1: BENTO STATS
+   ============================================ */
+#s1 { padding: 5rem 3vw 6rem; background: #0A0A0F; }
+.bento-title {
+  font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 800;
+  color: var(--white); line-height: 0.95; margin-bottom: 3rem;
+  max-width: 680px;
+}
+.bento-title em { color: var(--blue); font-style: normal; display: block; }
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 12px;
+}
+.b { border-radius: 16px; padding: 2.5rem; overflow: hidden; position: relative; }
+.b1 { grid-column: span 5; grid-row: span 2; background: #111118; }
+.b2 { grid-column: span 4; background: var(--blue); }
+.b3 { grid-column: span 3; background: #1A1A24; }
+.b4 { grid-column: span 4; background: #111118; }
+.b5 { grid-column: span 3; background: #1A1A24; }
+.b6 { grid-column: span 5; background: linear-gradient(135deg, #0F1A4A 0%, #111118 100%); }
+
+.b-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: clamp(4rem, 8vw, 7rem);
+  line-height: 0.9; letter-spacing: -0.02em;
+}
+.b-num.gold { color: var(--gold); }
+.b-num.white { color: var(--white); }
+.b-num.blue { color: var(--sky); }
+.b1 .b-num { font-size: clamp(5rem, 12vw, 9rem); }
+.b-label { font-size: 0.78rem; color: rgba(255,255,255,0.45); margin-top: 0.5rem; letter-spacing: 0.05em; font-family: 'Space Grotesk', sans-serif; }
+.b1 .b-label { font-size: 0.9rem; color: rgba(255,255,255,0.55); margin-top: 0.75rem; max-width: 220px; line-height: 1.5; }
+.b-tag { display: inline-block; background: rgba(255,255,255,0.08); padding: 0.35rem 0.75rem; border-radius: 100px; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; font-family: 'Space Grotesk', sans-serif; margin-bottom: 1rem; color: rgba(255,255,255,0.5); }
+.b2 .b-tag { background: rgba(255,255,255,0.18); color: rgba(255,255,255,0.8); }
+.b-dot { width: 8px; height: 8px; border-radius: 50%; background: #22C55E; margin-bottom: 1.2rem; box-shadow: 0 0 10px #22C55E; }
+.b5-inner { display: flex; flex-direction: column; height: 100%; justify-content: space-between; }
+.b5-bar-wrap { display: flex; gap: 5px; align-items: flex-end; height: 60px; margin-top: 1rem; }
+.b5-bar { width: 14px; border-radius: 4px 4px 0 0; background: rgba(255,255,255,0.15); }
+.b5-bar.active { background: var(--blue-mid); }
+.b6-inner { display: flex; align-items: center; gap: 2rem; }
+.b6-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, #1A3BFF, #60A5FA); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.1rem; }
+.b6-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.05rem; line-height: 1.6; color: rgba(255,255,255,0.75); }
+.b6-author { font-size: 0.7rem; color: rgba(255,255,255,0.35); margin-top: 0.5rem; letter-spacing: 0.08em; font-family: 'Space Grotesk', sans-serif; }
+
+/* ============================================
+   SECTION 2: DIAGONAL PROCESS
+   ============================================ */
+#s2 { padding: 5rem 0 7rem; background: #FAFAF8; overflow: hidden; }
+.diag-head {
+  padding: 0 3vw; display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem;
+}
+.diag-head h2 { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: var(--ink); line-height: 1; }
+.diag-head h2 span { color: var(--blue); }
+.diag-sub { max-width: 320px; color: rgba(10,10,15,0.5); font-size: 0.9rem; line-height: 1.7; }
+.diag-steps { display: flex; padding: 0 3vw; gap: 0; position: relative; }
+.diag-steps::before { content: ''; position: absolute; top: 2.5rem; left: 3vw; right: 3vw; height: 1px; background: linear-gradient(to right, var(--blue) 0%, rgba(26,59,255,0.1) 100%); z-index: 0; }
+.dstep { flex: 1; padding: 0 2rem 0 0; position: relative; z-index: 1; }
+.dstep-num {
+  width: 5rem; height: 5rem; border-radius: 50%;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.05em;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 1.5rem; transition: transform 0.4s;
+}
+.dstep:nth-child(1) .dstep-num { background: var(--blue); color: var(--white); box-shadow: 0 0 0 8px rgba(26,59,255,0.1); }
+.dstep:nth-child(2) .dstep-num { background: var(--white); color: var(--ink); border: 2px solid rgba(10,10,15,0.12); }
+.dstep:nth-child(3) .dstep-num { background: var(--white); color: var(--ink); border: 2px solid rgba(10,10,15,0.12); }
+.dstep:nth-child(4) .dstep-num { background: var(--white); color: var(--ink); border: 2px solid rgba(10,10,15,0.12); }
+.dstep:hover .dstep-num { transform: scale(1.1); }
+.dstep h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 0.6rem; }
+.dstep p { font-size: 0.82rem; color: rgba(10,10,15,0.5); line-height: 1.7; }
+.dstep-tag { display: inline-block; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); font-family: 'Space Grotesk', sans-serif; font-weight: 600; background: rgba(26,59,255,0.08); padding: 0.25rem 0.6rem; border-radius: 4px; margin-bottom: 0.75rem; }
+.diag-bottom { margin-top: 4rem; padding: 0 3vw; display: flex; align-items: center; gap: 2rem; }
+.diag-cta { background: var(--ink); color: var(--white); padding: 0.9rem 2.2rem; border-radius: 100px; font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; transition: background 0.2s; }
+.diag-cta:hover { background: var(--blue); }
+.diag-note { font-size: 0.78rem; color: rgba(10,10,15,0.35); }
+
+/* ============================================
+   SECTION 3: EDITORIAL TESTIMONIALS
+   ============================================ */
+#s3 { background: #0D0D15; padding: 5rem 3vw 7rem; }
+.editorial-head { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 5rem; align-items: end; }
+.editorial-head h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 7vw, 6rem); font-weight: 300; line-height: 1.05; }
+.editorial-head h2 em { font-style: italic; color: var(--sky); }
+.editorial-kicker { font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 1.5rem; }
+.editorial-desc { color: rgba(255,255,255,0.45); font-size: 0.9rem; line-height: 1.8; max-width: 380px; align-self: end; }
+.editorial-score { display: flex; align-items: flex-end; gap: 1rem; margin-top: 2rem; }
+.score-big { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; line-height: 1; color: var(--white); }
+.score-detail { font-size: 0.75rem; color: rgba(255,255,255,0.35); line-height: 1.6; }
+.stars { color: var(--gold); font-size: 0.9rem; display: block; margin-bottom: 0.25rem; }
+.testi-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.06); }
+.testi-card {
+  background: #0D0D15; padding: 2.5rem 2rem;
+  position: relative; transition: background 0.3s;
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+.testi-card:hover { background: #12121C; }
+.testi-card.featured { background: var(--blue); }
+.testi-card.featured:hover { background: #1A3BFF; }
+.testi-mark { font-family: 'Cormorant Garamond', serif; font-size: 5rem; line-height: 0.8; color: rgba(255,255,255,0.12); }
+.testi-card.featured .testi-mark { color: rgba(255,255,255,0.22); }
+.testi-text { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; line-height: 1.65; color: rgba(255,255,255,0.8); flex: 1; }
+.testi-card.featured .testi-text { color: rgba(255,255,255,0.95); }
+.testi-person { display: flex; align-items: center; gap: 1rem; }
+.testi-avatar { width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; }
+.testi-card:not(.featured) .testi-avatar { background: rgba(255,255,255,0.06); }
+.testi-card.featured .testi-avatar { background: rgba(255,255,255,0.25); }
+.testi-name { font-family: 'Space Grotesk', sans-serif; font-size: 0.78rem; font-weight: 600; }
+.testi-role { font-size: 0.68rem; color: rgba(255,255,255,0.35); margin-top: 0.15rem; }
+.testi-card.featured .testi-role { color: rgba(255,255,255,0.65); }
+
+/* ============================================
+   SECTION 4: MARQUEE CATEGORIES
+   ============================================ */
+#s4 { background: #F5F0E8; padding: 5rem 0 6rem; overflow: hidden; }
+.marq-head { padding: 0 3vw; margin-bottom: 3rem; }
+.marq-head h2 { font-family: 'Syne', sans-serif; font-size: clamp(2.2rem, 4.5vw, 3.5rem); font-weight: 800; color: var(--ink); }
+.marq-head h2 em { font-style: normal; color: var(--blue); }
+.marq-track { display: flex; gap: 0; overflow: hidden; }
+.marq-inner { display: flex; gap: 12px; animation: marqScroll 28s linear infinite; will-change: transform; }
+.marq-inner.rev { animation-direction: reverse; animation-duration: 22s; }
+.marq-track + .marq-track { margin-top: 12px; }
+@keyframes marqScroll { to { transform: translateX(-50%); } }
+.cat-chip {
+  display: flex; align-items: center; gap: 0.75rem;
+  background: var(--white); border-radius: 100px; padding: 0.65rem 1.4rem;
+  white-space: nowrap; flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 500; color: var(--ink);
+  transition: background 0.25s, color 0.25s; cursor: default;
+}
+.cat-chip:hover { background: var(--blue); color: var(--white); }
+.cat-chip.accent { background: var(--ink); color: var(--white); }
+.cat-chip.accent:hover { background: var(--blue); }
+.cat-chip.outline { background: transparent; border: 1.5px solid rgba(10,10,15,0.15); }
+.cat-chip.outline:hover { background: var(--blue); border-color: var(--blue); color: var(--white); }
+.marq-footer { padding: 3.5rem 3vw 0; display: flex; align-items: center; justify-content: space-between; }
+.marq-total { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; line-height: 1; color: var(--ink); }
+.marq-total span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 400; color: rgba(10,10,15,0.4); letter-spacing: 0.05em; margin-top: 0.25rem; }
+.marq-cta { background: var(--blue); color: var(--white); padding: 1rem 2.5rem; border-radius: 100px; font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; font-weight: 600; text-decoration: none; transition: transform 0.2s; display: inline-block; }
+.marq-cta:hover { transform: scale(1.03); }
+
+/* ============================================
+   SECTION 5: SPLIT SCREEN
+   ============================================ */
+#s5 { background: #0A0A0F; display: grid; grid-template-columns: 1fr 1fr; min-height: 90vh; }
+.split-l { padding: 7rem 4vw 7rem 3vw; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid rgba(255,255,255,0.05); }
+.split-kicker { font-family: 'Space Grotesk', sans-serif; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 2rem; display: flex; align-items: center; gap: 0.75rem; }
+.split-kicker::before { content: ''; width: 2rem; height: 1px; background: var(--blue); }
+.split-h2 { font-family: 'Syne', sans-serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 800; line-height: 1.0; margin-bottom: 2rem; }
+.split-h2 strong { color: var(--sky); font-weight: 800; }
+.split-desc { color: rgba(255,255,255,0.45); font-size: 0.92rem; line-height: 1.8; max-width: 420px; margin-bottom: 3rem; }
+.split-items { display: flex; flex-direction: column; gap: 8px; }
+.split-item {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.25rem 1.25rem;
+  border: 1px solid rgba(255,255,255,0.05); border-radius: 10px;
+  cursor: pointer; transition: background 0.2s, border-color 0.2s;
+}
+.split-item:hover, .split-item.active { background: rgba(26,59,255,0.08); border-color: rgba(26,59,255,0.25); }
+.split-item-icon { width: 38px; height: 38px; border-radius: 8px; background: rgba(26,59,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+.split-item h4 { font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 600; margin-bottom: 0.2rem; }
+.split-item p { font-size: 0.75rem; color: rgba(255,255,255,0.35); line-height: 1.5; }
+.split-r { position: relative; overflow: hidden; background: linear-gradient(160deg, #0F1A4A 0%, #080B18 100%); }
+.split-r-inner { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 4rem; }
+.split-visual { width: 100%; max-width: 400px; aspect-ratio: 4/5; border-radius: 20px; overflow: hidden; position: relative; }
+.split-vis-bg { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(26,59,255,0.3) 0%, rgba(6,12,30,0.9) 100%); }
+.split-vis-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(26,59,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(26,59,255,0.06) 1px, transparent 1px); background-size: 40px 40px; }
+.split-vis-orb { position: absolute; width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(26,59,255,0.4) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); filter: blur(40px); animation: orbPulse 4s ease-in-out infinite; }
+@keyframes orbPulse { 0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.7; } 50% { transform: translate(-50%,-50%) scale(1.15); opacity: 1; } }
+.split-vis-card { position: absolute; bottom: 1.5rem; left: 1.5rem; right: 1.5rem; background: rgba(255,255,255,0.04); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 1.25rem; }
+.split-vis-card h5 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; }
+.split-vis-card p { font-size: 0.72rem; color: rgba(255,255,255,0.4); }
+.split-vis-badge { display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.25); border-radius: 100px; padding: 0.25rem 0.7rem; font-size: 0.65rem; color: #4ADE80; font-family: 'Space Grotesk', sans-serif; margin-top: 0.5rem; }
+.split-vis-badge::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #4ADE80; box-shadow: 0 0 8px #4ADE80; }
+
+/* ============================================
+   SECTION 6: IMMERSIVE CTA
+   ============================================ */
+#s6 { min-height: 100vh; display: flex; align-items: center; justify-content: center; background: #050508; position: relative; overflow: hidden; text-align: center; padding: 6rem 3vw; }
+.cta-rings { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 900px; height: 900px; pointer-events: none; }
+.ring { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); border-radius: 50%; border: 1px solid rgba(26,59,255,0.12); animation: ringExpand 6s ease-out infinite; }
+.ring:nth-child(1) { width: 300px; height: 300px; animation-delay: 0s; border-color: rgba(26,59,255,0.25); }
+.ring:nth-child(2) { width: 480px; height: 480px; animation-delay: 1.5s; }
+.ring:nth-child(3) { width: 660px; height: 660px; animation-delay: 3s; }
+.ring:nth-child(4) { width: 840px; height: 840px; animation-delay: 4.5s; }
+@keyframes ringExpand { 0% { opacity: 0.8; transform: translate(-50%,-50%) scale(0.9); } 100% { opacity: 0; transform: translate(-50%,-50%) scale(1); } }
+.cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(26,59,255,0.2) 0%, transparent 70%); filter: blur(60px); }
+.cta-inner { position: relative; z-index: 1; max-width: 720px; }
+.cta-eyebrow { font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--sky); margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; gap: 0.75rem; }
+.cta-eyebrow::before, .cta-eyebrow::after { content: ''; width: 2.5rem; height: 1px; background: var(--sky); opacity: 0.4; }
+.cta-h2 { font-family: 'Syne', sans-serif; font-size: clamp(3rem, 8vw, 7rem); font-weight: 800; line-height: 0.95; margin-bottom: 2rem; }
+.cta-h2 span { color: var(--sky); display: block; }
+.cta-sub { color: rgba(255,255,255,0.45); font-size: 1rem; line-height: 1.7; max-width: 480px; margin: 0 auto 3.5rem; }
+.cta-btns { display: flex; align-items: center; justify-content: center; gap: 1rem; }
+.btn-glow { background: var(--blue); color: var(--white); padding: 1.1rem 3rem; border-radius: 100px; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 600; text-decoration: none; box-shadow: 0 0 40px rgba(26,59,255,0.4), 0 0 80px rgba(26,59,255,0.15); transition: box-shadow 0.3s, transform 0.2s; }
+.btn-glow:hover { box-shadow: 0 0 60px rgba(26,59,255,0.6), 0 0 120px rgba(26,59,255,0.2); transform: scale(1.02); }
+.btn-ghost { color: rgba(255,255,255,0.6); padding: 1.1rem 2rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; text-decoration: none; border: 1px solid rgba(255,255,255,0.12); border-radius: 100px; transition: border-color 0.2s, color 0.2s; }
+.btn-ghost:hover { border-color: rgba(255,255,255,0.35); color: var(--white); }
+.cta-small { margin-top: 2rem; font-size: 0.72rem; color: rgba(255,255,255,0.2); letter-spacing: 0.05em; }
+.cta-small strong { color: rgba(255,255,255,0.4); }
+
+/* ============================================
+   SECTION 7: CERT — MAGAZINE GRID
+   ============================================ */
+#s7 { background: var(--cream); padding: 5rem 3vw 7rem; }
+.cert-head { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 4rem; }
+.cert-head h2 { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; color: var(--ink); line-height: 1; }
+.cert-head h2 em { font-style: normal; display: block; -webkit-text-stroke: 1.5px var(--ink); color: transparent; }
+.cert-head-right p { font-size: 0.82rem; color: rgba(10,10,15,0.45); max-width: 260px; line-height: 1.7; text-align: right; }
+.cert-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: auto auto; gap: 12px; }
+.cert-card { background: var(--white); border-radius: 16px; padding: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem; transition: transform 0.3s, box-shadow 0.3s; }
+.cert-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
+.cert-card.span2 { grid-row: span 2; justify-content: space-between; }
+.cert-icon { width: 56px; height: 56px; border-radius: 14px; background: rgba(26,59,255,0.08); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; }
+.cert-card.dark { background: var(--ink); color: var(--white); }
+.cert-card.dark .cert-icon { background: rgba(255,255,255,0.08); }
+.cert-name { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+.cert-card.dark .cert-name { color: var(--white); }
+.cert-year { font-family: 'Space Grotesk', sans-serif; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(10,10,15,0.35); margin-top: 0.25rem; }
+.cert-card.dark .cert-year { color: rgba(255,255,255,0.3); }
+.cert-desc { font-size: 0.8rem; color: rgba(10,10,15,0.45); line-height: 1.7; }
+.cert-card.dark .cert-desc { color: rgba(255,255,255,0.4); }
+.cert-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; font-weight: 600; color: var(--blue); }
+.cert-badge::before { content: '✓'; }
+.cert-big-num { font-family: 'Bebas Neue', sans-serif; font-size: 5rem; line-height: 1; color: var(--blue); }
+
+/* ============================================
+   SECTION 8: FAQ ACCORDION
+   ============================================ */
+#s8 { background: #0A0A0F; padding: 5rem 3vw 7rem; }
+.faq-head { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 4rem; align-items: end; }
+.faq-head h2 { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; }
+.faq-head p { color: rgba(255,255,255,0.4); font-size: 0.9rem; line-height: 1.8; }
+.faq-list { border-top: 1px solid rgba(255,255,255,0.06); }
+.faq-item { border-bottom: 1px solid rgba(255,255,255,0.06); }
+.faq-q { display: flex; align-items: center; justify-content: space-between; padding: 1.75rem 0; cursor: pointer; font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 500; transition: color 0.2s; }
+.faq-q:hover { color: var(--sky); }
+.faq-icon { width: 32px; height: 32px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background 0.2s, border-color 0.2s; }
+.faq-q:hover .faq-icon { background: rgba(26,59,255,0.15); border-color: rgba(26,59,255,0.3); }
+.faq-icon svg { width: 14px; height: 14px; transition: transform 0.3s; }
+.faq-item.open .faq-icon { background: var(--blue); border-color: var(--blue); }
+.faq-item.open .faq-icon svg { transform: rotate(45deg); }
+.faq-a { display: none; padding: 0 0 1.75rem; color: rgba(255,255,255,0.45); font-size: 0.88rem; line-height: 1.85; max-width: 680px; }
+.faq-item.open .faq-a { display: block; }
+.faq-num { font-family: 'Bebas Neue', sans-serif; font-size: 0.85rem; color: rgba(255,255,255,0.2); margin-right: 1.5rem; letter-spacing: 0.05em; width: 2rem; flex-shrink: 0; }
+.faq-q-text { flex: 1; }
+
+/* ============================================
+   SECTION 9: PARTNER MARQUEE
+   ============================================ */
+#s9 { background: #09090E; padding: 5rem 0 6rem; overflow: hidden; }
+.partner-head { padding: 0 3vw; display: flex; align-items: center; gap: 3rem; margin-bottom: 3.5rem; }
+.partner-head h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; font-style: italic; white-space: nowrap; }
+.partner-head-line { flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+.partner-head p { font-size: 0.78rem; color: rgba(255,255,255,0.25); max-width: 280px; line-height: 1.6; text-align: right; }
+.logo-track { overflow: hidden; }
+.logo-inner { display: flex; gap: 1px; animation: logoScroll 35s linear infinite; }
+.logo-inner.rev { animation-direction: reverse; animation-duration: 28s; }
+.logo-track + .logo-track { margin-top: 1px; }
+@keyframes logoScroll { to { transform: translateX(-50%); } }
+.logo-chip { background: #111116; padding: 1.5rem 3rem; white-space: nowrap; font-family: 'Space Grotesk', sans-serif; font-size: 0.9rem; font-weight: 600; color: rgba(255,255,255,0.18); letter-spacing: 0.05em; flex-shrink: 0; display: flex; align-items: center; gap: 0.75rem; transition: color 0.3s, background 0.3s; }
+.logo-chip:hover { color: rgba(255,255,255,0.7); background: #161620; }
+.logo-dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255,255,255,0.12); }
+.logo-chip.bright { color: rgba(255,255,255,0.45); }
+
+/* ============================================
+   SECTION 10: PRICING
+   ============================================ */
+#s10 { background: linear-gradient(160deg, #060C1E 0%, #0A0A0F 60%); padding: 5rem 3vw 7rem; }
+.price-head { text-align: center; margin-bottom: 4.5rem; }
+.price-kicker { font-family: 'Space Grotesk', sans-serif; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 1.5rem; }
+.price-head h2 { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; }
+.price-head h2 em { font-style: normal; color: var(--sky); }
+.price-toggle { display: inline-flex; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 100px; padding: 4px; gap: 4px; margin-top: 2rem; }
+.price-toggle button { padding: 0.45rem 1.5rem; border-radius: 100px; border: none; font-family: 'Space Grotesk', sans-serif; font-size: 0.8rem; font-weight: 500; cursor: pointer; background: transparent; color: rgba(255,255,255,0.4); transition: background 0.2s, color 0.2s; }
+.price-toggle button.active { background: var(--white); color: var(--ink); }
+.price-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.price-card { border-radius: 20px; padding: 2.5rem 2rem; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.07); background: rgba(255,255,255,0.03); backdrop-filter: blur(20px); transition: transform 0.3s, border-color 0.3s; }
+.price-card:hover { transform: translateY(-6px); border-color: rgba(26,59,255,0.3); }
+.price-card.popular { border-color: rgba(26,59,255,0.35); background: rgba(26,59,255,0.07); }
+.price-pop-badge { position: absolute; top: -1px; left: 50%; transform: translateX(-50%); background: var(--blue); color: var(--white); font-family: 'Space Grotesk', sans-serif; font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.35rem 1.2rem; border-radius: 0 0 12px 12px; }
+.price-tier { font-family: 'Space Grotesk', sans-serif; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 1.5rem; }
+.price-amount { display: flex; align-items: flex-start; gap: 0.25rem; margin-bottom: 0.5rem; }
+.price-curr { font-family: 'Space Grotesk', sans-serif; font-size: 1.2rem; font-weight: 600; color: rgba(255,255,255,0.5); margin-top: 0.5rem; }
+.price-num { font-family: 'Bebas Neue', sans-serif; font-size: 4.5rem; line-height: 1; }
+.price-per { font-size: 0.75rem; color: rgba(255,255,255,0.3); align-self: flex-end; margin-bottom: 0.5rem; }
+.price-desc { font-size: 0.78rem; color: rgba(255,255,255,0.35); line-height: 1.6; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.price-features { list-style: none; display: flex; flex-direction: column; gap: 0.85rem; margin-bottom: 2.5rem; }
+.price-features li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.8rem; color: rgba(255,255,255,0.55); }
+.price-features li::before { content: '✓'; color: var(--sky); font-weight: 700; flex-shrink: 0; }
+.price-features li.muted { color: rgba(255,255,255,0.2); }
+.price-features li.muted::before { content: '—'; color: rgba(255,255,255,0.15); }
+.price-btn { display: block; text-align: center; padding: 0.9rem; border-radius: 100px; font-family: 'Space Grotesk', sans-serif; font-size: 0.82rem; font-weight: 600; text-decoration: none; transition: background 0.2s, color 0.2s; border: 1.5px solid rgba(255,255,255,0.12); color: rgba(255,255,255,0.7); }
+.price-btn:hover { border-color: rgba(255,255,255,0.35); color: var(--white); }
+.price-card.popular .price-btn { background: var(--blue); border-color: var(--blue); color: var(--white); box-shadow: 0 8px 30px rgba(26,59,255,0.35); }
+
+/* ============================================
+   SECTION 11: NEWSLETTER
+   ============================================ */
+#s11 { background: var(--cream); display: grid; grid-template-columns: 1fr 1fr; min-height: 60vh; }
+.nl-l { background: var(--ink); padding: 5rem 4vw; display: flex; flex-direction: column; justify-content: space-between; }
+.nl-l h2 { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 4vw, 3.8rem); font-weight: 800; color: var(--white); line-height: 1.05; }
+.nl-l h2 em { color: var(--sky); font-style: normal; }
+.nl-l p { color: rgba(255,255,255,0.4); font-size: 0.85rem; line-height: 1.8; max-width: 360px; margin-top: 1.5rem; }
+.nl-count { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--white); }
+.nl-count span { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; font-weight: 400; }
+.nl-r { padding: 5rem 4vw; display: flex; flex-direction: column; justify-content: center; }
+.nl-r h3 { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 700; color: var(--ink); margin-bottom: 0.5rem; }
+.nl-r p { font-size: 0.82rem; color: rgba(10,10,15,0.45); margin-bottom: 2.5rem; line-height: 1.7; }
+.nl-form { display: flex; flex-direction: column; gap: 1rem; }
+.nl-field { position: relative; }
+.nl-field input { width: 100%; padding: 1rem 1.25rem; border: 1.5px solid rgba(10,10,15,0.12); border-radius: 10px; font-family: 'DM Sans', sans-serif; font-size: 0.88rem; outline: none; background: var(--white); color: var(--ink); transition: border-color 0.2s; }
+.nl-field input:focus { border-color: var(--blue); }
+.nl-field label { position: absolute; top: 50%; left: 1.25rem; transform: translateY(-50%); font-size: 0.82rem; color: rgba(10,10,15,0.35); pointer-events: none; transition: all 0.2s; background: var(--cream); }
+.nl-field input:focus + label, .nl-field input:not(:placeholder-shown) + label { top: 0; font-size: 0.65rem; padding: 0 0.35rem; color: var(--blue); }
+.nl-submit { background: var(--ink); color: var(--white); padding: 1rem 2rem; border-radius: 10px; border: none; font-family: 'Space Grotesk', sans-serif; font-size: 0.88rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+.nl-submit:hover { background: var(--blue); }
+.nl-fine { font-size: 0.68rem; color: rgba(10,10,15,0.3); margin-top: 0.5rem; }
+
+/* ============================================
+   SECTION 12: COVERAGE
+   ============================================ */
+#s12 { background: #0A0A0F; padding: 5rem 3vw 7rem; }
+.map-head { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-bottom: 4rem; align-items: center; }
+.map-head h2 { font-family: 'Syne', sans-serif; font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 800; line-height: 1; }
+.map-head h2 em { font-style: normal; -webkit-text-stroke: 1px rgba(255,255,255,0.3); color: transparent; }
+.map-desc { color: rgba(255,255,255,0.4); font-size: 0.9rem; line-height: 1.8; }
+.map-stats { display: flex; gap: 2rem; margin-top: 2rem; }
+.mstat-n { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; line-height: 1; color: var(--white); }
+.mstat-l { font-size: 0.7rem; color: rgba(255,255,255,0.3); letter-spacing: 0.05em; margin-top: 0.25rem; }
+.map-visual { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 20px; overflow: hidden; }
+.map-svg-wrap { padding: 3rem; }
+.turkey-map-placeholder { width: 100%; height: 280px; position: relative; background: linear-gradient(135deg, rgba(26,59,255,0.05) 0%, rgba(26,59,255,0.02) 100%); border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.turkey-text { font-family: 'Bebas Neue', sans-serif; font-size: 7rem; color: rgba(255,255,255,0.03); letter-spacing: 0.1em; }
+.map-pins { position: absolute; inset: 0; }
+.pin { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 12px rgba(26,59,255,0.8); animation: pinPulse 2.5s ease-in-out infinite; }
+.pin::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(26,59,255,0.35); animation: pinRing 2.5s ease-out infinite; }
+@keyframes pinPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes pinRing { 0% { transform: translate(-50%,-50%) scale(0.5); opacity: 0.8; } 100% { transform: translate(-50%,-50%) scale(2.5); opacity: 0; } }
+.map-city-list { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.04); }
+.map-city { padding: 1rem; font-family: 'Space Grotesk', sans-serif; font-size: 0.72rem; color: rgba(255,255,255,0.3); text-align: center; transition: color 0.2s, background 0.2s; cursor: default; }
+.map-city:hover { color: var(--white); background: rgba(255,255,255,0.03); }
+.map-city.active { color: var(--sky); }
+</style>
+</head>
+<body>
+
+<nav class="preview-nav">
+  <a href="#s1">① Bento Stats</a>
+  <a href="#s2">② Süreç</a>
+  <a href="#s3">③ Testimonials</a>
+  <a href="#s4">④ Kategoriler</a>
+  <a href="#s5">⑤ Split Screen</a>
+  <a href="#s6">⑥ CTA</a>
+  <a href="#s7">⑦ Sertifikalar</a>
+  <a href="#s8">⑧ SSS</a>
+  <a href="#s9">⑨ Partnerler</a>
+  <a href="#s10">⑩ Fiyatlandırma</a>
+  <a href="#s11">⑪ Newsletter</a>
+  <a href="#s12">⑫ Kapsam</a>
+</nav>
+<div style="height:52px"></div>
+
+<!-- ① BENTO STATS -->
+<div class="sec-label">Section 01 — Bento İstatistik Grid</div>
+<section id="s1" style="padding-top:2rem">
+  <div style="padding:0 3vw">
+    <p class="bento-title">Rakamlarla<br><em>MTS Hijyen</em></p>
+    <div class="bento-grid">
+      <div class="b b1">
+        <div class="b-dot"></div>
+        <div class="b-num white">1200<span style="font-size:3rem;color:var(--sky)">+</span></div>
+        <div class="b-label">Aktif ürün çeşidi. Her sektöre özel hijyen, temizlik ve bakım ürünleri.</div>
+      </div>
+      <div class="b b2">
+        <div class="b-tag">Müşteriler</div>
+        <div class="b-num white">500<span style="font-size:2rem">+</span></div>
+        <div class="b-label" style="color:rgba(255,255,255,0.7)">Aktif iş ortağı</div>
+      </div>
+      <div class="b b3">
+        <div class="b-tag">Yıllar</div>
+        <div class="b-num gold">15</div>
+        <div class="b-label">Sektör deneyimi</div>
+      </div>
+      <div class="b b4">
+        <div class="b-tag">Teslimat</div>
+        <div class="b-num blue">81</div>
+        <div class="b-label">İl kapsamı</div>
+      </div>
+      <div class="b b5">
+        <div class="b5-inner">
+          <div>
+            <div class="b-tag">Memnuniyet</div>
+            <div class="b-num white" style="font-size:3.5rem">%98</div>
+          </div>
+          <div class="b5-bar-wrap">
+            <div class="b5-bar active" style="height:45%"></div>
+            <div class="b5-bar active" style="height:62%"></div>
+            <div class="b5-bar active" style="height:55%"></div>
+            <div class="b5-bar active" style="height:80%"></div>
+            <div class="b5-bar active" style="height:70%"></div>
+            <div class="b5-bar active" style="height:90%"></div>
+            <div class="b5-bar active" style="height:100%"></div>
+          </div>
+        </div>
+      </div>
+      <div class="b b6">
+        <div class="b6-inner">
+          <div class="b6-avatar">AY</div>
+          <div>
+            <div class="b6-quote">"MTS ile çalışmak operasyonel süreçlerimizi tamamen dönüştürdü."</div>
+            <div class="b6-author">Ahmet Yılmaz — Satın Alma Müdürü, Hilton İstanbul</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ② PROCESS -->
+<div class="sec-label">Section 02 — Adım Adım Sipariş Süreci</div>
+<section id="s2" style="padding-top:2rem">
+  <div class="diag-head">
+    <h2>Nasıl<br><span>Çalışır?</span></h2>
+    <p class="diag-sub">Siparişten teslimata kadar her adım şeffaf ve hızlı. 4 basit adımda ihtiyacınız karşılanır.</p>
+  </div>
+  <div class="diag-steps">
+    <div class="dstep">
+      <div class="dstep-num">01</div>
+      <div class="dstep-tag">Başlangıç</div>
+      <h3>Ürün Seçimi</h3>
+      <p>Geniş katalogumuzdan sektörünüze uygun hijyen ürünlerini seçin.</p>
+    </div>
+    <div class="dstep">
+      <div class="dstep-num">02</div>
+      <div class="dstep-tag">Onay</div>
+      <h3>Teklif & Onay</h3>
+      <p>Özel fiyatlandırma teklifinizi alın, 24 saat içinde onaylayın.</p>
+    </div>
+    <div class="dstep">
+      <div class="dstep-num">03</div>
+      <div class="dstep-tag">Üretim</div>
+      <h3>Hazırlık</h3>
+      <p>Siparişiniz özenle hazırlanır, kalite kontrolden geçirilir.</p>
+    </div>
+    <div class="dstep">
+      <div class="dstep-num">04</div>
+      <div class="dstep-tag">Teslimat</div>
+      <h3>Kapınızda</h3>
+      <p>Türkiye genelinde hızlı ve güvenli teslimat. Takip imkânı.</p>
+    </div>
+  </div>
+  <div class="diag-bottom">
+    <a href="#" class="diag-cta">Hemen Sipariş Ver</a>
+    <span class="diag-note">Ortalama teslimat süresi: <strong style="color:var(--ink)">2-3 iş günü</strong></span>
+  </div>
+</section>
+
+<!-- ③ TESTIMONIALS -->
+<div class="sec-label">Section 03 — Editorial Testimonials</div>
+<section id="s3" style="padding-top:2rem">
+  <div class="editorial-head">
+    <div>
+      <div class="editorial-kicker">Müşteri Deneyimleri</div>
+      <h2>Gerçek<br>Sonuçlar,<br><em>Gerçek Sesler</em></h2>
+    </div>
+    <div>
+      <p class="editorial-desc">500'den fazla iş ortağımızın deneyimlerinden seçkiler. Her geri bildirim, hizmetimizi şekillendiriyor.</p>
+      <div class="editorial-score">
+        <div class="score-big">4.9</div>
+        <div class="score-detail">
+          <span class="stars">★★★★★</span>
+          Google Değerlendirmeleri<br>
+          <strong style="color:rgba(255,255,255,0.6)">240+</strong> yorum
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="testi-list">
+    <div class="testi-card">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">Tedarik sürecimizi MTS ile yönetmek gerçek bir kolaylık. Ürün kalitesi standartlarımızın üstünde.</p>
+      <div class="testi-person">
+        <div class="testi-avatar">MK</div>
+        <div><div class="testi-name">Mehmet Kaya</div><div class="testi-role">Operasyon Müdürü — Marriott</div></div>
+      </div>
+    </div>
+    <div class="testi-card featured">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">Sözleşme imzaladıktan sonra hiç sorun yaşamadık. Her siparişimiz zamanında, eksiksiz geldi. Olağanüstü bir güvenilirlik.</p>
+      <div class="testi-person">
+        <div class="testi-avatar">FD</div>
+        <div><div class="testi-name">Fatma Demir</div><div class="testi-role">Satın Alma — Sabancı Holding</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">Fiyat/performans dengesi mükemmel. Uluslararası standartlarda ürünler, yerli fiyatlarla.</p>
+      <div class="testi-person">
+        <div class="testi-avatar">CA</div>
+        <div><div class="testi-name">Can Arslan</div><div class="testi-role">Genel Müdür — CleanPro</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">Hastane hijyen protokollerimiz için birebir. ISO sertifikalı ürünleri başka yerden bulmak zordu.</p>
+      <div class="testi-person">
+        <div class="testi-avatar">SÖ</div>
+        <div><div class="testi-name">Selma Öztürk</div><div class="testi-role">Başhemşire — Medicana</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">Müşteri hizmetleri her sorunuma anında çözüm buldu. Sadece ürün değil, hizmet de birinci sınıf.</p>
+      <div class="testi-person">
+        <div class="testi-avatar">BT</div>
+        <div><div class="testi-name">Burak Tekin</div><div class="testi-role">Tesis Müdürü — AVM Grubu</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-mark">"</div>
+      <p class="testi-text">Otel zincirimizin tüm şubelerine tek kaynaktan tedarik yapıyoruz. Büyük zaman tasarrufu.</p>
+      <div class="testi-person">
+        <div class="testi-avatar">NÇ</div>
+        <div><div class="testi-name">Nalan Çelik</div><div class="testi-role">Satın Alma — Hilton Türkiye</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ④ MARQUEE CATEGORIES -->
+<div class="sec-label">Section 04 — Ürün Kategorileri Marquee</div>
+<section id="s4" style="padding-top:2rem">
+  <div class="marq-head">
+    <h2>1200+ Ürün,<br><em>Her İhtiyaca</em> Çözüm</h2>
+  </div>
+  <div class="marq-track">
+    <div class="marq-inner">
+      <div class="cat-chip accent">🧼 El Dezenfektanları</div>
+      <div class="cat-chip">🪣 Zemin Temizleyiciler</div>
+      <div class="cat-chip outline">🧻 Kağıt Ürünleri</div>
+      <div class="cat-chip">🫧 Yüzey Dezenfektanı</div>
+      <div class="cat-chip outline">🧤 Koruyucu Ekipman</div>
+      <div class="cat-chip accent">🍽️ Mutfak Hijyeni</div>
+      <div class="cat-chip">🏥 Hastane Ürünleri</div>
+      <div class="cat-chip outline">🚿 Banyo Aksesuarları</div>
+      <div class="cat-chip accent">🧼 El Dezenfektanları</div>
+      <div class="cat-chip">🪣 Zemin Temizleyiciler</div>
+      <div class="cat-chip outline">🧻 Kağıt Ürünleri</div>
+      <div class="cat-chip">🫧 Yüzey Dezenfektanı</div>
+      <div class="cat-chip outline">🧤 Koruyucu Ekipman</div>
+      <div class="cat-chip accent">🍽️ Mutfak Hijyeni</div>
+      <div class="cat-chip">🏥 Hastane Ürünleri</div>
+      <div class="cat-chip outline">🚿 Banyo Aksesuarları</div>
+    </div>
+  </div>
+  <div class="marq-track" style="margin-top:12px">
+    <div class="marq-inner rev">
+      <div class="cat-chip">🧽 Temizlik Malzemeleri</div>
+      <div class="cat-chip accent">🏨 Otel Amenities</div>
+      <div class="cat-chip outline">🧴 Sıvı Sabunlar</div>
+      <div class="cat-chip">♻️ Çevre Dostu</div>
+      <div class="cat-chip outline">🏭 Endüstriyel</div>
+      <div class="cat-chip accent">✈️ Havacılık Sektörü</div>
+      <div class="cat-chip">🏫 Okul & Eğitim</div>
+      <div class="cat-chip outline">🍔 Gıda Sektörü</div>
+      <div class="cat-chip">🧽 Temizlik Malzemeleri</div>
+      <div class="cat-chip accent">🏨 Otel Amenities</div>
+      <div class="cat-chip outline">🧴 Sıvı Sabunlar</div>
+      <div class="cat-chip">♻️ Çevre Dostu</div>
+      <div class="cat-chip outline">🏭 Endüstriyel</div>
+      <div class="cat-chip accent">✈️ Havacılık Sektörü</div>
+      <div class="cat-chip">🏫 Okul & Eğitim</div>
+      <div class="cat-chip outline">🍔 Gıda Sektörü</div>
+    </div>
+  </div>
+  <div class="marq-footer">
+    <div class="marq-total">1200<sup style="font-size:2rem;color:var(--blue)">+</sup><span>Ürün çeşidi</span></div>
+    <a href="#" class="marq-cta">Tüm Ürünleri Gör →</a>
+  </div>
+</section>
+
+<!-- ⑤ SPLIT SCREEN -->
+<div class="sec-label">Section 05 — Split Screen Sektörel Çözümler</div>
+<section id="s5">
+  <div class="split-l">
+    <div class="split-kicker">Sektörel Çözümler</div>
+    <h2 class="split-h2">Her Sektöre<br><strong>Özel</strong><br>Yaklaşım</h2>
+    <p class="split-desc">Otelden hastaneye, fabrikadan restorana — her ortamın hijyen ihtiyacı farklıdır. MTS, sektöre özel çözümler sunar.</p>
+    <div class="split-items">
+      <div class="split-item active">
+        <div class="split-item-icon">🏨</div>
+        <div><h4>Otel & Konaklama</h4><p>Kat hizmetleri, lobi, havuz ve spa için özel hijyen paketleri.</p></div>
+      </div>
+      <div class="split-item">
+        <div class="split-item-icon">🏥</div>
+        <div><h4>Sağlık Sektörü</h4><p>ISO sertifikalı, tıbbi standartlarda dezenfektan ve sterilizasyon ürünleri.</p></div>
+      </div>
+      <div class="split-item">
+        <div class="split-item-icon">🍽️</div>
+        <div><h4>Yiyecek & İçecek</h4><p>HACCP uyumlu, gıda güvenli temizlik ve hijyen çözümleri.</p></div>
+      </div>
+      <div class="split-item">
+        <div class="split-item-icon">🏭</div>
+        <div><h4>Endüstriyel</h4><p>Fabrika, üretim tesisi ve depo için ağır hizmet temizlik ürünleri.</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="split-r">
+    <div class="split-r-inner">
+      <div class="split-visual">
+        <div class="split-vis-bg"></div>
+        <div class="split-vis-grid"></div>
+        <div class="split-vis-orb"></div>
+        <div class="split-vis-card">
+          <div class="split-vis-badge">Aktif Sipariş</div>
+          <h5>Otel Paketi — İstanbul</h5>
+          <p>340 oda için aylık tedarik sözleşmesi</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ CTA -->
+<div class="sec-label">Section 06 — İmmersive CTA</div>
+<section id="s6">
+  <div class="cta-rings">
+    <div class="ring"></div><div class="ring"></div>
+    <div class="ring"></div><div class="ring"></div>
+  </div>
+  <div class="cta-glow"></div>
+  <div class="cta-inner">
+    <div class="cta-eyebrow">Ücretsiz Teklif Al</div>
+    <h2 class="cta-h2">Temizlik<br><span>Sizin İşiniz.</span></h2>
+    <p class="cta-sub">Türkiye'nin önde gelen işletmeleri MTS Hijyen ile çalışıyor. Siz de ekibimize katılın, fark yaratın.</p>
+    <div class="cta-btns">
+      <a href="#" class="btn-glow">Hemen Teklif Al</a>
+      <a href="#" class="btn-ghost">Katalog İndir</a>
+    </div>
+    <p class="cta-small">Yanıt süresi: <strong>24 saat içinde.</strong> Herhangi bir bağlayıcılık yok.</p>
+  </div>
+</section>
+
+<!-- ⑦ CERTS -->
+<div class="sec-label">Section 07 — Sertifika & Kalite</div>
+<section id="s7" style="padding-top:2rem">
+  <div class="cert-head">
+    <h2>Kalite<br><em>Belgelenmiş</em></h2>
+    <div class="cert-head-right">
+      <p>Her ürünümüz uluslararası standartlarda test edilir ve sertifikalandırılır.</p>
+    </div>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-card span2 dark">
+      <div class="cert-icon">🏆</div>
+      <div>
+        <div class="cert-name">ISO 9001:2015</div>
+        <div class="cert-year">Kalite Yönetim Sistemi — 2018'den beri</div>
+      </div>
+      <div class="cert-big-num">9001</div>
+      <p class="cert-desc">Üretimden teslimat sürecine kadar tüm operasyonlarımız ISO 9001 standartlarında yürütülmektedir.</p>
+      <div class="cert-badge">Doğrulanmış Sertifika</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🧪</div>
+      <div class="cert-name">ISO 14001</div>
+      <div class="cert-year">Çevre Yönetimi</div>
+      <p class="cert-desc">Çevresel etkimizi minimize eden sürdürülebilir üretim.</p>
+      <div class="cert-badge">Aktif</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🛡️</div>
+      <div class="cert-name">CE Belgesi</div>
+      <div class="cert-year">Avrupa Uygunluğu</div>
+      <p class="cert-desc">Avrupa standartlarıyla uyumlu ürün portföyü.</p>
+      <div class="cert-badge">Aktif</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">🍽️</div>
+      <div class="cert-name">HACCP</div>
+      <div class="cert-year">Gıda Güvenliği</div>
+      <p class="cert-desc">Gıda sektörüne uygun hijyen çözümleri için.</p>
+      <div class="cert-badge">Aktif</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">⚕️</div>
+      <div class="cert-name">TSE Belgesi</div>
+      <div class="cert-year">Türk Standartları</div>
+      <p class="cert-desc">Türk Standartları Enstitüsü onaylı ürünler.</p>
+      <div class="cert-badge">Aktif</div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ FAQ -->
+<div class="sec-label">Section 08 — SSS Accordion</div>
+<section id="s8" style="padding-top:2rem">
+  <div class="faq-head">
+    <h2>Sık Sorulan<br>Sorular</h2>
+    <p>Aklınızdaki tüm soruları yanıtladık. Cevabını bulamazsanız bize ulaşın.</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item open">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-num">01</span>
+        <span class="faq-q-text">Minimum sipariş miktarı nedir?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></div>
+      </div>
+      <div class="faq-a">Ürün kategorisine göre değişmekle birlikte, genel olarak minimum sipariş tutarımız 500 TL'dir. Bazı özel ürünlerde koli adedi bazında minimum sipariş söz konusu olabilir.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-num">02</span>
+        <span class="faq-q-text">Teslimat süresi ne kadar?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></div>
+      </div>
+      <div class="faq-a">Stokta bulunan ürünler için İstanbul içi aynı gün, Türkiye geneli 1-3 iş günü teslimat sunuyoruz. Siparişinizin her aşamasını SMS ve e-posta ile takip edebilirsiniz.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-num">03</span>
+        <span class="faq-q-text">Özel etiket / private label hizmeti veriyor musunuz?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></div>
+      </div>
+      <div class="faq-a">Evet, markanız için özel etiket ve ambalaj tasarımı hizmetimiz mevcuttur. Belirli bir minimum sipariş miktarı ile kendi markanız altında ürün tedarik edebilirsiniz.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-num">04</span>
+        <span class="faq-q-text">Kurumsal fatura / e-fatura düzenliyor musunuz?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></div>
+      </div>
+      <div class="faq-a">Tüm siparişlerimiz için resmi fatura düzenlenmektedir. E-fatura mükelleflerine e-fatura, diğer firmalara e-arşiv fatura gönderilmektedir.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        <span class="faq-num">05</span>
+        <span class="faq-q-text">Ürünlerin güvenlik veri sayfaları (SDS/MSDS) mevcut mu?</span>
+        <div class="faq-icon"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 1v12M1 7h12"/></svg></div>
+      </div>
+      <div class="faq-a">Tüm kimyasal ürünlerimiz için güncel SDS belgeleri mevcuttur. Sipariş ettiğiniz her ürünün belgesi teslimatla birlikte ya da talep üzerine dijital olarak gönderilir.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑨ PARTNERS -->
+<div class="sec-label">Section 09 — Partner & Referans Marquee</div>
+<section id="s9" style="padding-top:2rem">
+  <div class="partner-head">
+    <h2>Güvendikleri</h2>
+    <div class="partner-head-line"></div>
+    <p>Türkiye'nin önde gelen kurumsal markaları MTS Hijyen ile çalışıyor.</p>
+  </div>
+  <div class="logo-track">
+    <div class="logo-inner">
+      <div class="logo-chip bright">HILTON<div class="logo-dot"></div></div>
+      <div class="logo-chip">MARRIOTT<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">SABANCI<div class="logo-dot"></div></div>
+      <div class="logo-chip">MEDİCANA<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">ACCOR<div class="logo-dot"></div></div>
+      <div class="logo-chip">SODEXO<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">ISS<div class="logo-dot"></div></div>
+      <div class="logo-chip">ARAMARK<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">TAV<div class="logo-dot"></div></div>
+      <div class="logo-chip">RADISSON<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">HILTON<div class="logo-dot"></div></div>
+      <div class="logo-chip">MARRIOTT<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">SABANCI<div class="logo-dot"></div></div>
+      <div class="logo-chip">MEDİCANA<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">ACCOR<div class="logo-dot"></div></div>
+      <div class="logo-chip">SODEXO<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">ISS<div class="logo-dot"></div></div>
+      <div class="logo-chip">ARAMARK<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">TAV<div class="logo-dot"></div></div>
+      <div class="logo-chip">RADISSON<div class="logo-dot"></div></div>
+    </div>
+  </div>
+  <div class="logo-track" style="margin-top:1px">
+    <div class="logo-inner rev">
+      <div class="logo-chip">BURGER KING<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">STARBUCKS<div class="logo-dot"></div></div>
+      <div class="logo-chip">DOMINO'S<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">PEGASUS<div class="logo-dot"></div></div>
+      <div class="logo-chip">CARREFOUR<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">MIGROS<div class="logo-dot"></div></div>
+      <div class="logo-chip">THY CATERİNG<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">ISTANBUL AVM<div class="logo-dot"></div></div>
+      <div class="logo-chip">FORUM AVM<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">PALLADIUM<div class="logo-dot"></div></div>
+      <div class="logo-chip">BURGER KING<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">STARBUCKS<div class="logo-dot"></div></div>
+      <div class="logo-chip">DOMINO'S<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">PEGASUS<div class="logo-dot"></div></div>
+      <div class="logo-chip">CARREFOUR<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">MIGROS<div class="logo-dot"></div></div>
+      <div class="logo-chip">THY CATERİNG<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">ISTANBUL AVM<div class="logo-dot"></div></div>
+      <div class="logo-chip">FORUM AVM<div class="logo-dot"></div></div>
+      <div class="logo-chip bright">PALLADIUM<div class="logo-dot"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑩ PRICING -->
+<div class="sec-label">Section 10 — Fiyatlandırma / Paketler</div>
+<section id="s10" style="padding-top:2rem">
+  <div class="price-head">
+    <div class="price-kicker">Fiyatlandırma</div>
+    <h2>Bütçenize Uygun<br><em>Çözümler</em></h2>
+    <div class="price-toggle">
+      <button class="active" onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active')); this.classList.add('active')">Aylık</button>
+      <button onclick="this.parentElement.querySelectorAll('button').forEach(b=>b.classList.remove('active')); this.classList.add('active')">Yıllık %20 İndirim</button>
+    </div>
+  </div>
+  <div class="price-cards">
+    <div class="price-card">
+      <div class="price-tier">Başlangıç</div>
+      <div class="price-amount">
+        <span class="price-curr">₺</span>
+        <span class="price-num">2.500</span>
+        <span class="price-per">/ay</span>
+      </div>
+      <p class="price-desc">Küçük işletmeler ve yeni başlayanlar için temel hijyen paketi.</p>
+      <ul class="price-features">
+        <li>500 TL'ye kadar sipariş</li>
+        <li>15+ ürün kategorisi</li>
+        <li>E-posta destek</li>
+        <li>2-3 gün teslimat</li>
+        <li class="muted">Özel fiyatlandırma</li>
+        <li class="muted">Dedike hesap yöneticisi</li>
+        <li class="muted">Özel etiket</li>
+      </ul>
+      <a href="#" class="price-btn">Başla</a>
+    </div>
+    <div class="price-card popular">
+      <div class="price-pop-badge">En Popüler</div>
+      <div class="price-tier">Kurumsal</div>
+      <div class="price-amount">
+        <span class="price-curr">₺</span>
+        <span class="price-num">8.500</span>
+        <span class="price-per">/ay</span>
+      </div>
+      <p class="price-desc">Orta-büyük ölçekli işletmeler için kapsamlı çözüm.</p>
+      <ul class="price-features">
+        <li>Limitsiz sipariş tutarı</li>
+        <li>Tüm ürün kategorileri</li>
+        <li>Telefon + WhatsApp destek</li>
+        <li>Aynı gün İstanbul / 1 gün Türkiye</li>
+        <li>Özel fiyatlandırma</li>
+        <li>Dedike hesap yöneticisi</li>
+        <li class="muted">Özel etiket</li>
+      </ul>
+      <a href="#" class="price-btn">Teklif Al</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tier">Enterprise</div>
+      <div class="price-amount">
+        <span class="price-curr" style="font-size:0.9rem;margin-top:0.75rem">Özel</span>
+      </div>
+      <p class="price-desc">Zincir işletmeler ve kurumsal gruplar için tamamen özelleştirilmiş program.</p>
+      <ul class="price-features">
+        <li>Grup genelinde sözleşmeli fiyat</li>
+        <li>Özel ürün geliştirme</li>
+        <li>7/24 öncelikli destek</li>
+        <li>Bölgesel depo tahsisi</li>
+        <li>Özel fiyatlandırma</li>
+        <li>Dedike hesap yöneticisi</li>
+        <li>Özel etiket & private label</li>
+      </ul>
+      <a href="#" class="price-btn">Bize Ulaşın</a>
+    </div>
+  </div>
+</section>
+
+<!-- ⑪ NEWSLETTER -->
+<div class="sec-label">Section 11 — E-Bülten</div>
+<section id="s11">
+  <div class="nl-l">
+    <div>
+      <h2>Hijyen<br>Sektöründen<br><em>Haberdar Ol</em></h2>
+      <p>Yeni ürünler, sektör haberleri ve özel teklifler doğrudan e-postanıza gelsin.</p>
+    </div>
+    <div>
+      <div class="nl-count">4.200+<span>aktif e-bülten abonesi</span></div>
+    </div>
+  </div>
+  <div class="nl-r">
+    <h3>E-Bültene Abone Ol</h3>
+    <p>Haftada bir, gereksiz içerik yok. İstediğiniz zaman çıkabilirsiniz.</p>
+    <form class="nl-form" onsubmit="return false">
+      <div class="nl-field">
+        <input type="text" id="nl-name" placeholder=" ">
+        <label for="nl-name">Adınız</label>
+      </div>
+      <div class="nl-field">
+        <input type="email" id="nl-email" placeholder=" ">
+        <label for="nl-email">E-posta adresiniz</label>
+      </div>
+      <button class="nl-submit">Abone Ol →</button>
+      <p class="nl-fine">Kişisel verileriniz KVKK kapsamında korunur. Üçüncü taraflarla paylaşılmaz.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ⑫ COVERAGE -->
+<div class="sec-label">Section 12 — Türkiye Teslimat Kapsamı</div>
+<section id="s12" style="padding-top:2rem">
+  <div class="map-head">
+    <h2>81 İlde<br><em>Teslimat</em></h2>
+    <div>
+      <p class="map-desc">Türkiye'nin dört bir köşesine güvenilir ve hızlı teslimat ağımız ile ulaşıyoruz.</p>
+      <div class="map-stats">
+        <div class="mstat"><div class="mstat-n">81</div><div class="mstat-l">İl</div></div>
+        <div class="mstat"><div class="mstat-n">2-3</div><div class="mstat-l">Gün max</div></div>
+        <div class="mstat"><div class="mstat-n">%99</div><div class="mstat-l">Teslimat başarısı</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="map-visual">
+    <div class="map-svg-wrap">
+      <div class="turkey-map-placeholder">
+        <div class="turkey-text">TÜRKİYE</div>
+        <div class="map-pins">
+          <div class="pin" style="top:40%;left:22%"></div>
+          <div class="pin" style="top:28%;left:38%;animation-delay:0.8s"></div>
+          <div class="pin" style="top:45%;left:50%;animation-delay:0.4s"></div>
+          <div class="pin" style="top:35%;left:62%;animation-delay:1.2s"></div>
+          <div class="pin" style="top:50%;left:72%;animation-delay:0.2s"></div>
+          <div class="pin" style="top:38%;left:82%;animation-delay:1.5s"></div>
+          <div class="pin" style="top:60%;left:32%;animation-delay:0.6s"></div>
+          <div class="pin" style="top:55%;left:58%;animation-delay:1.0s"></div>
+        </div>
+      </div>
+    </div>
+    <div class="map-city-list">
+      <div class="map-city active">İstanbul</div>
+      <div class="map-city active">Ankara</div>
+      <div class="map-city active">İzmir</div>
+      <div class="map-city active">Bursa</div>
+      <div class="map-city active">Antalya</div>
+      <div class="map-city active">Adana</div>
+      <div class="map-city">Konya</div>
+      <div class="map-city">Kayseri</div>
+      <div class="map-city">Gaziantep</div>
+      <div class="map-city">Mersin</div>
+      <div class="map-city">Trabzon</div>
+      <div class="map-city">+ 70 il daha</div>
+    </div>
+  </div>
+</section>
+
+<div style="height:6rem;background:#0A0A0F;display:flex;align-items:center;justify-content:center;border-top:1px solid rgba(255,255,255,0.04)">
+  <p style="font-family:'Space Grotesk',sans-serif;font-size:0.72rem;color:rgba(255,255,255,0.18);letter-spacing:0.1em">MTS HİJYEN — SECTION PREVIEW 2025 — Hangi section'ları ekleyeyim?</p>
+</div>
+
+<script>
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
