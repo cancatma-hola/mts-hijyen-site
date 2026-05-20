@@ -1,0 +1,27 @@
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+  display: none;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 50%, #0b2545 0%, #050b1a 60%, #02050d 100%);
+  clip-path: inset(0% 0% 100% 0%);
+  will-change: clip-path;
+}
+
+.page-curtain__inner {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.6), transparent 60%),
+    radial-gradient(1px 1px at 70% 60%, rgba(56, 189, 248, 0.7), transparent 60%),
+    radial-gradient(1.5px 1.5px at 30% 80%, rgba(255,255,255,0.5), transparent 60%);
+}
+
+html.is-transitioning {
+  cursor: progress;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-curtain { display: none !important; }
+}

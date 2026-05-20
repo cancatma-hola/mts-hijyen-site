@@ -1,0 +1,121 @@
+/* Compare section — wipe slider mod */
+
+.compare-wrap--slider {
+  position: relative;
+  display: block !important;
+}
+
+.compare-wrap--slider .compare-col {
+  position: relative;
+}
+
+.compare-wrap--slider .compare-col--bad {
+  width: 100%;
+}
+
+.compare-wrap--slider .compare-col--good {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  z-index: 2;
+  clip-path: inset(0 0 0 50%);
+  transition: none;
+  background: inherit;
+}
+
+.compare-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  margin-left: -2px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: ew-resize;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.compare-handle-line {
+  flex: 1;
+  width: 2px;
+  background: linear-gradient(180deg, transparent, rgba(56, 189, 248, 0.9), transparent);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+
+.compare-handle-knob {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #0F172A;
+  border: 2px solid #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #38bdf8;
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.35), 0 0 0 4px rgba(56, 189, 248, 0.08);
+  margin: 12px 0;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.compare-handle:hover .compare-handle-knob {
+  transform: scale(1.08);
+  box-shadow: 0 12px 32px rgba(56, 189, 248, 0.5), 0 0 0 8px rgba(56, 189, 248, 0.12);
+}
+
+.compare-handle-knob svg {
+  width: 22px;
+  height: 22px;
+}
+
+body.is-dragging {
+  cursor: ew-resize !important;
+  user-select: none;
+}
+
+/* Testimonials 3D */
+.testimonials-3d {
+  perspective: 1100px;
+  overflow: visible;
+  padding: 80px 0;
+  cursor: grab;
+}
+
+.testimonials-3d .testimonials-track {
+  display: flex;
+  gap: 24px;
+  transform-style: preserve-3d;
+  animation: none !important;
+}
+
+.testimonials-3d .testimonial-card {
+  flex: 0 0 auto;
+  width: clamp(280px, 28vw, 420px);
+  transition: opacity 0.3s ease;
+  transform-origin: center center;
+  backface-visibility: hidden;
+}
+
+.testimonials-3d.is-grabbing,
+body.is-dragging .testimonials-3d {
+  cursor: grabbing;
+}
+
+@media (max-width: 900px) {
+  .compare-wrap--slider .compare-col--good {
+    position: relative;
+    clip-path: none !important;
+    inset: auto;
+  }
+  .compare-handle { display: none; }
+  .testimonials-3d {
+    perspective: none;
+  }
+  .testimonials-3d .testimonial-card {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

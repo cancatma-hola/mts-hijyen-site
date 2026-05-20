@@ -1,0 +1,30 @@
+.site-footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-distortion {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 240px;
+  pointer-events: auto;
+  z-index: 0;
+  opacity: 0.85;
+}
+
+.footer-distortion canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.site-footer > *:not(.footer-distortion) {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .footer-distortion { height: 140px; }
+}

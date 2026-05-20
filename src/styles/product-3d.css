@@ -1,0 +1,100 @@
+/* 3D Ürün Sahnesi */
+
+.product-3d-section {
+  position: relative;
+  min-height: 110vh;
+  background: radial-gradient(ellipse at 70% 30%, #0b2545 0%, #050b1a 60%, #02050d 100%);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: center;
+  padding: 8vh 6vw;
+  color: #fff;
+  gap: 4vw;
+}
+
+.product-3d-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 12% 22%, rgba(255,255,255,0.5), transparent 60%),
+    radial-gradient(1px 1px at 34% 78%, rgba(255,255,255,0.35), transparent 60%),
+    radial-gradient(1.5px 1.5px at 78% 18%, rgba(255,255,255,0.5), transparent 60%),
+    radial-gradient(1px 1px at 88% 62%, rgba(255,255,255,0.3), transparent 60%);
+  pointer-events: none;
+}
+
+.p3d-canvas-wrap {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  min-height: 480px;
+}
+
+.p3d-canvas-wrap canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.p3d-content {
+  position: relative;
+  z-index: 2;
+  max-width: 540px;
+}
+
+.p3d-label {
+  display: inline-block;
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.p3d-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(48px, 6.4vw, 96px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+  margin: 0 0 1.4rem;
+}
+
+.p3d-title em {
+  font-style: italic;
+  background: linear-gradient(120deg, #38bdf8, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.p3d-desc {
+  font-size: clamp(15px, 1.15vw, 18px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 2.4rem;
+}
+
+.p3d-cues {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: 'DM Sans', monospace, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.32em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.p3d-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(56,189,248,0.6), transparent);
+  max-width: 120px;
+}
+
+@media (max-width: 900px) {
+  .product-3d-section { display: none; }
+}

@@ -1,0 +1,91 @@
+import { gsap } from 'gsap';
+
+// Mevcut .testimonials-track (CSS marquee) → 3D perspective + drag carousel.
+// Kart pozisyonuna göre scale/opacity, ortadaki kart vurgulanır.
+
+export function initTestimonials3D() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // Mobilde mevcut CSS marquee kalsın — 3D perspective dokunmatikte sorun çıkarıyor
+  if (window.matchMedia('(max-width: 900px)').matches) return;
+
+  const wrapper = document.querySelector('.testimonials-track-wrapper');
+  const track = wrapper?.querySelector('.testimonials-track');
+  if (!wrapper || !track) return;
+
+  const cards = Array.from(track.querySelectorAll('.testimonial-card'));
+  if (cards.length < 3) return;
+
+  wrapper.classList.add('testimonials-3d');
+  // Mevcut CSS marquee animasyonunu durdur
+  track.style.animation = 'none';
+  track.style.willChange = 'transform';
+
+  let offset = 0;
+  const cardWidth = () => cards[0].getBoundingClientRect().width + 24;
+  const total = () => cardWidth() * (cards.length / 2); // çift kopya — sonsuz scroll
+
+  function update() {
+    track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    const center = window.innerWidth / 2;
+    cards.forEach((c) => {
+      const r = c.getBoundingClientRect();
+      const cx = r.left + r.width / 2;
+      const dist = (cx - center) / window.innerWidth; // -1..1
+      const scale = 1 - Math.min(Math.abs(dist) * 0.35, 0.3);
+      const ry = -dist * 22; // y-axis rotation
+      const z = -Math.abs(dist) * 220;
+      const op = 1 - Math.min(Math.abs(dist) * 0.9, 0.65);
+      c.style.transform = `perspective(1100px) translateZ(${z}px) rotateY(${ry}deg) scale(${scale})`;
+      c.style.opacity = String(op);
+      c.style.zIndex = String(Math.round(100 - Math.abs(dist) * 50));
+    });
+  }
+  update();
+
+  // Otomatik akış
+  let auto = true;
+  const tick = (dt) => {
+    if (auto) offset += dt * 0.04;
+    const max = total();
+    if (offset > max) offset -= max;
+    if (offset < 0) offset += max;
+    update();
+  };
+  let last = 0;
+  function loop(t) {
+    const dt = t - last;
+    last = t;
+    if (dt < 100) tick(dt);
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+
+  // Drag interaction
+  let dragging = false;
+  let startX = 0;
+  let startOffset = 0;
+  wrapper.addEventListener('mousedown', (e) => {
+    dragging = true;
+    auto = false;
+    startX = e.clientX;
+    startOffset = offset;
+    document.body.classList.add('is-dragging');
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (!dragging) return;
+    offset = startOffset - (e.clientX - startX);
+    update();
+  });
+  window.addEventListener('mouseup', () => {
+    if (!dragging) return;
+    dragging = false;
+    document.body.classList.remove('is-dragging');
+    setTimeout(() => { auto = true; }, 1200);
+  });
+
+  wrapper.addEventListener('mouseenter', () => { auto = false; });
+  wrapper.addEventListener('mouseleave', () => { auto = true; });
+
+  window.addEventListener('resize', update);
+  window.addEventListener('scroll', update, { passive: true });
+}

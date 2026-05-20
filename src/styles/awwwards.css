@@ -1,0 +1,133 @@
+/* Awwwards-tier ek katman: cursor, reveal, transition iskeleti */
+
+/* Legacy cursor + intro overlay gizle — yeni preloader kullanılıyor */
+.cursor-dot,
+.cursor-ring,
+.cursor-intro,
+.cursor-intro-overlay,
+#cursor-intro-overlay {
+  display: none !important;
+}
+
+html.has-custom-cursor,
+html.has-custom-cursor body {
+  cursor: none;
+}
+html.has-custom-cursor a,
+html.has-custom-cursor button,
+html.has-custom-cursor [data-cursor],
+html.has-custom-cursor [data-magnetic],
+html.has-custom-cursor .btn,
+html.has-custom-cursor input,
+html.has-custom-cursor textarea {
+  cursor: none;
+}
+
+.mts-cursor {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+}
+
+.mts-cursor__dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+.mts-cursor__ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 44px;
+  height: 44px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  will-change: transform, width, height, border-color;
+  transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.35s ease,
+              background-color 0.35s ease;
+}
+
+.mts-cursor__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  white-space: nowrap;
+}
+
+.mts-cursor.is-hover .mts-cursor__ring {
+  width: 64px;
+  height: 64px;
+  border-color: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.mts-cursor.is-view .mts-cursor__ring,
+.mts-cursor.is-drag .mts-cursor__ring {
+  width: 88px;
+  height: 88px;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: transparent;
+}
+.mts-cursor.is-view .mts-cursor__label,
+.mts-cursor.is-drag .mts-cursor__label {
+  opacity: 1;
+}
+
+.mts-cursor.is-down .mts-cursor__ring {
+  width: 24px;
+  height: 24px;
+}
+
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .mts-cursor { display: none; }
+  html.has-custom-cursor,
+  html.has-custom-cursor * { cursor: auto !important; }
+}
+
+/* Hero başlık ↔ açıklama arasındaki boşluğu sıkılaştır */
+.hero h1 {
+  margin-bottom: 0.4rem !important;
+  line-height: 1.02 !important;
+}
+.hero h1 em,
+.hero h1 span {
+  line-height: 1.02 !important;
+  margin: 0 !important;
+}
+.hero-desc {
+  margin-top: 0.6rem !important;
+}
+/* Split sonrası kelime sarmalayıcılar */
+.hero-word-wrap {
+  line-height: 1.02 !important;
+}
+
+/* Reveal başlangıç durumu — JS yüklenmeden önce flash olmasın */
+[data-reveal] {
+  visibility: visible;
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal]:not([data-reveal="fade"]):not([data-reveal="split"]):not([data-reveal="words"]):not([data-reveal="mask"]):not([data-reveal="stagger"]) {
+    /* default fade-up — initial */
+  }
+}

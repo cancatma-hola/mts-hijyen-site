@@ -1,0 +1,104 @@
+/* Preloader */
+
+.mts-preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: #0F172A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: clip-path;
+  clip-path: inset(0% 0% 0% 0%);
+}
+
+.mts-preloader__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(3, 105, 161, 0.35), transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(56, 189, 248, 0.18), transparent 55%);
+  opacity: 0.9;
+}
+
+.mts-preloader__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  color: #fff;
+}
+
+.mts-preloader__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: 'Syne', 'DM Sans', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.mts-preloader__letter {
+  display: inline-block;
+  font-size: clamp(48px, 7vw, 96px);
+  line-height: 0.95;
+  background: linear-gradient(180deg, #fff 0%, #b6e5ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mts-preloader__sep {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  margin: 0 10px 0 16px;
+  align-self: center;
+  box-shadow: 0 0 24px #38bdf8;
+}
+
+.mts-preloader__sub {
+  display: inline-block;
+  font-size: clamp(20px, 2.4vw, 32px);
+  letter-spacing: 0.32em;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 600;
+}
+
+.mts-preloader__bar {
+  width: min(360px, 60vw);
+  height: 2px;
+  background: rgba(255, 255, 255, 0.12);
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.mts-preloader__fill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #38bdf8, #fff);
+  transform-origin: left center;
+  transform: scaleX(0);
+  will-change: transform;
+}
+
+.mts-preloader__count {
+  font-family: 'DM Sans', monospace, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.32em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+html.is-loading {
+  overflow: hidden;
+}
+html.is-loading body {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mts-preloader { display: none; }
+}

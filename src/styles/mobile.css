@@ -1,0 +1,321 @@
+/* ===========================================================
+   Mobile fixes & enhancements
+   Breakpoints: 768px (tablet), 480px (phone)
+   =========================================================== */
+
+/* === Genel === */
+@media (max-width: 900px) {
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* iOS Safari'de viewport yüksekliği için */
+  .hero {
+    min-height: 100svh;
+    height: 100svh !important;
+  }
+}
+
+/* === Preloader === */
+@media (max-width: 768px) {
+  .mts-preloader__letter { font-size: 56px !important; }
+  .mts-preloader__sub { font-size: 18px !important; letter-spacing: 0.26em !important; }
+  .mts-preloader__bar { width: 70vw !important; }
+}
+@media (max-width: 480px) {
+  .mts-preloader__letter { font-size: 44px !important; }
+  .mts-preloader__sub { font-size: 14px !important; letter-spacing: 0.22em !important; }
+  .mts-preloader__brand {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+/* === Hero === */
+@media (max-width: 768px) {
+  .hero .hero-content {
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+  }
+
+  /* Başlık daha okunabilir */
+  .hero h1 {
+    font-size: clamp(36px, 9vw, 56px) !important;
+    line-height: 1.05 !important;
+  }
+
+  .hero-desc {
+    font-size: 1rem !important;
+    max-width: 100% !important;
+  }
+
+  /* Butonlar tam genişlik */
+  .hero-buttons {
+    flex-direction: column !important;
+    width: 100%;
+    gap: 0.7rem !important;
+  }
+  .hero-buttons .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    min-height: 50px;
+    font-size: 0.95rem !important;
+  }
+
+  /* İstatistikler 2x2 grid */
+  .hero-stats {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1.2rem 1rem !important;
+    padding-top: 1.4rem !important;
+  }
+  .hero-stat-num {
+    font-size: clamp(28px, 7vw, 36px) !important;
+  }
+  .hero-stat-label {
+    font-size: 0.78rem !important;
+  }
+
+  /* Lamp efekti mobilde gizle (performans) */
+  .hero-lamp { opacity: 0.35; }
+
+  /* Hero overlay daha güçlü (mobil video genelde düşük kontrast) */
+  .hero-overlay {
+    background:
+      linear-gradient(to top, rgba(4,9,22,0.78) 0%, rgba(4,9,22,0.35) 50%, rgba(4,9,22,0.25) 100%) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: clamp(32px, 9.5vw, 44px) !important;
+  }
+  .hero-stats {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem 0.6rem !important;
+  }
+  .hero-stat-num { font-size: 26px !important; }
+}
+
+/* === Header & mobil menü === */
+@media (max-width: 900px) {
+  .site-header {
+    padding: 0.6rem 1rem !important;
+  }
+  .hero-topbar {
+    display: none !important;
+  }
+  .header-inner {
+    padding: 0 !important;
+  }
+  .logo-img {
+    max-height: 36px !important;
+    width: auto;
+  }
+}
+
+/* === Auto-decorate ile eklenen reveal stagger mobilde havalı kalsın === */
+@media (max-width: 900px) {
+  [data-reveal="words"] .reveal-word,
+  [data-reveal="split"] .reveal-char {
+    /* daha hızlı reveal, mobilde sabırsız kullanıcı */
+  }
+}
+
+/* === Ürün grupları (Eksiksiz Hijyen Tedariği) === */
+@media (max-width: 900px) {
+  .products-section--pinned {
+    overflow: visible !important;
+  }
+  .products-section--pinned .container {
+    padding: 0 1.2rem !important;
+    max-width: 100% !important;
+  }
+  .products-pin-viewport {
+    padding-left: 0 !important;
+    overflow: visible !important;
+  }
+  .products-section--pinned .products-grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.4rem !important;
+    width: 100% !important;
+    transform: none !important;
+  }
+  .products-section--pinned .product-card {
+    flex: initial !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    padding: 2rem 1.5rem !important;
+    border-radius: 24px !important;
+  }
+  .pc-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+  .pc-index { font-size: 36px !important; }
+  .pc-big-letter {
+    font-size: 70vw !important;
+    bottom: -16vw !important;
+    right: -8vw !important;
+  }
+  .products-section--pinned .product-card h3 {
+    font-size: clamp(28px, 7vw, 38px) !important;
+  }
+  .products-section--pinned .product-card .prod-list {
+    grid-template-columns: 1fr !important;
+    gap: 0.4rem !important;
+  }
+  .pc-stat-bar {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .pc-stat-num { font-size: 30px !important; }
+  .pc-arrow { width: 44px; height: 44px; }
+  .pc-progress { display: none !important; }
+
+  .products-section--pinned .section-header h2 {
+    font-size: clamp(30px, 8vw, 44px) !important;
+  }
+}
+
+/* === Compare section === */
+@media (max-width: 768px) {
+  .compare-wrap {
+    flex-direction: column !important;
+    gap: 1.2rem;
+  }
+  .compare-mid {
+    transform: rotate(90deg);
+    padding: 0.5rem 0 !important;
+  }
+}
+
+/* === Sectors / Why / B2B grids === */
+@media (max-width: 768px) {
+  .sector-grid,
+  .benefits-grid,
+  .why-grid,
+  .b2b-grid,
+  .product-groups {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .sector-grid,
+  .b2b-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* === Testimonials === */
+@media (max-width: 768px) {
+  .testimonials-track-wrapper {
+    overflow: hidden;
+  }
+  .testimonial-card {
+    width: 78vw !important;
+    min-width: 78vw !important;
+  }
+}
+
+/* === Footer === */
+@media (max-width: 768px) {
+  .footer-distortion {
+    height: 100px !important;
+    opacity: 0.5;
+  }
+  .site-footer {
+    padding: 4rem 1.2rem 2rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-distortion {
+    display: none !important;
+  }
+}
+
+/* === Section padding === */
+@media (max-width: 768px) {
+  .section-pad {
+    padding: 4rem 0 !important;
+  }
+  .container {
+    padding: 0 1.2rem !important;
+  }
+  .section-header h2 {
+    font-size: clamp(28px, 7vw, 40px) !important;
+  }
+  .section-header p {
+    font-size: 0.95rem !important;
+  }
+}
+
+/* === Sticky CTA mobilde === */
+@media (max-width: 768px) {
+  .sticky-cta {
+    bottom: 0.6rem !important;
+    left: 0.6rem !important;
+    right: 0.6rem !important;
+  }
+  .sticky-cta-btn {
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+    font-size: 0.85rem !important;
+    padding: 0.7rem 0.5rem !important;
+  }
+}
+
+/* === Tıklama hedefleri en az 44px === */
+@media (max-width: 768px) {
+  .btn {
+    min-height: 44px;
+  }
+  .nav-link,
+  .mobile-nav-link {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+  .lang-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* === Form inputs — iOS zoom-on-focus engelle (>=16px font) === */
+@media (max-width: 768px) {
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
+/* === Page curtain — mobilde de düzgün === */
+@media (max-width: 768px) {
+  .page-curtain { width: 100vw; }
+}
+
+/* === Hero scroll indicator — mobilde küçült === */
+@media (max-width: 768px) {
+  .hero-scroll-indicator {
+    bottom: 1.4rem !important;
+    transform: scale(0.85);
+  }
+}
+
+/* === Tablet özel (768–900px) === */
+@media (min-width: 768px) and (max-width: 900px) {
+  .hero h1 { font-size: clamp(44px, 7vw, 64px) !important; }
+  .hero-buttons { flex-direction: row !important; }
+  .hero-buttons .btn { width: auto; }
+  .hero-stats { grid-template-columns: repeat(4, 1fr) !important; }
+}
