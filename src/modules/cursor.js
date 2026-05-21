@@ -28,18 +28,25 @@ export function initCursor() {
   const pos = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
   const ringPos = { x: pos.x, y: pos.y };
 
+  // Doğrudan transform — GSAP tween yok, her frame'de yeniden çizmek için
   window.addEventListener('mousemove', (e) => {
     pos.x = e.clientX;
     pos.y = e.clientY;
-    gsap.to(dot, { x: pos.x, y: pos.y, duration: 0.12, ease: 'power2.out' });
-  });
+    // Dot anında takip etsin
+    dot.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%, -50%)`;
+  }, { passive: true });
 
-  gsap.ticker.add(() => {
-    ringPos.x += (pos.x - ringPos.x) * 0.14;
-    ringPos.y += (pos.y - ringPos.y) * 0.14;
-    ring.style.transform = `translate(${ringPos.x}px, ${ringPos.y}px) translate(-50%, -50%)`;
-    label.style.transform = `translate(${ringPos.x}px, ${ringPos.y}px) translate(-50%, -50%)`;
-  });
+  // Ring + label lerp ile yumuşak takip
+  let rafId;
+  function tick() {
+    ringPos.x += (pos.x - ringPos.x) * 0.18;
+    ringPos.y += (pos.y - ringPos.y) * 0.18;
+    const t = `translate3d(${ringPos.x}px, ${ringPos.y}px, 0) translate(-50%, -50%)`;
+    ring.style.transform = t;
+    label.style.transform = t;
+    rafId = requestAnimationFrame(tick);
+  }
+  rafId = requestAnimationFrame(tick);
 
   // Hover states
   const hoverables = 'a, button, [data-cursor], [data-magnetic], .btn, input, textarea';
