@@ -7,13 +7,74 @@ function fmt(n) {
 }
 
 // Sektör → temel kişi başı aylık hijyen maliyet katsayısı (₺), ürün önerisi paketleri
+// pkg + desc + items hepsi multi-lang
 const SECTOR_DATA = {
-  otel:    { perStaff: 95,  perRoom: 180, pkg: 'Premium Konaklama',  desc: { tr: 'Misafir deneyimi odaklı yumuşak doku + premium amenities', en: 'Guest-experience first: soft tissue + premium amenities', de: 'Gast-fokussiert: weiches Gewebe + Premium-Amenities', ar: 'تجربة الضيف أولاً: مناديل ناعمة + مستلزمات فاخرة' }, items: ['Premium tuvalet kağıdı', 'El sabunu & krem dispenseri', 'Banyo amenities seti', 'Yüzey dezenfektan', 'Çöp poşeti'] },
-  hastane: { perStaff: 140, perBed: 220, pkg: 'Klinik Hijyen Pro', desc: { tr: 'Tıbbi standartta dezenfeksiyon + tek kullanımlık ürün ağırlıklı', en: 'Medical-grade disinfection + disposable-heavy', de: 'Medizinische Desinfektion + Einwegfokus', ar: 'تطهير طبي + منتجات يمكن التخلص منها' }, items: ['ULV dezenfektan', 'Cerrahi maske & eldiven', 'Antibakteriyel sabun', 'Klinik silme bezi', 'Tıbbi atık poşeti', 'Tuvalet kağıdı'] },
-  okul:    { perStaff: 35,  perRoom: 0,   pkg: 'Eğitim Tesisi', desc: { tr: 'Yüksek hacim + ekonomik formül + güvenli kimyasal', en: 'High volume + economical + child-safe chemicals', de: 'Großvolumen + ökonomisch + kinderfreundlich', ar: 'حجم كبير + اقتصادي + آمن للأطفال' }, items: ['Jumbo tuvalet kağıdı', 'Köpük el sabunu', 'Yüzey temizleyici', 'Çöp poşeti', 'Kağıt havlu'] },
-  ofis:    { perStaff: 55,  perRoom: 0,   pkg: 'Modern Ofis', desc: { tr: 'Z-katlama havlu, otomatik dispenser, kahve molası ürünleri', en: 'Z-fold towels, auto dispensers, breakroom essentials', de: 'Z-Falt-Handtücher, Auto-Spender, Pausenraum-Produkte', ar: 'مناشف Z، موزعات أوتوماتيكية، أساسيات الاستراحة' }, items: ['Z-katlama havlu', 'El sabunu dispenseri', 'Yüzey dezenfektanı', 'Tuvalet kağıdı', 'Mutfak temizleyici'] },
-  fabrika: { perStaff: 110, perRoom: 0,   pkg: 'Endüstriyel Pro', desc: { tr: 'Ağır kir & yağ formülleri + endüstriyel ekipman', en: 'Heavy-duty grease & oil formulas + industrial gear', de: 'Schwere Verschmutzung + Industrieausrüstung', ar: 'صيغ شحوم وزيوت ثقيلة + معدات صناعية' }, items: ['Endüstriyel degreaser', 'Sanayi tipi sabun', 'Mikrofiber bez (büyük)', 'Çöp poşeti (XL)', 'Koruyucu eldiven'] },
-  avm:     { perStaff: 75,  perRoom: 0,   pkg: 'AVM & Perakende', desc: { tr: 'Yoğun trafik dezenfeksiyonu + cila/parlatıcı', en: 'High-traffic disinfection + polish/wax', de: 'Hochfrequenz-Desinfektion + Polierprodukte', ar: 'تطهير عالي الكثافة + مواد تلميع' }, items: ['Yüzey dezenfektanı', 'Cam temizleyici', 'Zemin cilası', 'Tuvalet kağıdı', 'Otomatik koku gidericisi'] },
+  otel: {
+    perStaff: 95, perRoom: 180,
+    pkg:  { tr: 'Premium Konaklama', en: 'Premium Hospitality', de: 'Premium Gastgewerbe', ar: 'باقة الفنادق الفاخرة' },
+    desc: { tr: 'Misafir deneyimi odaklı yumuşak doku + premium amenities', en: 'Guest-experience first: soft tissue + premium amenities', de: 'Gast-fokussiert: weiches Gewebe + Premium-Amenities', ar: 'تجربة الضيف أولاً: مناديل ناعمة + مستلزمات فاخرة' },
+    items: {
+      tr: ['Premium tuvalet kağıdı', 'El sabunu & krem dispenseri', 'Banyo amenities seti', 'Yüzey dezenfektanı', 'Çöp poşeti'],
+      en: ['Premium toilet paper', 'Hand soap & lotion dispenser', 'Bathroom amenities set', 'Surface disinfectant', 'Garbage bags'],
+      de: ['Premium Toilettenpapier', 'Seifen- & Lotionsspender', 'Badezimmer-Amenities-Set', 'Flächendesinfektion', 'Müllbeutel'],
+      ar: ['ورق تواليت فاخر', 'موزع صابون ومرطب', 'طقم مستلزمات الحمام', 'مطهر الأسطح', 'أكياس قمامة'],
+    },
+  },
+  hastane: {
+    perStaff: 140, perRoom: 220,
+    pkg:  { tr: 'Klinik Hijyen Pro', en: 'Clinical Hygiene Pro', de: 'Klinische Hygiene Pro', ar: 'باقة النظافة الطبية' },
+    desc: { tr: 'Tıbbi standartta dezenfeksiyon + tek kullanımlık ürün ağırlıklı', en: 'Medical-grade disinfection + disposable-heavy', de: 'Medizinische Desinfektion + Einwegfokus', ar: 'تطهير طبي + منتجات يمكن التخلص منها' },
+    items: {
+      tr: ['ULV dezenfektan', 'Cerrahi maske & eldiven', 'Antibakteriyel sabun', 'Klinik silme bezi', 'Tıbbi atık poşeti', 'Tuvalet kağıdı'],
+      en: ['ULV disinfectant', 'Surgical masks & gloves', 'Antibacterial soap', 'Clinical wipes', 'Medical waste bags', 'Toilet paper'],
+      de: ['ULV-Desinfektion', 'OP-Masken & Handschuhe', 'Antibakterielle Seife', 'Klinik-Wischtücher', 'Medizinische Abfallbeutel', 'Toilettenpapier'],
+      ar: ['مطهر ULV', 'كمامات وقفازات جراحية', 'صابون مضاد للبكتيريا', 'مناديل سريرية', 'أكياس النفايات الطبية', 'ورق تواليت'],
+    },
+  },
+  okul: {
+    perStaff: 35, perRoom: 0,
+    pkg:  { tr: 'Eğitim Tesisi', en: 'Education Facility', de: 'Bildungseinrichtung', ar: 'باقة المؤسسات التعليمية' },
+    desc: { tr: 'Yüksek hacim + ekonomik formül + güvenli kimyasal', en: 'High volume + economical + child-safe chemicals', de: 'Großvolumen + ökonomisch + kinderfreundlich', ar: 'حجم كبير + اقتصادي + آمن للأطفال' },
+    items: {
+      tr: ['Jumbo tuvalet kağıdı', 'Köpük el sabunu', 'Yüzey temizleyici', 'Çöp poşeti', 'Kağıt havlu'],
+      en: ['Jumbo toilet paper', 'Foam hand soap', 'Surface cleaner', 'Garbage bags', 'Paper towels'],
+      de: ['Jumbo-Toilettenpapier', 'Schaumseife', 'Flächenreiniger', 'Müllbeutel', 'Papierhandtücher'],
+      ar: ['ورق تواليت جامبو', 'صابون اليد الرغوي', 'منظف الأسطح', 'أكياس قمامة', 'مناشف ورقية'],
+    },
+  },
+  ofis: {
+    perStaff: 55, perRoom: 0,
+    pkg:  { tr: 'Modern Ofis', en: 'Modern Office', de: 'Modernes Büro', ar: 'باقة المكاتب الحديثة' },
+    desc: { tr: 'Z-katlama havlu, otomatik dispenser, kahve molası ürünleri', en: 'Z-fold towels, auto dispensers, breakroom essentials', de: 'Z-Falt-Handtücher, Auto-Spender, Pausenraum-Produkte', ar: 'مناشف Z، موزعات أوتوماتيكية، أساسيات الاستراحة' },
+    items: {
+      tr: ['Z-katlama havlu', 'El sabunu dispenseri', 'Yüzey dezenfektanı', 'Tuvalet kağıdı', 'Mutfak temizleyici'],
+      en: ['Z-fold towels', 'Soap dispenser', 'Surface disinfectant', 'Toilet paper', 'Kitchen cleaner'],
+      de: ['Z-Falt-Handtücher', 'Seifenspender', 'Flächendesinfektion', 'Toilettenpapier', 'Küchenreiniger'],
+      ar: ['مناشف Z', 'موزع صابون', 'مطهر الأسطح', 'ورق تواليت', 'منظف المطبخ'],
+    },
+  },
+  fabrika: {
+    perStaff: 110, perRoom: 0,
+    pkg:  { tr: 'Endüstriyel Pro', en: 'Industrial Pro', de: 'Industrie Pro', ar: 'باقة الصناعة المتقدمة' },
+    desc: { tr: 'Ağır kir & yağ formülleri + endüstriyel ekipman', en: 'Heavy-duty grease & oil formulas + industrial gear', de: 'Schwere Verschmutzung + Industrieausrüstung', ar: 'صيغ شحوم وزيوت ثقيلة + معدات صناعية' },
+    items: {
+      tr: ['Endüstriyel degreaser', 'Sanayi tipi sabun', 'Mikrofiber bez (büyük)', 'Çöp poşeti (XL)', 'Koruyucu eldiven'],
+      en: ['Industrial degreaser', 'Industrial soap', 'Microfiber cloth (large)', 'Garbage bags (XL)', 'Protective gloves'],
+      de: ['Industrieller Entfetter', 'Industrieseife', 'Mikrofasertuch (groß)', 'Müllbeutel (XL)', 'Schutzhandschuhe'],
+      ar: ['مزيل الشحوم الصناعي', 'صابون صناعي', 'قماش ميكروفايبر (كبير)', 'أكياس قمامة (XL)', 'قفازات واقية'],
+    },
+  },
+  avm: {
+    perStaff: 75, perRoom: 0,
+    pkg:  { tr: 'AVM & Perakende', en: 'Mall & Retail', de: 'Einkaufszentrum & Einzelhandel', ar: 'باقة المراكز التجارية والتجزئة' },
+    desc: { tr: 'Yoğun trafik dezenfeksiyonu + cila/parlatıcı', en: 'High-traffic disinfection + polish/wax', de: 'Hochfrequenz-Desinfektion + Polierprodukte', ar: 'تطهير عالي الكثافة + مواد تلميع' },
+    items: {
+      tr: ['Yüzey dezenfektanı', 'Cam temizleyici', 'Zemin cilası', 'Tuvalet kağıdı', 'Otomatik koku gidericisi'],
+      en: ['Surface disinfectant', 'Glass cleaner', 'Floor polish', 'Toilet paper', 'Automatic air freshener'],
+      de: ['Flächendesinfektion', 'Glasreiniger', 'Bodenpolitur', 'Toilettenpapier', 'Automatischer Lufterfrischer'],
+      ar: ['مطهر الأسطح', 'منظف الزجاج', 'ملمع الأرضيات', 'ورق تواليت', 'معطر جو أوتوماتيكي'],
+    },
+  },
 };
 
 const TRAFFIC_MULT = { low: 0.75, mid: 1, high: 1.4 };
@@ -42,29 +103,16 @@ export function initConfigurator() {
   function lang() { return document.documentElement.lang || 'tr'; }
   function t() { return I18N[lang()] || I18N.tr; }
 
+  // Static label'lar artık HTML'de data-tr ile yönetiliyor.
+  // Bu fonksiyon yalnızca dinamik (step'e göre değişen) "İleri/Sonucu Gör" butonunu günceller.
   function refreshLabels() {
     const L = t();
-    root.querySelector('[data-cfg-i="sectorTitle"]').textContent = L.sectorTitle;
-    root.querySelector('[data-cfg-i="scaleTitle"]').textContent = L.scaleTitle;
-    root.querySelector('[data-cfg-i="trafficTitle"]').textContent = L.trafficTitle;
-    root.querySelector('[data-cfg-i="m2"]').textContent = L.m2;
-    root.querySelector('[data-cfg-i="staff"]').textContent = L.staff;
-    const roomsLbl = root.querySelector('[data-cfg-i="rooms"]');
-    if (roomsLbl) roomsLbl.textContent = L.rooms;
-    prevBtn.textContent = L.back;
-    nextBtn.textContent = state.step === TOTAL_STEPS - 1 ? L.finish : L.next;
-    restartBtn.textContent = L.restart;
-    root.querySelector('[data-cfg-i="resultLabel"]').textContent = L.resultLabel;
-    root.querySelector('[data-cfg-i="priceLabel"]').textContent = L.priceLabel;
-    root.querySelector('[data-cfg-i="priceFoot"]').textContent = L.priceFoot;
-    root.querySelector('.cfg-result-cta .btn-primary').textContent = L.cta;
-
-    // Trafik buton metinleri
-    root.querySelectorAll('.cfg-options--traffic .cfg-opt').forEach(b => {
-      const k = b.dataset.value;
-      b.querySelector('strong').textContent = L[`t${k[0].toUpperCase() + k.slice(1)}`] || k;
-      b.querySelector('span').textContent = L[`t${k[0].toUpperCase() + k.slice(1)}Desc`] || '';
-    });
+    if (state.step === TOTAL_STEPS - 1) {
+      nextBtn.textContent = L.finish;
+    } else {
+      // İleri butonu — HTML'deki data-tr zaten "İleri →" set ediyor, yine de zorla
+      nextBtn.textContent = L.next;
+    }
   }
 
   function render() {
@@ -92,17 +140,21 @@ export function initConfigurator() {
   function renderResult() {
     const data = SECTOR_DATA[state.sector];
     if (!data) return;
+    const L = lang();
     const trafficMult = TRAFFIC_MULT[state.traffic] || 1;
     const base = (data.perStaff * state.staff) + (data.perRoom * state.rooms);
     const center = base * trafficMult;
     const min = center * 0.80;
     const max = center * 1.25;
 
-    root.querySelector('.cfg-result-name').textContent = data.pkg;
-    root.querySelector('.cfg-result-desc').textContent = data.desc[lang()] || data.desc.tr;
+    const pkgName = (data.pkg && data.pkg[L]) || data.pkg.tr;
+    root.querySelector('.cfg-result-name').textContent = pkgName;
+    root.querySelector('.cfg-result-desc').textContent = (data.desc && data.desc[L]) || data.desc.tr;
+
     const list = root.querySelector('.cfg-result-list');
     list.innerHTML = '';
-    data.items.forEach(item => {
+    const items = (data.items && data.items[L]) || data.items.tr;
+    items.forEach(item => {
       const li = document.createElement('li');
       li.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>${item}</span>`;
       list.appendChild(li);
@@ -110,9 +162,9 @@ export function initConfigurator() {
     root.querySelector('[data-cfg-min]').textContent = fmt(min);
     root.querySelector('[data-cfg-max]').textContent = fmt(max);
 
-    // CTA href'e parametre ekle
+    // CTA href'e parametre ekle (paket adı TR formunda kalır — backend tarafı için)
     const cta = root.querySelector('.cfg-result-cta .btn-primary');
-    cta.setAttribute('href', `iletisim.html?from=config&sector=${state.sector}&pkg=${encodeURIComponent(data.pkg)}`);
+    cta.setAttribute('href', `iletisim.html?from=config&sector=${state.sector}&pkg=${encodeURIComponent(data.pkg.tr)}`);
   }
 
   // Olay bağlayıcıları
