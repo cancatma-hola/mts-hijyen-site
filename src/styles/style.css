@@ -2294,8 +2294,9 @@ a.cc-value:hover { color: var(--blue-700); }
 
 /* ── Klasik kolon liste ───────────────────────────────────────── */
 .compare-list--bad li {
-  color: rgba(255,255,255,0.62);
-  font-size: 0.9rem;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 500;
 }
 .compare-list--bad li::before {
   content: '×';
@@ -2310,8 +2311,9 @@ a.cc-value:hover { color: var(--blue-700); }
 /* ── MTS VIP liste ────────────────────────────────────────────── */
 .compare-list--good { gap: 1.2rem; }
 .compare-list--good li {
-  color: rgba(255,255,255,0.9);
-  font-size: 0.95rem;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
   line-height: 1.5;
   gap: 1.1rem;
 }

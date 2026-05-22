@@ -157,9 +157,11 @@
   margin: 0;
 }
 .sc-unit {
-  font-size: 0.78rem;
+  font-size: 0.88rem;
   color: var(--text-mid);
-  margin-top: 2px;
+  margin-top: 3px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
 }
 .sc-value-wrap {
   display: flex; align-items: baseline; gap: 0.3rem;
@@ -288,17 +290,17 @@
   position: relative; z-index: 1;
 }
 .sc-chart-title {
-  font-size: 0.74rem;
+  font-size: 0.86rem;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.95);
   font-weight: 700;
 }
 .sc-chart-unit {
-  font-size: 0.7rem;
-  color: rgba(255,255,255,0.45);
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.6);
   font-family: 'DM Sans', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.04em;
 }
 
@@ -391,15 +393,15 @@
   padding-top: 0.15rem;
 }
 .sc-bar-icon {
-  width: 13px; height: 13px;
+  width: 15px; height: 15px;
   flex-shrink: 0;
 }
 .sc-bar--retail .sc-bar-icon { color: #fca5a5; }
 .sc-bar--mts .sc-bar-icon { color: #67e8f9; }
 .sc-bar-label {
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  color: rgba(255,255,255,0.6);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.85);
   font-weight: 600;
 }
 
@@ -422,8 +424,10 @@
   padding-top: 0.85rem;
 }
 .sc-saving-label {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.7);
+  font-size: 0.95rem;
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+  letter-spacing: 0.005em;
 }
 .sc-saving-amount {
   font-family: 'DM Sans', system-ui, sans-serif;
