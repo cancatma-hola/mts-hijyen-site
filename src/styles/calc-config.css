@@ -158,9 +158,10 @@
 }
 .sc-unit {
   font-size: 0.88rem;
-  color: var(--text-mid);
+  color: var(--blue-950);
+  opacity: 0.75;
   margin-top: 3px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.005em;
 }
 .sc-value-wrap {
@@ -215,9 +216,12 @@
 }
 .sc-tick {
   display: flex; justify-content: space-between;
-  font-size: 0.7rem;
-  color: var(--text-mid);
+  font-size: 0.72rem;
+  color: var(--blue-950);
+  opacity: 0.55;
+  font-weight: 600;
   margin-top: 0.4rem;
+  letter-spacing: 0.02em;
 }
 
 /* --- Result panel --- */
@@ -293,12 +297,12 @@
   font-size: 0.86rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: rgba(255,255,255,0.95);
+  color: #fff;
   font-weight: 700;
 }
 .sc-chart-unit {
   font-size: 0.78rem;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.85);
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -401,7 +405,7 @@
 .sc-bar-label {
   font-size: 0.85rem;
   letter-spacing: 0.02em;
-  color: rgba(255,255,255,0.85);
+  color: #fff;
   font-weight: 600;
 }
 
@@ -425,8 +429,8 @@
 }
 .sc-saving-label {
   font-size: 0.95rem;
-  color: rgba(255,255,255,0.85);
-  font-weight: 500;
+  color: #fff;
+  font-weight: 600;
   letter-spacing: 0.005em;
 }
 .sc-saving-amount {
@@ -506,11 +510,11 @@
   position: relative; z-index: 1;
 }
 .sc-trust-item {
-  display: inline-flex; align-items: center; gap: 0.35rem;
-  font-size: 0.74rem;
-  color: rgba(255,255,255,0.65);
-  font-weight: 500;
-  letter-spacing: 0.02em;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.95);
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 .sc-trust-item svg {
   width: 12px; height: 12px;
