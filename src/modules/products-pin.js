@@ -112,19 +112,28 @@ export function initProductsPin() {
   viewport.appendChild(grid);
 
   // Hareket mesafesi: strip genişliği - viewport genişliği
-  const getDistance = () => grid.scrollWidth - window.innerWidth;
+  const getDistance = () => Math.max(0, grid.scrollWidth - window.innerWidth);
+
+  // Sticky header yüksekliği — pin başlangıcını header'ın altından başlat
+  const headerH = (document.querySelector('.site-header')?.offsetHeight || 74);
+
+  // Section'a pin sırasında stabil layout için min-height ver
+  section.style.minHeight = '100vh';
 
   gsap.to(grid, {
     x: () => -getDistance(),
     ease: 'none',
     scrollTrigger: {
       trigger: section,
-      start: 'top top',
+      start: () => `top top+=${headerH}`,
       end: () => `+=${getDistance()}`,
       pin: true,
+      pinSpacing: true,
+      pinType: 'transform', // Lenis ile uyumlu — position:fixed yerine CSS transform, "tak" sıçramayı önler
       scrub: 1,
       invalidateOnRefresh: true,
       anticipatePin: 1,
+      fastScrollEnd: true,
       onUpdate: (st) => {
         const active = Math.round(st.progress * (cards.length - 1));
         dots.forEach((d, i) => d.classList.toggle('is-active', i === active));
@@ -150,5 +159,16 @@ export function initProductsPin() {
     });
   });
 
+  // İlk refresh — DOM hazır
   ScrollTrigger.refresh();
+
+  // İkinci refresh — fontlar + imajlar yüklendikten sonra ölçüler kesinleşsin
+  // (yanlış scrollWidth ile başlayıp sonradan pin spacer yüksekliğinin değişmesini engeller)
+  if (document.readyState === 'complete') {
+    requestAnimationFrame(() => ScrollTrigger.refresh());
+  } else {
+    window.addEventListener('load', () => {
+      requestAnimationFrame(() => ScrollTrigger.refresh());
+    }, { once: true });
+  }
 }
