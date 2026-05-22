@@ -874,6 +874,120 @@
   </div>
 </section>
 
+<!-- ============================================================  TESİSE GÖRE PAKET KONFİGÜRATÖRÜ  ============================================================ -->
+<section class="cfg-section section-pad" id="paket-konfiguratoru" aria-label="Paket Konfigüratörü">
+  <div class="container">
+    <header class="cfg-header fade-up">
+      <span class="label" data-tr="Tesisinize Özel" data-en="Tailored to Your Facility" data-de="Für Ihre Einrichtung" data-ar="مصمّم لمنشأتك">Tesisinize Özel</span>
+      <h2 data-tr="3 dakikada hijyen paketinizi oluşturun" data-en="Build your hygiene package in 3 minutes" data-de="Ihr Hygienepaket in 3 Minuten" data-ar="أنشئ باقتك في 3 دقائق">3 dakikada hijyen paketinizi oluşturun</h2>
+      <p data-tr="Sektörünüz, ölçeğiniz ve trafiğinize göre özelleştirilmiş ürün önerisi ve tahmini aylık maliyet aralığı." data-en="Personalized product recommendations and estimated monthly cost based on your sector, scale and traffic." data-de="Personalisierte Produktempfehlungen und geschätzte Monatskosten basierend auf Branche, Größe und Frequenz." data-ar="توصيات منتجات مخصصة وتقدير التكلفة الشهرية حسب قطاعك وحجمك وحركتك.">Sektörünüz, ölçeğiniz ve trafiğinize göre özelleştirilmiş ürün önerisi ve tahmini aylık maliyet aralığı.</p>
+    </header>
+
+    <div class="cfg-wizard">
+      <div class="cfg-progress">
+        <span class="cfg-step is-active" data-step="1">01<em data-tr="Sektör" data-en="Sector" data-de="Branche" data-ar="القطاع">Sektör</em></span>
+        <span class="cfg-step" data-step="2">02<em data-tr="Ölçek" data-en="Scale" data-de="Größe" data-ar="الحجم">Ölçek</em></span>
+        <span class="cfg-step" data-step="3">03<em data-tr="Trafik" data-en="Traffic" data-de="Frequenz" data-ar="الحركة">Trafik</em></span>
+        <span class="cfg-step" data-step="4">04<em data-tr="Sonuç" data-en="Result" data-de="Ergebnis" data-ar="النتيجة">Sonuç</em></span>
+      </div>
+
+      <!-- STEP 1: SEKTÖR -->
+      <div class="cfg-step-pane is-active" data-pane="1">
+        <h3 data-cfg-i="sectorTitle" data-tr="Tesis tipini seçin" data-en="Select facility type" data-de="Einrichtungstyp wählen" data-ar="اختر نوع المنشأة">Tesis tipini seçin</h3>
+        <div class="cfg-options">
+          <button class="cfg-opt" data-value="otel" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M3 7v14M21 11v10M6 11h.01M6 15h.01M6 19h.01M10 11h.01M10 15h.01M10 19h.01M14 11h.01M14 15h.01M14 19h.01M18 15h.01M18 19h.01M3 7l9-4 9 4"/></svg>
+            <span data-tr="Otel & Konaklama" data-en="Hotel & Hospitality" data-de="Hotel & Gastgewerbe" data-ar="فندق وضيافة">Otel & Konaklama</span>
+          </button>
+          <button class="cfg-opt" data-value="hastane" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span data-tr="Hastane & Sağlık" data-en="Hospital & Healthcare" data-de="Krankenhaus" data-ar="مستشفى ورعاية صحية">Hastane & Sağlık</span>
+          </button>
+          <button class="cfg-opt" data-value="okul" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+            <span data-tr="Okul & Eğitim" data-en="School & Education" data-de="Schule & Bildung" data-ar="مدرسة وتعليم">Okul & Eğitim</span>
+          </button>
+          <button class="cfg-opt" data-value="ofis" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            <span data-tr="Ofis & İş Merkezi" data-en="Office & Business" data-de="Büro" data-ar="مكتب وأعمال">Ofis & İş Merkezi</span>
+          </button>
+          <button class="cfg-opt" data-value="fabrika" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 20v-8l5 3V12l5 3V12l5 3V8l5 4v8z"/></svg>
+            <span data-tr="Fabrika & Üretim" data-en="Factory & Production" data-de="Fabrik & Produktion" data-ar="مصنع وإنتاج">Fabrika & Üretim</span>
+          </button>
+          <button class="cfg-opt" data-value="avm" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            <span data-tr="AVM & Perakende" data-en="Mall & Retail" data-de="Einkaufszentrum" data-ar="مركز تسوق">AVM & Perakende</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 2: ÖLÇEK -->
+      <div class="cfg-step-pane" data-pane="2">
+        <h3 data-cfg-i="scaleTitle" data-tr="Ölçeğiniz nedir?" data-en="What is your scale?" data-de="Wie groß ist Ihr Betrieb?" data-ar="ما حجم منشأتك؟">Ölçeğiniz nedir?</h3>
+        <div class="cfg-scale">
+          <label>
+            <span data-cfg-i="m2" data-tr="Yaklaşık alan (m²)" data-en="Approximate area (m²)" data-de="Fläche (m²)" data-ar="المساحة التقريبية (م²)">Yaklaşık alan (m²)</span>
+            <input type="number" name="alan" min="50" max="100000" value="1000">
+          </label>
+          <label>
+            <span data-cfg-i="staff" data-tr="Personel sayısı" data-en="Number of staff" data-de="Mitarbeiteranzahl" data-ar="عدد الموظفين">Personel sayısı</span>
+            <input type="number" name="personel" min="1" max="10000" value="50">
+          </label>
+          <label class="cfg-extra" data-show-for="otel hastane">
+            <span data-cfg-i="rooms" data-tr="Oda / yatak sayısı" data-en="Rooms / beds" data-de="Zimmer / Betten" data-ar="الغرف / الأسرّة">Oda / yatak sayısı</span>
+            <input type="number" name="oda" min="0" max="5000" value="0">
+          </label>
+        </div>
+      </div>
+
+      <!-- STEP 3: TRAFİK -->
+      <div class="cfg-step-pane" data-pane="3">
+        <h3 data-cfg-i="trafficTitle" data-tr="Günlük ziyaretçi trafiği" data-en="Daily visitor traffic" data-de="Tägliche Besucherzahl" data-ar="حركة الزوار اليومية">Günlük ziyaretçi trafiği</h3>
+        <div class="cfg-options cfg-options--traffic">
+          <button class="cfg-opt" data-value="low" type="button">
+            <strong data-tr="Düşük" data-en="Low" data-de="Niedrig" data-ar="منخفض">Düşük</strong>
+            <span data-tr="&lt; 100 kişi/gün" data-en="&lt; 100 people/day" data-de="&lt; 100 Pers./Tag" data-ar="&lt; 100 شخص/يوم">&lt; 100 kişi/gün</span>
+          </button>
+          <button class="cfg-opt is-selected" data-value="mid" type="button">
+            <strong data-tr="Orta" data-en="Medium" data-de="Mittel" data-ar="متوسط">Orta</strong>
+            <span data-tr="100–500 kişi/gün" data-en="100–500 people/day" data-de="100–500 Pers./Tag" data-ar="100–500 شخص/يوم">100–500 kişi/gün</span>
+          </button>
+          <button class="cfg-opt" data-value="high" type="button">
+            <strong data-tr="Yüksek" data-en="High" data-de="Hoch" data-ar="مرتفع">Yüksek</strong>
+            <span data-tr="500+ kişi/gün" data-en="500+ people/day" data-de="500+ Pers./Tag" data-ar="500+ شخص/يوم">500+ kişi/gün</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: SONUÇ -->
+      <div class="cfg-step-pane" data-pane="4">
+        <div class="cfg-result-summary">
+          <span class="cfg-result-label" data-cfg-i="resultLabel" data-tr="Önerilen Paket" data-en="Recommended Package" data-de="Empfohlenes Paket" data-ar="الباقة الموصى بها">Önerilen Paket</span>
+          <h3 class="cfg-result-name">—</h3>
+          <p class="cfg-result-desc">—</p>
+        </div>
+        <ul class="cfg-result-list"></ul>
+        <div class="cfg-result-price">
+          <span class="cfg-price-label" data-cfg-i="priceLabel" data-tr="Tahmini Aylık Maliyet" data-en="Estimated Monthly Cost" data-de="Geschätzte monatliche Kosten" data-ar="التكلفة الشهرية التقديرية">Tahmini Aylık Maliyet</span>
+          <span class="cfg-price-range">₺<span data-cfg-min>0</span> – ₺<span data-cfg-max>0</span></span>
+          <small data-cfg-i="priceFoot" data-tr="+KDV · Net teklif için saha analizi gerekli" data-en="+VAT · Net quote requires site analysis" data-de="+MwSt · Netto-Angebot nach Standortanalyse" data-ar="+ضريبة · العرض النهائي يتطلب تحليل الموقع">+KDV · Net teklif için saha analizi gerekli</small>
+        </div>
+        <div class="cfg-result-cta">
+          <a href="iletisim.html?from=config" class="btn btn-primary" data-tr="Saha Analizi Talep Et →" data-en="Request Site Analysis →" data-de="Standortanalyse anfordern →" data-ar="اطلب تحليل الموقع →">Saha Analizi Talep Et →</a>
+          <button class="btn btn-secondary cfg-restart" type="button" data-tr="Baştan başla" data-en="Start over" data-de="Neu starten" data-ar="البدء من جديد">Baştan başla</button>
+        </div>
+      </div>
+
+      <!-- NAV -->
+      <div class="cfg-nav">
+        <button class="btn btn-secondary cfg-prev" type="button" data-tr="← Geri" data-en="← Back" data-de="← Zurück" data-ar="← رجوع">← Geri</button>
+        <button class="btn btn-primary cfg-next" type="button" data-tr="İleri →" data-en="Next →" data-de="Weiter →" data-ar="التالي →">İleri →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================================================  ÜRETİM SÜRECİ  ============================================================ -->
 <section class="mfg-section section-pad" aria-label="Üretim Sürecimiz">
   <div class="mfg-spotlight" aria-hidden="true"></div>
@@ -992,6 +1106,106 @@
         <div class="why-icon"><svg viewBox="0 0 24 24"><path d="M12 22c-4.97 0-9-2.69-9-6v-3l9-5 9 5v3c0 3.31-4.03 6-9 6z"/><path d="M12 13l-9-5 9-5 9 5z"/></svg></div>
         <h4 data-tr="ISO Kalite Belgeli" data-en="ISO Quality Certified" data-de="ISO Qualitätszertifiziert" data-ar="شهادة جودة ISO">ISO Kalite Belgeli</h4>
         <p data-tr="Sertifikalı ürünler ve uluslararası kalite standartları." data-en="Certified products and international quality standards." data-de="Zertifizierte Produkte und internationale Qualitätsstandards." data-ar="منتجات معتمدة ومعايير جودة دولية.">Sertifikalı ürünler ve uluslararası kalite standartları.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================  TASARRUF HESAPLAYICI  ============================================================ -->
+<section class="savings-calc-section section-pad" id="tasarruf-hesaplayici" aria-label="Tasarruf Hesaplayıcı">
+  <div class="container">
+    <header class="sc-header fade-up">
+      <span class="label" data-tr="Tasarruf Hesaplayıcı" data-en="Savings Calculator" data-de="Spar-Rechner" data-ar="حاسبة التوفير">Tasarruf Hesaplayıcı</span>
+      <h2 data-tr="Toptan alımla ne kadar kazanırsınız?" data-en="How much do you save by buying wholesale?" data-de="Wie viel sparen Sie im Großhandel?" data-ar="كم توفر بالشراء بالجملة؟">Toptan alımla ne kadar kazanırsınız?</h2>
+      <p data-tr="Aylık ortalama kullanımınızı girin, MTS toptan fiyatlarıyla yıllık tasarrufunuzu anında görün." data-en="Enter your monthly usage and see your annual savings with MTS wholesale pricing instantly." data-de="Geben Sie Ihren Monatsverbrauch ein und sehen Sie sofort Ihre jährlichen Einsparungen mit MTS-Großhandelspreisen." data-ar="أدخل استهلاكك الشهري واطّلع فوراً على توفيرك السنوي مع أسعار جملة MTS.">Aylık ortalama kullanımınızı girin, MTS toptan fiyatlarıyla yıllık tasarrufunuzu anında görün.</p>
+    </header>
+
+    <div class="sc-grid">
+      <!-- INPUTS -->
+      <div class="sc-inputs">
+        <div class="sc-product" data-id="tp" data-retail="14" data-wholesale="8">
+          <div class="sc-product-head">
+            <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
+            <div class="sc-product-meta">
+              <h3 data-tr="Tuvalet Kağıdı (Mini Jumbo)" data-en="Toilet Paper (Mini Jumbo)" data-de="Toilettenpapier (Mini Jumbo)" data-ar="ورق تواليت (مينى جامبو)">Tuvalet Kağıdı (Mini Jumbo)</h3>
+              <span class="sc-unit" data-tr="rulo / ay" data-en="rolls / month" data-de="Rollen / Monat" data-ar="لفة / شهر">rulo / ay</span>
+            </div>
+            <div class="sc-value-wrap"><span class="sc-value">120</span></div>
+          </div>
+          <input type="range" class="sc-slider" min="0" max="1000" step="10" value="120" aria-label="Tuvalet kağıdı miktarı">
+          <div class="sc-tick"><span>0</span><span>1000</span></div>
+        </div>
+
+        <div class="sc-product" data-id="soap" data-retail="65" data-wholesale="38">
+          <div class="sc-product-head">
+            <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6l1 7H8L9 3z"/><path d="M8 10c0 0-3 3-3 6a7 7 0 0 0 14 0c0-3-3-6-3-6"/></svg></div>
+            <div class="sc-product-meta">
+              <h3 data-tr="Sıvı / Köpük El Sabunu" data-en="Liquid / Foam Hand Soap" data-de="Flüssig- / Schaumseife" data-ar="صابون يد سائل / رغوي">Sıvı / Köpük El Sabunu</h3>
+              <span class="sc-unit" data-tr="litre / ay" data-en="liters / month" data-de="Liter / Monat" data-ar="لتر / شهر">litre / ay</span>
+            </div>
+            <div class="sc-value-wrap"><span class="sc-value">40</span></div>
+          </div>
+          <input type="range" class="sc-slider" min="0" max="300" step="5" value="40">
+          <div class="sc-tick"><span>0</span><span>300</span></div>
+        </div>
+
+        <div class="sc-product" data-id="bag" data-retail="85" data-wholesale="48">
+          <div class="sc-product-head">
+            <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
+            <div class="sc-product-meta">
+              <h3 data-tr="Çöp Poşeti (XL)" data-en="Garbage Bags (XL)" data-de="Müllbeutel (XL)" data-ar="أكياس قمامة (XL)">Çöp Poşeti (XL)</h3>
+              <span class="sc-unit" data-tr="paket / ay" data-en="packs / month" data-de="Pakete / Monat" data-ar="عبوة / شهر">paket / ay</span>
+            </div>
+            <div class="sc-value-wrap"><span class="sc-value">25</span></div>
+          </div>
+          <input type="range" class="sc-slider" min="0" max="200" step="5" value="25">
+          <div class="sc-tick"><span>0</span><span>200</span></div>
+        </div>
+
+        <div class="sc-product" data-id="disinf" data-retail="120" data-wholesale="72">
+          <div class="sc-product-head">
+            <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a5 5 0 0 1 5 5v3H7V7a5 5 0 0 1 5-5z"/><path d="M5 10h14l-1 10H6L5 10z"/></svg></div>
+            <div class="sc-product-meta">
+              <h3 data-tr="Yüzey Dezenfektanı" data-en="Surface Disinfectant" data-de="Flächendesinfektion" data-ar="مطهر الأسطح">Yüzey Dezenfektanı</h3>
+              <span class="sc-unit" data-tr="litre / ay" data-en="liters / month" data-de="Liter / Monat" data-ar="لتر / شهر">litre / ay</span>
+            </div>
+            <div class="sc-value-wrap"><span class="sc-value">30</span></div>
+          </div>
+          <input type="range" class="sc-slider" min="0" max="300" step="5" value="30">
+          <div class="sc-tick"><span>0</span><span>300</span></div>
+        </div>
+      </div>
+
+      <!-- RESULT -->
+      <div class="sc-result">
+        <div class="sc-bar-comparison">
+          <div class="sc-bar sc-bar--retail">
+            <span class="sc-bar-label" data-tr="Perakende" data-en="Retail" data-de="Einzelhandel" data-ar="تجزئة">Perakende</span>
+            <div class="sc-bar-track"><div class="sc-bar-fill" style="height:100%"></div></div>
+            <span class="sc-bar-amount">₺<span data-counter="retail">0</span></span>
+          </div>
+          <div class="sc-bar sc-bar--mts">
+            <span class="sc-bar-label" data-tr="MTS Toptan" data-en="MTS Wholesale" data-de="MTS Großhandel" data-ar="جملة MTS">MTS Toptan</span>
+            <div class="sc-bar-track"><div class="sc-bar-fill" style="height:60%"></div></div>
+            <span class="sc-bar-amount">₺<span data-counter="mts">0</span></span>
+          </div>
+        </div>
+
+        <div class="sc-savings">
+          <div class="sc-savings-monthly">
+            <span class="sc-saving-label" data-tr="Aylık Tasarruf" data-en="Monthly Savings" data-de="Monatliche Ersparnis" data-ar="التوفير الشهري">Aylık Tasarruf</span>
+            <span class="sc-saving-amount">₺<span data-counter="save-month">0</span></span>
+          </div>
+          <div class="sc-savings-yearly">
+            <span class="sc-saving-label" data-tr="Yıllık Tasarruf" data-en="Annual Savings" data-de="Jährliche Ersparnis" data-ar="التوفير السنوي">Yıllık Tasarruf</span>
+            <span class="sc-saving-amount">₺<span data-counter="save-year">0</span></span>
+          </div>
+        </div>
+
+        <div class="sc-cta">
+          <a href="iletisim.html?from=calc" class="btn btn-primary" data-tr="Bu tasarrufu kilitle →" data-en="Lock in these savings →" data-de="Diese Ersparnis sichern →" data-ar="ثبّت هذا التوفير →">Bu tasarrufu kilitle →</a>
+          <a href="https://wa.me/905436835765?text=Tasarruf%20hesaplayicidan%20teklif%20istiyorum" target="_blank" rel="noopener" class="btn btn-secondary" data-tr="WhatsApp ile sor" data-en="Ask via WhatsApp" data-de="Per WhatsApp fragen" data-ar="اسأل عبر واتساب">WhatsApp ile sor</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1175,220 +1389,6 @@
         <div class="b2b-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
         <h4 data-tr="Rekabetçi Toptan Fiyat" data-en="Competitive Wholesale Price" data-de="Wettbewerbsfähiger Großhandelspreis" data-ar="سعر بالجملة تنافسي">Rekabetçi Toptan Fiyat</h4>
         <p data-tr="Hacme göre kademeli fiyatlandırma ile büyük siparişlerde maksimum tasarruf." data-en="Maximum savings on large orders with volume-based tiered pricing." data-de="Maximale Einsparungen bei Großbestellungen mit volumenbasierter Staffelpreisgestaltung." data-ar="أقصى توفير في الطلبات الكبيرة مع التسعير المتدرج القائم على الحجم.">Hacme göre kademeli fiyatlandırma ile büyük siparişlerde maksimum tasarruf.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================  TASARRUF HESAPLAYICI  ============================================================ -->
-<section class="savings-calc-section section-pad" id="tasarruf-hesaplayici" aria-label="Tasarruf Hesaplayıcı">
-  <div class="container">
-    <header class="sc-header fade-up">
-      <span class="label" data-tr="Tasarruf Hesaplayıcı" data-en="Savings Calculator" data-de="Spar-Rechner" data-ar="حاسبة التوفير">Tasarruf Hesaplayıcı</span>
-      <h2 data-tr="Toptan alımla ne kadar kazanırsınız?" data-en="How much do you save by buying wholesale?" data-de="Wie viel sparen Sie im Großhandel?" data-ar="كم توفر بالشراء بالجملة؟">Toptan alımla ne kadar kazanırsınız?</h2>
-      <p data-tr="Aylık ortalama kullanımınızı girin, MTS toptan fiyatlarıyla yıllık tasarrufunuzu anında görün." data-en="Enter your monthly usage and see your annual savings with MTS wholesale pricing instantly." data-de="Geben Sie Ihren Monatsverbrauch ein und sehen Sie sofort Ihre jährlichen Einsparungen mit MTS-Großhandelspreisen." data-ar="أدخل استهلاكك الشهري واطّلع فوراً على توفيرك السنوي مع أسعار جملة MTS.">Aylık ortalama kullanımınızı girin, MTS toptan fiyatlarıyla yıllık tasarrufunuzu anında görün.</p>
-    </header>
-
-    <div class="sc-grid">
-      <!-- INPUTS -->
-      <div class="sc-inputs">
-        <div class="sc-product" data-id="tp" data-retail="14" data-wholesale="8">
-          <div class="sc-product-head">
-            <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
-            <div class="sc-product-meta">
-              <h3 data-tr="Tuvalet Kağıdı (Mini Jumbo)" data-en="Toilet Paper (Mini Jumbo)" data-de="Toilettenpapier (Mini Jumbo)" data-ar="ورق تواليت (مينى جامبو)">Tuvalet Kağıdı (Mini Jumbo)</h3>
-              <span class="sc-unit" data-tr="rulo / ay" data-en="rolls / month" data-de="Rollen / Monat" data-ar="لفة / شهر">rulo / ay</span>
-            </div>
-            <div class="sc-value-wrap"><span class="sc-value">120</span></div>
-          </div>
-          <input type="range" class="sc-slider" min="0" max="1000" step="10" value="120" aria-label="Tuvalet kağıdı miktarı">
-          <div class="sc-tick"><span>0</span><span>1000</span></div>
-        </div>
-
-        <div class="sc-product" data-id="soap" data-retail="65" data-wholesale="38">
-          <div class="sc-product-head">
-            <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6l1 7H8L9 3z"/><path d="M8 10c0 0-3 3-3 6a7 7 0 0 0 14 0c0-3-3-6-3-6"/></svg></div>
-            <div class="sc-product-meta">
-              <h3 data-tr="Sıvı / Köpük El Sabunu" data-en="Liquid / Foam Hand Soap" data-de="Flüssig- / Schaumseife" data-ar="صابون يد سائل / رغوي">Sıvı / Köpük El Sabunu</h3>
-              <span class="sc-unit" data-tr="litre / ay" data-en="liters / month" data-de="Liter / Monat" data-ar="لتر / شهر">litre / ay</span>
-            </div>
-            <div class="sc-value-wrap"><span class="sc-value">40</span></div>
-          </div>
-          <input type="range" class="sc-slider" min="0" max="300" step="5" value="40">
-          <div class="sc-tick"><span>0</span><span>300</span></div>
-        </div>
-
-        <div class="sc-product" data-id="bag" data-retail="85" data-wholesale="48">
-          <div class="sc-product-head">
-            <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
-            <div class="sc-product-meta">
-              <h3 data-tr="Çöp Poşeti (XL)" data-en="Garbage Bags (XL)" data-de="Müllbeutel (XL)" data-ar="أكياس قمامة (XL)">Çöp Poşeti (XL)</h3>
-              <span class="sc-unit" data-tr="paket / ay" data-en="packs / month" data-de="Pakete / Monat" data-ar="عبوة / شهر">paket / ay</span>
-            </div>
-            <div class="sc-value-wrap"><span class="sc-value">25</span></div>
-          </div>
-          <input type="range" class="sc-slider" min="0" max="200" step="5" value="25">
-          <div class="sc-tick"><span>0</span><span>200</span></div>
-        </div>
-
-        <div class="sc-product" data-id="disinf" data-retail="120" data-wholesale="72">
-          <div class="sc-product-head">
-            <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a5 5 0 0 1 5 5v3H7V7a5 5 0 0 1 5-5z"/><path d="M5 10h14l-1 10H6L5 10z"/></svg></div>
-            <div class="sc-product-meta">
-              <h3 data-tr="Yüzey Dezenfektanı" data-en="Surface Disinfectant" data-de="Flächendesinfektion" data-ar="مطهر الأسطح">Yüzey Dezenfektanı</h3>
-              <span class="sc-unit" data-tr="litre / ay" data-en="liters / month" data-de="Liter / Monat" data-ar="لتر / شهر">litre / ay</span>
-            </div>
-            <div class="sc-value-wrap"><span class="sc-value">30</span></div>
-          </div>
-          <input type="range" class="sc-slider" min="0" max="300" step="5" value="30">
-          <div class="sc-tick"><span>0</span><span>300</span></div>
-        </div>
-      </div>
-
-      <!-- RESULT -->
-      <div class="sc-result">
-        <div class="sc-bar-comparison">
-          <div class="sc-bar sc-bar--retail">
-            <span class="sc-bar-label" data-tr="Perakende" data-en="Retail" data-de="Einzelhandel" data-ar="تجزئة">Perakende</span>
-            <div class="sc-bar-track"><div class="sc-bar-fill" style="height:100%"></div></div>
-            <span class="sc-bar-amount">₺<span data-counter="retail">0</span></span>
-          </div>
-          <div class="sc-bar sc-bar--mts">
-            <span class="sc-bar-label" data-tr="MTS Toptan" data-en="MTS Wholesale" data-de="MTS Großhandel" data-ar="جملة MTS">MTS Toptan</span>
-            <div class="sc-bar-track"><div class="sc-bar-fill" style="height:60%"></div></div>
-            <span class="sc-bar-amount">₺<span data-counter="mts">0</span></span>
-          </div>
-        </div>
-
-        <div class="sc-savings">
-          <div class="sc-savings-monthly">
-            <span class="sc-saving-label" data-tr="Aylık Tasarruf" data-en="Monthly Savings" data-de="Monatliche Ersparnis" data-ar="التوفير الشهري">Aylık Tasarruf</span>
-            <span class="sc-saving-amount">₺<span data-counter="save-month">0</span></span>
-          </div>
-          <div class="sc-savings-yearly">
-            <span class="sc-saving-label" data-tr="Yıllık Tasarruf" data-en="Annual Savings" data-de="Jährliche Ersparnis" data-ar="التوفير السنوي">Yıllık Tasarruf</span>
-            <span class="sc-saving-amount">₺<span data-counter="save-year">0</span></span>
-          </div>
-        </div>
-
-        <div class="sc-cta">
-          <a href="iletisim.html?from=calc" class="btn btn-primary" data-tr="Bu tasarrufu kilitle →" data-en="Lock in these savings →" data-de="Diese Ersparnis sichern →" data-ar="ثبّت هذا التوفير →">Bu tasarrufu kilitle →</a>
-          <a href="https://wa.me/905436835765?text=Tasarruf%20hesaplayicidan%20teklif%20istiyorum" target="_blank" rel="noopener" class="btn btn-secondary" data-tr="WhatsApp ile sor" data-en="Ask via WhatsApp" data-de="Per WhatsApp fragen" data-ar="اسأل عبر واتساب">WhatsApp ile sor</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================  TESİSE GÖRE PAKET KONFİGÜRATÖRÜ  ============================================================ -->
-<section class="cfg-section section-pad" id="paket-konfiguratoru" aria-label="Paket Konfigüratörü">
-  <div class="container">
-    <header class="cfg-header fade-up">
-      <span class="label" data-tr="Tesisinize Özel" data-en="Tailored to Your Facility" data-de="Für Ihre Einrichtung" data-ar="مصمّم لمنشأتك">Tesisinize Özel</span>
-      <h2 data-tr="3 dakikada hijyen paketinizi oluşturun" data-en="Build your hygiene package in 3 minutes" data-de="Ihr Hygienepaket in 3 Minuten" data-ar="أنشئ باقتك في 3 دقائق">3 dakikada hijyen paketinizi oluşturun</h2>
-      <p data-tr="Sektörünüz, ölçeğiniz ve trafiğinize göre özelleştirilmiş ürün önerisi ve tahmini aylık maliyet aralığı." data-en="Personalized product recommendations and estimated monthly cost based on your sector, scale and traffic." data-de="Personalisierte Produktempfehlungen und geschätzte Monatskosten basierend auf Branche, Größe und Frequenz." data-ar="توصيات منتجات مخصصة وتقدير التكلفة الشهرية حسب قطاعك وحجمك وحركتك.">Sektörünüz, ölçeğiniz ve trafiğinize göre özelleştirilmiş ürün önerisi ve tahmini aylık maliyet aralığı.</p>
-    </header>
-
-    <div class="cfg-wizard">
-      <div class="cfg-progress">
-        <span class="cfg-step is-active" data-step="1">01<em data-tr="Sektör" data-en="Sector" data-de="Branche" data-ar="القطاع">Sektör</em></span>
-        <span class="cfg-step" data-step="2">02<em data-tr="Ölçek" data-en="Scale" data-de="Größe" data-ar="الحجم">Ölçek</em></span>
-        <span class="cfg-step" data-step="3">03<em data-tr="Trafik" data-en="Traffic" data-de="Frequenz" data-ar="الحركة">Trafik</em></span>
-        <span class="cfg-step" data-step="4">04<em data-tr="Sonuç" data-en="Result" data-de="Ergebnis" data-ar="النتيجة">Sonuç</em></span>
-      </div>
-
-      <!-- STEP 1: SEKTÖR -->
-      <div class="cfg-step-pane is-active" data-pane="1">
-        <h3 data-cfg-i="sectorTitle" data-tr="Tesis tipini seçin" data-en="Select facility type" data-de="Einrichtungstyp wählen" data-ar="اختر نوع المنشأة">Tesis tipini seçin</h3>
-        <div class="cfg-options">
-          <button class="cfg-opt" data-value="otel" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M3 7v14M21 11v10M6 11h.01M6 15h.01M6 19h.01M10 11h.01M10 15h.01M10 19h.01M14 11h.01M14 15h.01M14 19h.01M18 15h.01M18 19h.01M3 7l9-4 9 4"/></svg>
-            <span data-tr="Otel & Konaklama" data-en="Hotel & Hospitality" data-de="Hotel & Gastgewerbe" data-ar="فندق وضيافة">Otel & Konaklama</span>
-          </button>
-          <button class="cfg-opt" data-value="hastane" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-            <span data-tr="Hastane & Sağlık" data-en="Hospital & Healthcare" data-de="Krankenhaus" data-ar="مستشفى ورعاية صحية">Hastane & Sağlık</span>
-          </button>
-          <button class="cfg-opt" data-value="okul" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-            <span data-tr="Okul & Eğitim" data-en="School & Education" data-de="Schule & Bildung" data-ar="مدرسة وتعليم">Okul & Eğitim</span>
-          </button>
-          <button class="cfg-opt" data-value="ofis" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-            <span data-tr="Ofis & İş Merkezi" data-en="Office & Business" data-de="Büro" data-ar="مكتب وأعمال">Ofis & İş Merkezi</span>
-          </button>
-          <button class="cfg-opt" data-value="fabrika" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 20v-8l5 3V12l5 3V12l5 3V8l5 4v8z"/></svg>
-            <span data-tr="Fabrika & Üretim" data-en="Factory & Production" data-de="Fabrik & Produktion" data-ar="مصنع وإنتاج">Fabrika & Üretim</span>
-          </button>
-          <button class="cfg-opt" data-value="avm" type="button">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-            <span data-tr="AVM & Perakende" data-en="Mall & Retail" data-de="Einkaufszentrum" data-ar="مركز تسوق">AVM & Perakende</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- STEP 2: ÖLÇEK -->
-      <div class="cfg-step-pane" data-pane="2">
-        <h3 data-cfg-i="scaleTitle" data-tr="Ölçeğiniz nedir?" data-en="What is your scale?" data-de="Wie groß ist Ihr Betrieb?" data-ar="ما حجم منشأتك؟">Ölçeğiniz nedir?</h3>
-        <div class="cfg-scale">
-          <label>
-            <span data-cfg-i="m2" data-tr="Yaklaşık alan (m²)" data-en="Approximate area (m²)" data-de="Fläche (m²)" data-ar="المساحة التقريبية (م²)">Yaklaşık alan (m²)</span>
-            <input type="number" name="alan" min="50" max="100000" value="1000">
-          </label>
-          <label>
-            <span data-cfg-i="staff" data-tr="Personel sayısı" data-en="Number of staff" data-de="Mitarbeiteranzahl" data-ar="عدد الموظفين">Personel sayısı</span>
-            <input type="number" name="personel" min="1" max="10000" value="50">
-          </label>
-          <label class="cfg-extra" data-show-for="otel hastane">
-            <span data-cfg-i="rooms" data-tr="Oda / yatak sayısı" data-en="Rooms / beds" data-de="Zimmer / Betten" data-ar="الغرف / الأسرّة">Oda / yatak sayısı</span>
-            <input type="number" name="oda" min="0" max="5000" value="0">
-          </label>
-        </div>
-      </div>
-
-      <!-- STEP 3: TRAFİK -->
-      <div class="cfg-step-pane" data-pane="3">
-        <h3 data-cfg-i="trafficTitle" data-tr="Günlük ziyaretçi trafiği" data-en="Daily visitor traffic" data-de="Tägliche Besucherzahl" data-ar="حركة الزوار اليومية">Günlük ziyaretçi trafiği</h3>
-        <div class="cfg-options cfg-options--traffic">
-          <button class="cfg-opt" data-value="low" type="button">
-            <strong data-tr="Düşük" data-en="Low" data-de="Niedrig" data-ar="منخفض">Düşük</strong>
-            <span data-tr="&lt; 100 kişi/gün" data-en="&lt; 100 people/day" data-de="&lt; 100 Pers./Tag" data-ar="&lt; 100 شخص/يوم">&lt; 100 kişi/gün</span>
-          </button>
-          <button class="cfg-opt is-selected" data-value="mid" type="button">
-            <strong data-tr="Orta" data-en="Medium" data-de="Mittel" data-ar="متوسط">Orta</strong>
-            <span data-tr="100–500 kişi/gün" data-en="100–500 people/day" data-de="100–500 Pers./Tag" data-ar="100–500 شخص/يوم">100–500 kişi/gün</span>
-          </button>
-          <button class="cfg-opt" data-value="high" type="button">
-            <strong data-tr="Yüksek" data-en="High" data-de="Hoch" data-ar="مرتفع">Yüksek</strong>
-            <span data-tr="500+ kişi/gün" data-en="500+ people/day" data-de="500+ Pers./Tag" data-ar="500+ شخص/يوم">500+ kişi/gün</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- STEP 4: SONUÇ -->
-      <div class="cfg-step-pane" data-pane="4">
-        <div class="cfg-result-summary">
-          <span class="cfg-result-label" data-cfg-i="resultLabel" data-tr="Önerilen Paket" data-en="Recommended Package" data-de="Empfohlenes Paket" data-ar="الباقة الموصى بها">Önerilen Paket</span>
-          <h3 class="cfg-result-name">—</h3>
-          <p class="cfg-result-desc">—</p>
-        </div>
-        <ul class="cfg-result-list"></ul>
-        <div class="cfg-result-price">
-          <span class="cfg-price-label" data-cfg-i="priceLabel" data-tr="Tahmini Aylık Maliyet" data-en="Estimated Monthly Cost" data-de="Geschätzte monatliche Kosten" data-ar="التكلفة الشهرية التقديرية">Tahmini Aylık Maliyet</span>
-          <span class="cfg-price-range">₺<span data-cfg-min>0</span> – ₺<span data-cfg-max>0</span></span>
-          <small data-cfg-i="priceFoot" data-tr="+KDV · Net teklif için saha analizi gerekli" data-en="+VAT · Net quote requires site analysis" data-de="+MwSt · Netto-Angebot nach Standortanalyse" data-ar="+ضريبة · العرض النهائي يتطلب تحليل الموقع">+KDV · Net teklif için saha analizi gerekli</small>
-        </div>
-        <div class="cfg-result-cta">
-          <a href="iletisim.html?from=config" class="btn btn-primary" data-tr="Saha Analizi Talep Et →" data-en="Request Site Analysis →" data-de="Standortanalyse anfordern →" data-ar="اطلب تحليل الموقع →">Saha Analizi Talep Et →</a>
-          <button class="btn btn-secondary cfg-restart" type="button" data-tr="Baştan başla" data-en="Start over" data-de="Neu starten" data-ar="البدء من جديد">Baştan başla</button>
-        </div>
-      </div>
-
-      <!-- NAV -->
-      <div class="cfg-nav">
-        <button class="btn btn-secondary cfg-prev" type="button" data-tr="← Geri" data-en="← Back" data-de="← Zurück" data-ar="← رجوع">← Geri</button>
-        <button class="btn btn-primary cfg-next" type="button" data-tr="İleri →" data-en="Next →" data-de="Weiter →" data-ar="التالي →">İleri →</button>
       </div>
     </div>
   </div>
