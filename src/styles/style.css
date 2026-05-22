@@ -59,6 +59,36 @@
 [dir="rtl"] .btn svg { transform: scaleX(-1); }
 [dir="rtl"] .footer-grid { direction: rtl; }
 
+/* Horizontal scroll / marquee bölümleri RTL'de zorla LTR layout — flex order korunsun, GSAP/translateX matematiği bozulmasın */
+[dir="rtl"] .scroll-showcase-stage,
+[dir="rtl"] .showcase-body,
+[dir="rtl"] .showcase-topbar,
+[dir="rtl"] .showcase-statusbar,
+[dir="rtl"] .sc-chrome-bar,
+[dir="rtl"] .b2b-ticker,
+[dir="rtl"] .ticker-track,
+[dir="rtl"] .social-proof-section,
+[dir="rtl"] .testimonials-track-wrapper,
+[dir="rtl"] .testimonials-track,
+[dir="rtl"] .products-section,
+[dir="rtl"] .products-section--pinned,
+[dir="rtl"] .products-pin-viewport,
+[dir="rtl"] .products-grid { direction: ltr; }
+
+/* Bu bölümler içindeki gerçek metinler hâlâ Arapça okunabilirliği için RTL kalsın */
+[dir="rtl"] .showcase-sidebar .ssb-item span,
+[dir="rtl"] .showcase-sidebar .ssb-label,
+[dir="rtl"] .spg-name,
+[dir="rtl"] .spg-count,
+[dir="rtl"] .testimonial-card .tc-text,
+[dir="rtl"] .testimonial-card .tc-role,
+[dir="rtl"] .product-card h3,
+[dir="rtl"] .product-card p,
+[dir="rtl"] .product-card .pc-stat-lbl,
+[dir="rtl"] .product-card .prod-list li,
+[dir="rtl"] .ssr-lbl,
+[dir="rtl"] .social-proof-header { direction: rtl; text-align: right; }
+
 /* ---- Temel ---- */
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body {

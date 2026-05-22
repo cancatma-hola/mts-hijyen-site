@@ -45,31 +45,33 @@ export function initPreloader() {
 
   function finish() {
     tween.progress(1);
+
+    // Sayfa içeriği preloader çıkarken cross-fade ile belirsin
+    // (is-loaded sınıfı opacity transition'ı tetikler — CSS head inline)
+    document.documentElement.classList.remove('is-loading');
+    document.documentElement.classList.add('is-loaded');
+    document.body.classList.add('hero-ready');
+    window.dispatchEvent(new Event('mts:loaded'));
+
     const tl = gsap.timeline({
       onComplete: () => {
         root.remove();
-        document.documentElement.classList.remove('is-loading');
-        document.documentElement.classList.add('is-loaded');
-        // Hero video büyüme + h1 reveal animasyonlarını tetikle
-        document.body.classList.add('hero-ready');
-        // hero giriş animasyonu için event
-        window.dispatchEvent(new Event('mts:loaded'));
       },
     });
     tl.to(root.querySelector('.mts-preloader__content'), {
       opacity: 0,
-      y: -20,
-      duration: 0.5,
+      y: -16,
+      duration: 0.55,
       ease: 'power2.in',
     })
       .to(
         root,
         {
           clipPath: 'inset(0% 0% 100% 0%)',
-          duration: 1.0,
+          duration: 1.1,
           ease: 'expo.inOut',
         },
-        '-=0.2'
+        '-=0.35'
       );
   }
 

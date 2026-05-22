@@ -86,31 +86,100 @@
 (function () {
   const KEY = 'mts-lang';
 
+  /* Batı (0-9) → Doğu Arap rakamları (٠-٩) */
+  const AR_DIGITS = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+  function toArabicDigits(str) {
+    return str.replace(/\d/g, d => AR_DIGITS[+d]);
+  }
+  /* Sadece görünür text node'larında çevrim — tüm sayfa walker'ı.
+     .htb-item (topbar tel/mail) ve .ssr-item--green ÇIKARILDI — kullanıcı tüm rakamların Arapça olmasını istedi. */
+  const DIGIT_SKIP_SELECTOR =
+    'script, style, noscript, code, kbd, pre, [data-locale-numbers="latin"], ' +
+    '.lang-btn, .lang-switcher, .sc-kbd';
+  function convertDigitsInTree(root) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!/\d/.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+        let p = node.parentElement;
+        while (p) {
+          if (p.matches && p.matches(DIGIT_SKIP_SELECTOR)) return NodeFilter.FILTER_REJECT;
+          p = p.parentElement;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      },
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n => { n.nodeValue = toArabicDigits(n.nodeValue); });
+  }
+
   function applyLang(lang) {
     document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
 
-    /* innerHTML */
+    /* innerHTML — data-* her zaman Latin rakamlarla saklanır, render anında dönüşür */
     document.querySelectorAll('[data-tr]').forEach(el => {
-      const txt = el.dataset[lang] || el.dataset.tr;
-      if (txt !== undefined) el.innerHTML = txt;
+      let txt = el.dataset[lang] || el.dataset.tr;
+      if (txt === undefined) return;
+      if (lang === 'ar') txt = toArabicDigits(txt);
+      el.innerHTML = txt;
     });
 
     /* Placeholder */
     document.querySelectorAll('[data-tr-ph]').forEach(el => {
       const key = lang === 'tr' ? 'trPh' : lang === 'en' ? 'enPh' : lang === 'de' ? 'dePh' : 'arPh';
-      el.placeholder = el.dataset[key] || el.dataset.trPh || '';
+      let ph = el.dataset[key] || el.dataset.trPh || '';
+      if (lang === 'ar') ph = toArabicDigits(ph);
+      el.placeholder = ph;
     });
 
     /* Select options */
     document.querySelectorAll('[data-tr-opt]').forEach(el => {
       const key = lang === 'tr' ? 'trOpt' : lang === 'en' ? 'enOpt' : lang === 'de' ? 'deOpt' : 'arOpt';
-      el.textContent = el.dataset[key] || el.dataset.trOpt || '';
+      let opt = el.dataset[key] || el.dataset.trOpt || '';
+      if (lang === 'ar') opt = toArabicDigits(opt);
+      el.textContent = opt;
     });
+
+    /* Arapça: data-tr olmayan text node'lardaki rakamları da dönüştür
+       (header sayıları, badge'ler, statlar vs.) */
+    if (lang === 'ar') {
+      // Önce sayfa zaten Arapça'ya çevrildiği için doğrudan walker çalıştır
+      convertDigitsInTree(document.body);
+    } else {
+      // Latin diller için: data-tr'den geliyorsa zaten Latin; data-tr'siz statik metinlerde
+      // Arapça digit kalmış olabilir (önceki AR render'dan) — temizle
+      convertArabicToLatinInTree(document.body);
+    }
 
     /* Aktif buton */
     document.querySelectorAll('.lang-btn').forEach(b => {
       b.classList.toggle('active', b.dataset.lang === lang);
+    });
+
+    /* Diğer modüllere (counter vs.) haber ver */
+    window.dispatchEvent(new CustomEvent('mts:lang-changed', { detail: { lang } }));
+  }
+
+  /* Geri dönüş: ٠-٩ → 0-9 (dil değişimi sonrası state temizleme) */
+  const LATIN_DIGITS_RE = /[٠-٩]/g;
+  function arDigitToLatin(d) { return String(AR_DIGITS.indexOf(d)); }
+  function convertArabicToLatinInTree(root) {
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+      acceptNode(node) {
+        if (!LATIN_DIGITS_RE.test(node.nodeValue)) return NodeFilter.FILTER_REJECT;
+        let p = node.parentElement;
+        while (p) {
+          if (p.matches && p.matches(DIGIT_SKIP_SELECTOR)) return NodeFilter.FILTER_REJECT;
+          p = p.parentElement;
+        }
+        return NodeFilter.FILTER_ACCEPT;
+      },
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(n => {
+      n.nodeValue = n.nodeValue.replace(/[٠-٩]/g, arDigitToLatin);
     });
   }
 
@@ -145,10 +214,18 @@
   els.forEach(el => io.observe(el));
 })();
 
-/* ---- Sayaç Animasyonu ---- */
+/* ---- Sayaç Animasyonu (lang-aware) ---- */
 (function () {
   const els = document.querySelectorAll('.counter');
   if (!els.length) return;
+  const AR = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+  function format(n) {
+    const s = String(n);
+    if (document.documentElement.lang === 'ar') {
+      return s.replace(/\d/g, d => AR[+d]);
+    }
+    return s;
+  }
   function anim(el) {
     const target = parseInt(el.dataset.target || el.textContent, 10);
     const dur = 1800;
@@ -156,8 +233,11 @@
     let cur = 0;
     const t = setInterval(() => {
       cur = Math.min(cur + step, target);
-      el.textContent = cur;
-      if (cur >= target) clearInterval(t);
+      el.textContent = format(cur);
+      if (cur >= target) {
+        clearInterval(t);
+        el.dataset.finished = '1';
+      }
     }, 16);
   }
   const io = new IntersectionObserver((entries) => {
@@ -168,6 +248,16 @@
     });
   }, { threshold: 0.5 });
   els.forEach(el => io.observe(el));
+
+  // Dil değişiminde tamamlanmış counter'ları yeniden formatla
+  window.addEventListener('mts:lang-changed', () => {
+    document.querySelectorAll('.counter').forEach(el => {
+      if (el.dataset.finished === '1') {
+        const target = parseInt(el.dataset.target || '0', 10);
+        el.textContent = format(target);
+      }
+    });
+  });
 })();
 
 /* ---- Ürün Filtresi ---- */

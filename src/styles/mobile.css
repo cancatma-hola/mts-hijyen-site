@@ -319,3 +319,85 @@
   .hero-buttons .btn { width: auto; }
   .hero-stats { grid-template-columns: repeat(4, 1fr) !important; }
 }
+
+/* ===========================================================
+   Final mobil sertleştirme (denetim sonrası eklendi)
+   =========================================================== */
+
+/* Urunler — kategori hızlı erişim grid'i */
+@media (min-width: 600px) and (max-width: 1024px) {
+  .cat-quick-grid { grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 600px) {
+  .cat-quick-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Showcase product grid — 480px altında tek sütun */
+@media (max-width: 480px) {
+  .showcase-product-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Hamburger — WCAG 44x44 dokunma alanı */
+@media (max-width: 900px) {
+  .hamburger {
+    width: 44px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    padding: 0 !important;
+    margin-left: 0;
+  }
+}
+
+/* Genel safety net — inline grid-template-columns mobilde tek/iki sütun
+   (HTML'de hardcoded 3-4 sütun inline style'lar için son güvenlik) */
+@media (max-width: 768px) {
+  [style*="grid-template-columns:repeat(4"],
+  [style*="grid-template-columns: repeat(4"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  [style*="grid-template-columns:repeat(3"],
+  [style*="grid-template-columns: repeat(3"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+@media (max-width: 480px) {
+  [style*="grid-template-columns:repeat(4"],
+  [style*="grid-template-columns: repeat(4"],
+  [style*="grid-template-columns:repeat(3"],
+  [style*="grid-template-columns: repeat(3"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Sticky CTA min dokunma alanı */
+@media (max-width: 768px) {
+  .sticky-cta-btn { min-height: 44px; }
+}
+
+/* Header "Panele Giriş" butonu — mobilde sığması için */
+@media (max-width: 480px) {
+  .site-header .btn-primary {
+    padding: 0.5rem 0.85rem !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap;
+  }
+}
+
+/* Hero buttons — çok dar ekranlarda taşmasın */
+@media (max-width: 360px) {
+  .hero-buttons .btn {
+    font-size: 0.85rem !important;
+    padding: 0.7rem 0.9rem !important;
+  }
+}
+
+/* Tüm img'ler responsive (savunma amaçlı) */
+@media (max-width: 900px) {
+  img { max-width: 100%; height: auto; }
+}
+
+/* Tablo / pre / kod blokları — yatay scroll, taşma engelleme */
+@media (max-width: 768px) {
+  table, pre { display: block; max-width: 100%; overflow-x: auto; }
+}

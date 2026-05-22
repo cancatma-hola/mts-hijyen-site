@@ -35,11 +35,14 @@ html.has-custom-cursor textarea {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: #fff;
+  background: #06B6D4;
+  box-shadow:
+    0 0 0 1.5px rgba(255,255,255,0.95),
+    0 0 14px rgba(6, 182, 212, 0.85),
+    0 0 28px rgba(6, 182, 212, 0.45);
   pointer-events: none;
   z-index: 99999;
   will-change: transform;
-  mix-blend-mode: difference;
   transform: translate3d(-100px, -100px, 0);
 }
 
@@ -49,12 +52,14 @@ html.has-custom-cursor textarea {
   left: 0;
   width: 36px;
   height: 36px;
-  border: 1.5px solid #fff;
+  border: 2px solid #06B6D4;
   border-radius: 50%;
   background: transparent;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.35),
+    inset 0 0 0 1px rgba(255,255,255,0.18);
   pointer-events: none;
   z-index: 99999;
-  mix-blend-mode: difference;
   will-change: transform, width, height, border-color;
   transition: width 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
               height 0.35s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -67,10 +72,9 @@ html.has-custom-cursor textarea {
   position: fixed;
   top: 0;
   left: 0;
-  color: #fff;
+  color: #E0F2FE;
   pointer-events: none;
   z-index: 99999;
-  mix-blend-mode: difference;
   font-size: 10px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -79,21 +83,25 @@ html.has-custom-cursor textarea {
   opacity: 0;
   transition: opacity 0.25s ease;
   white-space: nowrap;
+  text-shadow: 0 1px 4px rgba(15, 23, 42, 0.65);
 }
 
 .mts-cursor.is-hover .mts-cursor__ring {
   width: 52px;
   height: 52px;
-  border-color: #fff;
-  background: transparent;
+  border-color: #06B6D4;
+  background: rgba(6, 182, 212, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.4),
+    0 0 18px rgba(6, 182, 212, 0.5);
 }
 
 .mts-cursor.is-view .mts-cursor__ring,
 .mts-cursor.is-drag .mts-cursor__ring {
   width: 88px;
   height: 88px;
-  background: rgba(255, 255, 255, 0.85);
-  border-color: transparent;
+  background: rgba(6, 182, 212, 0.95);
+  border-color: rgba(255,255,255,0.6);
 }
 .mts-cursor.is-view .mts-cursor__label,
 .mts-cursor.is-drag .mts-cursor__label {
