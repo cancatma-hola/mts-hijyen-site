@@ -1411,16 +1411,36 @@
         <!-- Tasarruf yüzdesi merkez rozeti -->
         <div class="sc-pct-badge" aria-live="polite">−%<span data-counter="save-pct">0</span></div>
 
+        <!-- Bar chart başlığı -->
+        <div class="sc-chart-head">
+          <span class="sc-chart-title" data-tr="Aylık maliyet karşılaştırması" data-en="Monthly cost comparison" data-de="Monatlicher Kostenvergleich" data-ar="مقارنة التكلفة الشهرية">Aylık maliyet karşılaştırması</span>
+          <span class="sc-chart-unit" data-tr="₺ / ay" data-en="₺ / month" data-de="₺ / Monat" data-ar="₺ / شهر">₺ / ay</span>
+        </div>
+
         <div class="sc-bar-comparison">
+          <!-- Üst referans çizgisi -->
+          <div class="sc-bar-ref" aria-hidden="true"></div>
+
           <div class="sc-bar sc-bar--retail">
-            <span class="sc-bar-label" data-tr="Perakende" data-en="Retail" data-de="Einzelhandel" data-ar="تجزئة">Perakende</span>
-            <div class="sc-bar-track"><div class="sc-bar-fill" style="height:100%"></div></div>
             <span class="sc-bar-amount">₺<span data-counter="retail">0</span></span>
+            <div class="sc-bar-track">
+              <div class="sc-bar-fill" style="height:100%"></div>
+            </div>
+            <div class="sc-bar-foot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sc-bar-icon"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              <span class="sc-bar-label" data-tr="Perakende fiyatı" data-en="Retail price" data-de="Einzelhandelspreis" data-ar="سعر التجزئة">Perakende fiyatı</span>
+            </div>
           </div>
+
           <div class="sc-bar sc-bar--mts">
-            <span class="sc-bar-label" data-tr="MTS Toptan" data-en="MTS Wholesale" data-de="MTS Großhandel" data-ar="جملة MTS">MTS Toptan</span>
-            <div class="sc-bar-track"><div class="sc-bar-fill" style="height:60%"></div></div>
             <span class="sc-bar-amount">₺<span data-counter="mts">0</span></span>
+            <div class="sc-bar-track">
+              <div class="sc-bar-fill" style="height:60%"></div>
+            </div>
+            <div class="sc-bar-foot">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="sc-bar-icon"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+              <span class="sc-bar-label" data-tr="MTS toptan fiyatı" data-en="MTS wholesale price" data-de="MTS Großhandelspreis" data-ar="سعر جملة MTS">MTS toptan fiyatı</span>
+            </div>
           </div>
         </div>
 

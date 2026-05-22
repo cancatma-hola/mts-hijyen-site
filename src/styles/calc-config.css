@@ -252,7 +252,7 @@
 /* Yüzde tasarruf — bar comparison'ın ortasında dev rozet */
 .sc-pct-badge {
   position: absolute;
-  top: 56px;
+  top: 165px;
   left: 50%;
   transform: translateX(-50%);
   background: linear-gradient(135deg, #67e8f9, #06b6d4);
@@ -275,40 +275,126 @@
   z-index: -1;
 }
 
+/* Chart başlığı + birim */
+.sc-chart-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.85rem;
+  position: relative; z-index: 1;
+}
+.sc-chart-title {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.85);
+  font-weight: 700;
+}
+.sc-chart-unit {
+  font-size: 0.7rem;
+  color: rgba(255,255,255,0.45);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
 .sc-bar-comparison {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1.25rem;
+  gap: 1.5rem;
   margin-bottom: 1.75rem;
   position: relative; z-index: 1;
+  padding-top: 0.4rem;
 }
-.sc-bar { display: flex; flex-direction: column; gap: 0.6rem; }
-.sc-bar-label {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: rgba(255,255,255,0.6);
-  font-weight: 600;
+/* Üst referans çizgisi — "perakende maks" hattını işaretler */
+.sc-bar-ref {
+  position: absolute;
+  top: 32px;
+  left: 0; right: 0;
+  border-top: 1px dashed rgba(248,113,113,0.45);
+  z-index: 0;
 }
+.sc-bar-ref::after {
+  content: 'MAX';
+  position: absolute;
+  top: -8px;
+  right: 0;
+  font-size: 0.55rem;
+  letter-spacing: 0.18em;
+  color: rgba(248,113,113,0.65);
+  background: #0F172A;
+  padding: 0 4px;
+  font-weight: 700;
+}
+
+.sc-bar {
+  display: flex; flex-direction: column;
+  gap: 0.55rem;
+  position: relative; z-index: 1;
+}
+.sc-bar-amount {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  min-height: 1.5rem;
+}
+.sc-bar--retail .sc-bar-amount { color: #fca5a5; }
+.sc-bar--mts .sc-bar-amount { color: #67e8f9; }
+
 .sc-bar-track {
   height: 140px;
-  background: rgba(255,255,255,0.05);
-  border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 10px;
   position: relative;
   overflow: hidden;
 }
 .sc-bar-fill {
   position: absolute; bottom: 0; left: 0; right: 0;
-  border-radius: 8px;
+  border-radius: 10px;
   transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.sc-bar--retail .sc-bar-fill { background: linear-gradient(180deg, #f87171, #ef4444); }
-.sc-bar--mts .sc-bar-fill { background: linear-gradient(180deg, #38bdf8, #06b6d4); box-shadow: 0 0 24px rgba(6,182,212,0.4); }
-.sc-bar-amount {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
-  font-weight: 700;
-  letter-spacing: -0.01em;
+.sc-bar--retail .sc-bar-fill {
+  background:
+    linear-gradient(180deg, #f87171 0%, #ef4444 60%, #dc2626 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 0 18px rgba(239,68,68,0.25);
+}
+.sc-bar--mts .sc-bar-fill {
+  background:
+    linear-gradient(180deg, #38bdf8 0%, #06b6d4 60%, #0891b2 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 0 24px rgba(6,182,212,0.45);
+}
+/* Subtle diagonal pattern for retail (premium "expensive" feel) */
+.sc-bar--retail .sc-bar-fill::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.06) 0 8px, transparent 8px 16px);
+  pointer-events: none;
+}
+
+/* Footer: ikon + label */
+.sc-bar-foot {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  justify-content: center;
+  padding-top: 0.15rem;
+}
+.sc-bar-icon {
+  width: 13px; height: 13px;
+  flex-shrink: 0;
+}
+.sc-bar--retail .sc-bar-icon { color: #fca5a5; }
+.sc-bar--mts .sc-bar-icon { color: #67e8f9; }
+.sc-bar-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.6);
+  font-weight: 600;
 }
 
 .sc-savings {
@@ -425,7 +511,7 @@
 }
 @media (max-width: 600px) {
   .sc-preset { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
-  .sc-pct-badge { font-size: 0.95rem; padding: 0.4rem 0.7rem; top: 48px; }
+  .sc-pct-badge { font-size: 0.95rem; padding: 0.4rem 0.7rem; top: 150px; }
 }
 @media (max-width: 480px) {
   .sc-cta { flex-direction: column; }
