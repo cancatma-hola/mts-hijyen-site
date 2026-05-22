@@ -8,6 +8,7 @@ import './styles/products-pin.css';
 import './styles/compare-slider.css';
 import './styles/transitions.css';
 import './styles/footer-distortion.css';
+import './styles/calc-config.css';
 import './styles/mobile.css';
 
 import { initPreloader } from './modules/preloader.js';
@@ -30,6 +31,8 @@ import { initWebglHover } from './modules/webgl-hover.js';
 import { initTestimonials3D } from './modules/testimonials-3d.js';
 import { initPageTransitions } from './modules/transitions.js';
 import { initFooterDistortion } from './modules/footer-distortion.js';
+import { initSavingsCalc } from './modules/savings-calc.js';
+import { initConfigurator } from './modules/configurator.js';
 
 function boot() {
   autoDecorate();
@@ -43,6 +46,8 @@ function boot() {
   initTestimonials3D();
   initFooterDistortion();
   initPageTransitions();
+  initSavingsCalc();
+  initConfigurator();
 }
 
 if (document.readyState === 'loading') {
