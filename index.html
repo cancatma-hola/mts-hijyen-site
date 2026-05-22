@@ -1303,10 +1303,28 @@
       <p data-tr="Aylık ortalama kullanımınızı girin, MTS toptan fiyatlarıyla yıllık tasarrufunuzu anında görün." data-en="Enter your monthly usage and see your annual savings with MTS wholesale pricing instantly." data-de="Geben Sie Ihren Monatsverbrauch ein und sehen Sie sofort Ihre jährlichen Einsparungen mit MTS-Großhandelspreisen." data-ar="أدخل استهلاكك الشهري واطّلع فوراً على توفيرك السنوي مع أسعار جملة MTS.">Aylık ortalama kullanımınızı girin, MTS toptan fiyatlarıyla yıllık tasarrufunuzu anında görün.</p>
     </header>
 
+    <!-- Hızlı profil seçici -->
+    <div class="sc-presets fade-up" role="group" aria-label="Profil seçiciler">
+      <span class="sc-preset-label" data-tr="Hızlı başlangıç" data-en="Quick start" data-de="Schnellstart" data-ar="بداية سريعة">Hızlı başlangıç</span>
+      <button class="sc-preset" type="button" data-preset="small">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+        <span data-tr="Küçük Ofis" data-en="Small Office" data-de="Kleines Büro" data-ar="مكتب صغير">Küçük Ofis</span>
+      </button>
+      <button class="sc-preset" type="button" data-preset="medium">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 21h18M3 7v14M21 11v10M3 7l9-4 9 4M6 11h.01M6 15h.01M10 11h.01M14 11h.01M18 15h.01"/></svg>
+        <span data-tr="Orta Otel" data-en="Mid-size Hotel" data-de="Mittleres Hotel" data-ar="فندق متوسط">Orta Otel</span>
+      </button>
+      <button class="sc-preset" type="button" data-preset="large">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 20v-8l5 3V12l5 3V12l5 3V8l5 4v8z"/></svg>
+        <span data-tr="Büyük Tesis" data-en="Large Facility" data-de="Große Anlage" data-ar="منشأة كبيرة">Büyük Tesis</span>
+      </button>
+    </div>
+
     <div class="sc-grid">
       <!-- INPUTS -->
       <div class="sc-inputs">
         <div class="sc-product" data-id="tp" data-retail="14" data-wholesale="8">
+          <span class="sc-product-save" aria-label="Tasarruf yüzdesi">−%0</span>
           <div class="sc-product-head">
             <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></div>
             <div class="sc-product-meta">
@@ -1320,6 +1338,7 @@
         </div>
 
         <div class="sc-product" data-id="soap" data-retail="65" data-wholesale="38">
+          <span class="sc-product-save" aria-label="Tasarruf yüzdesi">−%0</span>
           <div class="sc-product-head">
             <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 3h6l1 7H8L9 3z"/><path d="M8 10c0 0-3 3-3 6a7 7 0 0 0 14 0c0-3-3-6-3-6"/></svg></div>
             <div class="sc-product-meta">
@@ -1333,6 +1352,7 @@
         </div>
 
         <div class="sc-product" data-id="bag" data-retail="85" data-wholesale="48">
+          <span class="sc-product-save" aria-label="Tasarruf yüzdesi">−%0</span>
           <div class="sc-product-head">
             <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg></div>
             <div class="sc-product-meta">
@@ -1346,6 +1366,7 @@
         </div>
 
         <div class="sc-product" data-id="disinf" data-retail="120" data-wholesale="72">
+          <span class="sc-product-save" aria-label="Tasarruf yüzdesi">−%0</span>
           <div class="sc-product-head">
             <div class="sc-product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a5 5 0 0 1 5 5v3H7V7a5 5 0 0 1 5-5z"/><path d="M5 10h14l-1 10H6L5 10z"/></svg></div>
             <div class="sc-product-meta">
@@ -1361,6 +1382,9 @@
 
       <!-- RESULT -->
       <div class="sc-result">
+        <!-- Tasarruf yüzdesi merkez rozeti -->
+        <div class="sc-pct-badge" aria-live="polite">−%<span data-counter="save-pct">0</span></div>
+
         <div class="sc-bar-comparison">
           <div class="sc-bar sc-bar--retail">
             <span class="sc-bar-label" data-tr="Perakende" data-en="Retail" data-de="Einzelhandel" data-ar="تجزئة">Perakende</span>
@@ -1387,7 +1411,23 @@
 
         <div class="sc-cta">
           <a href="iletisim.html?from=calc" class="btn btn-primary" data-tr="Bu tasarrufu kilitle →" data-en="Lock in these savings →" data-de="Diese Ersparnis sichern →" data-ar="ثبّت هذا التوفير →">Bu tasarrufu kilitle →</a>
-          <a href="https://wa.me/905436835765?text=Tasarruf%20hesaplayicidan%20teklif%20istiyorum" target="_blank" rel="noopener" class="btn btn-secondary" data-tr="WhatsApp ile sor" data-en="Ask via WhatsApp" data-de="Per WhatsApp fragen" data-ar="اسأل عبر واتساب">WhatsApp ile sor</a>
+          <a href="https://wa.me/905436835765?text=Tasarruf%20hesaplayicidan%20teklif%20istiyorum" target="_blank" rel="noopener" class="btn btn-secondary" data-tr="WhatsApp" data-en="WhatsApp" data-de="WhatsApp" data-ar="واتساب">WhatsApp</a>
+        </div>
+
+        <!-- Güven şeridi -->
+        <div class="sc-trust">
+          <span class="sc-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-tr="ISO 9001 Sertifikalı" data-en="ISO 9001 Certified" data-de="ISO 9001 Zertifiziert" data-ar="معتمد ISO 9001">ISO 9001 Sertifikalı</span>
+          </span>
+          <span class="sc-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-tr="81 İle Teslimat" data-en="81-province delivery" data-de="Lieferung in alle 81 Provinzen" data-ar="توصيل لـ81 محافظة">81 İle Teslimat</span>
+          </span>
+          <span class="sc-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-tr="1.200+ Ürün Stokta" data-en="1,200+ products in stock" data-de="1.200+ Produkte auf Lager" data-ar="1,200+ منتج متوفر">1.200+ Ürün Stokta</span>
+          </span>
         </div>
       </div>
     </div>

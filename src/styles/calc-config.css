@@ -40,6 +40,58 @@
 /* =========================================================
    TASARRUF HESAPLAYICI
    ========================================================= */
+
+/* ---- Preset profil butonları ---- */
+.sc-presets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: -0.5rem auto 2.5rem;
+  max-width: 720px;
+}
+.sc-preset-label {
+  width: 100%;
+  text-align: center;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--text-mid);
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+.sc-preset {
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  padding: 0.6rem 1.1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--blue-950);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.sc-preset svg {
+  width: 14px;
+  height: 14px;
+  color: var(--blue-700);
+}
+.sc-preset:hover {
+  border-color: #06b6d4;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px -4px rgba(6,182,212,0.25);
+}
+.sc-preset.is-active {
+  background: #0F172A;
+  color: #fff;
+  border-color: #0F172A;
+}
+.sc-preset.is-active svg { color: #38bdf8; }
+
 .sc-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -50,20 +102,38 @@
 /* --- Inputs --- */
 .sc-inputs { display: flex; flex-direction: column; gap: 1.25rem; }
 .sc-product {
+  position: relative;
   background: #fff;
   border: 1.5px solid var(--border);
   border-radius: 18px;
   padding: 1.4rem 1.5rem;
   transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
-.sc-product:hover {
-  border-color: rgba(6,182,212,0.5);
-  box-shadow: 0 12px 32px rgba(6,182,212,0.08);
+.sc-product:hover,
+.sc-product.is-active {
+  border-color: rgba(6,182,212,0.6);
+  box-shadow: 0 14px 36px -8px rgba(6,182,212,0.18);
   transform: translateY(-2px);
+}
+/* Per-ürün tasarruf yüzdesi rozeti */
+.sc-product-save {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: linear-gradient(135deg, #06b6d4, #0891b2);
+  color: #fff;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  padding: 0.28rem 0.55rem;
+  border-radius: 999px;
+  box-shadow: 0 4px 10px -2px rgba(6,182,212,0.45);
+  white-space: nowrap;
 }
 .sc-product-head {
   display: flex; align-items: center; gap: 1rem;
   margin-bottom: 0.9rem;
+  padding-right: 4.5rem; /* save badge için yer */
 }
 .sc-product-icon {
   width: 44px; height: 44px;
@@ -104,33 +174,39 @@
   text-align: right;
 }
 
-/* Slider */
+/* Slider — değer kadar cyan dolu */
 .sc-slider {
   -webkit-appearance: none; appearance: none;
   width: 100%;
   height: 6px;
-  background: #e2e8f0;
+  background: linear-gradient(to right,
+    #06B6D4 0%, #38BDF8 var(--sc-fill, 0%),
+    #e2e8f0 var(--sc-fill, 0%), #e2e8f0 100%);
   border-radius: 3px;
   outline: none;
   cursor: pointer;
+  transition: background 0.15s linear;
 }
 .sc-slider::-webkit-slider-thumb {
   -webkit-appearance: none; appearance: none;
   width: 22px; height: 22px;
   border-radius: 50%;
-  background: #06B6D4;
-  border: 3px solid #fff;
-  box-shadow: 0 2px 8px rgba(6,182,212,0.4), 0 0 0 1px rgba(6,182,212,0.2);
+  background: #fff;
+  border: 4px solid #06B6D4;
+  box-shadow: 0 2px 12px rgba(6,182,212,0.5), 0 0 0 1px rgba(6,182,212,0.2);
   cursor: grab;
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-.sc-slider::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.15); }
+.sc-slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 4px 16px rgba(6,182,212,0.7), 0 0 0 4px rgba(6,182,212,0.15);
+}
+.sc-slider::-webkit-slider-thumb:active { cursor: grabbing; transform: scale(1.2); }
 .sc-slider::-moz-range-thumb {
   width: 22px; height: 22px;
   border-radius: 50%;
-  background: #06B6D4;
-  border: 3px solid #fff;
-  box-shadow: 0 2px 8px rgba(6,182,212,0.4);
+  background: #fff;
+  border: 4px solid #06B6D4;
+  box-shadow: 0 2px 12px rgba(6,182,212,0.5);
   cursor: grab;
 }
 .sc-tick {
@@ -142,21 +218,63 @@
 
 /* --- Result panel --- */
 .sc-result {
-  background: linear-gradient(160deg, #0F172A 0%, #1e293b 100%);
+  background:
+    linear-gradient(160deg, #0F172A 0%, #1e293b 100%);
   color: #fff;
   border-radius: 24px;
   padding: clamp(1.75rem, 3vw, 2.5rem);
   position: sticky;
   top: 100px;
   overflow: hidden;
+  border: 1px solid rgba(56,189,248,0.08);
+  box-shadow: 0 30px 80px -20px rgba(15,23,42,0.6);
 }
 .sc-result::before {
   content: '';
-  position: absolute; top: -50px; right: -50px;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(6,182,212,0.25), transparent 70%);
+  position: absolute; top: -60px; right: -60px;
+  width: 260px; height: 260px;
+  background: radial-gradient(circle, rgba(6,182,212,0.35), transparent 70%);
+  pointer-events: none;
+  animation: scGlowPulse 4s ease-in-out infinite;
+}
+.sc-result::after {
+  content: '';
+  position: absolute; bottom: -80px; left: -80px;
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(59,130,246,0.18), transparent 70%);
   pointer-events: none;
 }
+@keyframes scGlowPulse {
+  0%, 100% { opacity: 0.9; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+/* Yüzde tasarruf — bar comparison'ın ortasında dev rozet */
+.sc-pct-badge {
+  position: absolute;
+  top: 56px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #67e8f9, #06b6d4);
+  color: #0F172A;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  padding: 0.5rem 0.9rem;
+  border-radius: 14px;
+  font-size: 1.1rem;
+  letter-spacing: -0.01em;
+  z-index: 3;
+  box-shadow: 0 8px 20px -4px rgba(6,182,212,0.55), 0 0 0 4px rgba(15,23,42,1);
+  white-space: nowrap;
+}
+.sc-pct-badge::before {
+  content: '';
+  position: absolute; inset: -2px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.4), transparent);
+  z-index: -1;
+}
+
 .sc-bar-comparison {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -223,34 +341,86 @@
   color: #fff;
 }
 .sc-savings-yearly .sc-saving-amount {
-  font-size: 2.1rem;
-  background: linear-gradient(135deg, #67e8f9, #06b6d4);
+  font-size: 2.4rem;
+  background: linear-gradient(135deg, #67e8f9 0%, #06b6d4 60%, #38bdf8 100%);
+  background-size: 200% 200%;
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent;
+  animation: scShimmer 4s ease-in-out infinite;
+  text-shadow: 0 0 32px rgba(103,232,249,0.15);
+}
+@keyframes scShimmer {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 .sc-cta {
   display: flex; gap: 0.75rem;
   position: relative; z-index: 1;
+  margin-bottom: 1.25rem;
 }
 .sc-cta .btn { flex: 1; justify-content: center; }
 .sc-cta .btn-secondary {
-  background: rgba(255,255,255,0.08);
+  background: #25D366;        /* WhatsApp brand green */
   color: #fff;
-  border: 1px solid rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0);
+  display: inline-flex; align-items: center; gap: 0.4rem;
 }
-.sc-cta .btn-secondary:hover { background: rgba(255,255,255,0.14); }
+.sc-cta .btn-secondary::before {
+  content: '';
+  display: inline-block;
+  width: 14px; height: 14px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M17.5 14.4c-.3-.1-1.7-.8-2-1-.3-.1-.5-.1-.7.2-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.4-1.4-.9-.8-1.5-1.8-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5l-1-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.8-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.3M12 2A10 10 0 0 0 2 12c0 2 .5 3.9 1.4 5.5L2 22l4.6-1.2c1.5.8 3.3 1.2 5.4 1.2A10 10 0 0 0 22 12 10 10 0 0 0 12 2z'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+}
+.sc-cta .btn-secondary:hover {
+  background: #1FBA5A;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px -4px rgba(37,211,102,0.5);
+}
+
+/* Güven şeridi — CTA altında */
+.sc-trust {
+  display: flex; gap: 1.1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-top: 1rem;
+  border-top: 1px dashed rgba(255,255,255,0.1);
+  position: relative; z-index: 1;
+}
+.sc-trust-item {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.74rem;
+  color: rgba(255,255,255,0.65);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.sc-trust-item svg {
+  width: 12px; height: 12px;
+  color: #38bdf8;
+  flex-shrink: 0;
+}
 
 /* Responsive */
 @media (max-width: 900px) {
   .sc-grid { grid-template-columns: 1fr; }
   .sc-result { position: static; }
 }
+@media (max-width: 600px) {
+  .sc-preset { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
+  .sc-pct-badge { font-size: 0.95rem; padding: 0.4rem 0.7rem; top: 48px; }
+}
 @media (max-width: 480px) {
   .sc-cta { flex-direction: column; }
-  .sc-product-head { gap: 0.75rem; }
+  .sc-product-head { gap: 0.75rem; padding-right: 4rem; }
+  .sc-product-save { top: 0.85rem; right: 0.85rem; font-size: 0.65rem; padding: 0.22rem 0.45rem; }
   .sc-value { font-size: 1.35rem; min-width: 40px; }
-  .sc-savings-yearly .sc-saving-amount { font-size: 1.7rem; }
+  .sc-savings-yearly .sc-saving-amount { font-size: 1.95rem; }
+  .sc-trust { gap: 0.7rem; }
+  .sc-trust-item { font-size: 0.7rem; }
 }
 
 /* =========================================================
