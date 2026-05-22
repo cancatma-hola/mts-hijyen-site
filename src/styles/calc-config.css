@@ -382,6 +382,20 @@
   box-shadow: 0 6px 18px -4px rgba(37,211,102,0.5);
 }
 
+/* Disclaimer — silik usül footnote, görsel hiyerarşiyi bozmaz */
+.sc-disclaimer {
+  margin: 0.85rem 0 0;
+  font-size: 0.62rem;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.32);
+  letter-spacing: 0.005em;
+  font-weight: 400;
+  font-style: italic;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
 /* Güven şeridi — CTA altında */
 .sc-trust {
   display: flex; gap: 1.1rem;
