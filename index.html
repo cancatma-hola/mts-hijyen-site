@@ -885,10 +885,11 @@
 
     <div class="cfg-wizard">
       <div class="cfg-progress">
-        <span class="cfg-step is-active" data-step="1">01<em data-tr="Sektör" data-en="Sector" data-de="Branche" data-ar="القطاع">Sektör</em></span>
-        <span class="cfg-step" data-step="2">02<em data-tr="Ölçek" data-en="Scale" data-de="Größe" data-ar="الحجم">Ölçek</em></span>
-        <span class="cfg-step" data-step="3">03<em data-tr="Trafik" data-en="Traffic" data-de="Frequenz" data-ar="الحركة">Trafik</em></span>
-        <span class="cfg-step" data-step="4">04<em data-tr="Sonuç" data-en="Result" data-de="Ergebnis" data-ar="النتيجة">Sonuç</em></span>
+        <span class="cfg-progress-line"></span>
+        <span class="cfg-step is-active" data-step="1"><em data-tr="Sektör" data-en="Sector" data-de="Branche" data-ar="القطاع">Sektör</em></span>
+        <span class="cfg-step" data-step="2"><em data-tr="Ölçek" data-en="Scale" data-de="Größe" data-ar="الحجم">Ölçek</em></span>
+        <span class="cfg-step" data-step="3"><em data-tr="Trafik" data-en="Traffic" data-de="Frequenz" data-ar="الحركة">Trafik</em></span>
+        <span class="cfg-step" data-step="4"><em data-tr="Sonuç" data-en="Result" data-de="Ergebnis" data-ar="النتيجة">Sonuç</em></span>
       </div>
 
       <!-- STEP 1: SEKTÖR -->
@@ -963,9 +964,14 @@
       <!-- STEP 4: SONUÇ -->
       <div class="cfg-step-pane" data-pane="4">
         <div class="cfg-result-summary">
+          <span class="cfg-match-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-tr="Sektörünüze özel uyarlandı" data-en="Tailored to your sector" data-de="Auf Ihre Branche zugeschnitten" data-ar="مصمم خصيصاً لقطاعك">Sektörünüze özel uyarlandı</span>
+          </span>
           <span class="cfg-result-label" data-cfg-i="resultLabel" data-tr="Önerilen Paket" data-en="Recommended Package" data-de="Empfohlenes Paket" data-ar="الباقة الموصى بها">Önerilen Paket</span>
           <h3 class="cfg-result-name">—</h3>
           <p class="cfg-result-desc">—</p>
+          <div class="cfg-result-summary-chips"></div>
         </div>
         <ul class="cfg-result-list"></ul>
         <div class="cfg-result-price">
@@ -975,8 +981,28 @@
         </div>
         <div class="cfg-result-cta">
           <a href="iletisim.html?from=config" class="btn btn-primary" data-tr="Saha Analizi Talep Et →" data-en="Request Site Analysis →" data-de="Standortanalyse anfordern →" data-ar="اطلب تحليل الموقع →">Saha Analizi Talep Et →</a>
+          <a href="https://wa.me/905436835765" target="_blank" rel="noopener" class="btn cfg-wa" data-tr="WhatsApp ile Paylaş" data-en="Share via WhatsApp" data-de="Per WhatsApp teilen" data-ar="مشاركة عبر واتساب">WhatsApp ile Paylaş</a>
           <button class="btn btn-secondary cfg-restart" type="button" data-tr="Baştan başla" data-en="Start over" data-de="Neu starten" data-ar="البدء من جديد">Baştan başla</button>
         </div>
+
+        <!-- Güven şeridi -->
+        <div class="cfg-trust">
+          <span class="cfg-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-tr="24 Saat İçinde Yanıt" data-en="Reply within 24h" data-de="Antwort binnen 24 Std" data-ar="رد خلال 24 ساعة">24 Saat İçinde Yanıt</span>
+          </span>
+          <span class="cfg-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-tr="Ücretsiz Saha Analizi" data-en="Free site analysis" data-de="Kostenlose Standortanalyse" data-ar="تحليل مجاني للموقع">Ücretsiz Saha Analizi</span>
+          </span>
+          <span class="cfg-trust-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            <span data-tr="ISO 9001 · 18 Yıl Tecrübe" data-en="ISO 9001 · 18 yrs experience" data-de="ISO 9001 · 18 J. Erfahrung" data-ar="ISO 9001 · 18 سنة خبرة">ISO 9001 · 18 Yıl Tecrübe</span>
+          </span>
+        </div>
+
+        <!-- Yasal usül disclaimer -->
+        <p class="cfg-disclaimer" data-tr="* Fiyat aralığı tahmini gösterimdir. Net teklif sahanızda yapılacak analiz sonrası sözleşme bazında belirlenir." data-en="* Price range is an illustrative estimate. Net quote determined contractually after on-site analysis." data-de="* Preisrahmen ist eine unverbindliche Schätzung. Verbindliches Angebot vertraglich nach Standortanalyse." data-ar="* نطاق السعر تقدير توضيحي. يحدد العرض النهائي تعاقدياً بعد تحليل الموقع.">* Fiyat aralığı tahmini gösterimdir. Net teklif sahanızda yapılacak analiz sonrası sözleşme bazında belirlenir.</p>
       </div>
 
       <!-- NAV -->

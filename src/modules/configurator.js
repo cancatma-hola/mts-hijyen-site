@@ -96,32 +96,64 @@ export function initConfigurator() {
   const prevBtn = root.querySelector('.cfg-prev');
   const nextBtn = root.querySelector('.cfg-next');
   const restartBtn = root.querySelector('.cfg-restart');
+  const progressLine = root.querySelector('.cfg-progress-line');
 
-  const state = { step: 1, sector: null, m2: 1000, staff: 50, rooms: 0, traffic: 'mid' };
+  const state = { step: 1, sector: null, m2: 1000, staff: 50, rooms: 0, traffic: 'mid', dir: 1 };
   const TOTAL_STEPS = 4;
 
   function lang() { return document.documentElement.lang || 'tr'; }
   function t() { return I18N[lang()] || I18N.tr; }
 
-  // Static label'lar artık HTML'de data-tr ile yönetiliyor.
-  // Bu fonksiyon yalnızca dinamik (step'e göre değişen) "İleri/Sonucu Gör" butonunu günceller.
+  // ----- Counter tween (calc'taki gibi) -----
+  const tweens = new WeakMap();
+  function tweenCounter(el, to) {
+    if (!el) return;
+    const prev = tweens.get(el);
+    if (prev) cancelAnimationFrame(prev.raf);
+    const from = parseFloat(el.dataset.cur || '0');
+    const start = performance.now();
+    const dur = 600;
+    const ease = (t) => 1 - Math.pow(1 - t, 3);
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / dur);
+      const v = from + (to - from) * ease(t);
+      el.dataset.cur = String(v);
+      el.textContent = fmt(v);
+      if (t < 1) {
+        const raf = requestAnimationFrame(tick);
+        tweens.set(el, { raf });
+      } else {
+        tweens.delete(el);
+      }
+    };
+    tweens.set(el, { raf: requestAnimationFrame(tick) });
+  }
+
   function refreshLabels() {
     const L = t();
-    if (state.step === TOTAL_STEPS - 1) {
-      nextBtn.textContent = L.finish;
-    } else {
-      // İleri butonu — HTML'deki data-tr zaten "İleri →" set ediyor, yine de zorla
-      nextBtn.textContent = L.next;
-    }
+    if (state.step === TOTAL_STEPS - 1) nextBtn.textContent = L.finish;
+    else nextBtn.textContent = L.next;
   }
 
   function render() {
-    panes.forEach(p => p.classList.toggle('is-active', +p.dataset.pane === state.step));
+    // Yön-aware step pane animasyonu
+    panes.forEach(p => {
+      const isActive = +p.dataset.pane === state.step;
+      p.classList.remove('is-enter-fwd', 'is-enter-bwd');
+      if (isActive) {
+        p.classList.add(state.dir > 0 ? 'is-enter-fwd' : 'is-enter-bwd');
+      }
+      p.classList.toggle('is-active', isActive);
+    });
     stepsBar.forEach(s => {
       const n = +s.dataset.step;
       s.classList.toggle('is-active', n === state.step);
       s.classList.toggle('is-done', n < state.step);
     });
+    if (progressLine) {
+      const pct = ((state.step - 1) / (TOTAL_STEPS - 1)) * 100;
+      progressLine.style.width = pct + '%';
+    }
     prevBtn.style.visibility = state.step === 1 ? 'hidden' : 'visible';
     nextBtn.style.display = state.step === TOTAL_STEPS ? 'none' : '';
     nextBtn.textContent = state.step === TOTAL_STEPS - 1 ? t().finish : t().next;
@@ -135,6 +167,16 @@ export function initConfigurator() {
     }
 
     if (state.step === 4) renderResult();
+  }
+
+  // Seçilen sektör/trafik için lokalize etiket bul
+  function getSectorLabel() {
+    const btn = root.querySelector(`[data-pane="1"] .cfg-opt[data-value="${state.sector}"] span`);
+    return btn ? btn.textContent : state.sector;
+  }
+  function getTrafficLabel() {
+    const btn = root.querySelector(`[data-pane="3"] .cfg-opt[data-value="${state.traffic}"] strong`);
+    return btn ? btn.textContent : state.traffic;
   }
 
   function renderResult() {
@@ -151,6 +193,21 @@ export function initConfigurator() {
     root.querySelector('.cfg-result-name').textContent = pkgName;
     root.querySelector('.cfg-result-desc').textContent = (data.desc && data.desc[L]) || data.desc.tr;
 
+    // Özet chip'leri (sektör · ölçek · trafik)
+    const summary = root.querySelector('.cfg-result-summary-chips');
+    if (summary) {
+      const chips = [
+        { icon: 'building', text: getSectorLabel() },
+        { icon: 'users',    text: `${fmt(state.staff)} ${({ tr: 'kişi', en: 'people', de: 'Pers.', ar: 'شخص' })[L]}` },
+        { icon: 'square',   text: `${fmt(state.m2)} m²` },
+        { icon: 'pulse',    text: getTrafficLabel() },
+      ];
+      if (state.rooms > 0) {
+        chips.splice(2, 0, { icon: 'bed', text: `${fmt(state.rooms)} ${({ tr: 'oda', en: 'rooms', de: 'Zimmer', ar: 'غرفة' })[L]}` });
+      }
+      summary.innerHTML = chips.map(c => `<span class="cfg-chip"><span class="cfg-chip-dot"></span>${c.text}</span>`).join('');
+    }
+
     const list = root.querySelector('.cfg-result-list');
     list.innerHTML = '';
     const items = (data.items && data.items[L]) || data.items.tr;
@@ -159,12 +216,27 @@ export function initConfigurator() {
       li.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>${item}</span>`;
       list.appendChild(li);
     });
-    root.querySelector('[data-cfg-min]').textContent = fmt(min);
-    root.querySelector('[data-cfg-max]').textContent = fmt(max);
 
-    // CTA href'e parametre ekle (paket adı TR formunda kalır — backend tarafı için)
+    // Animasyonlu fiyat aralığı
+    tweenCounter(root.querySelector('[data-cfg-min]'), min);
+    tweenCounter(root.querySelector('[data-cfg-max]'), max);
+
+    // CTA href'lerine parametre ekle
     const cta = root.querySelector('.cfg-result-cta .btn-primary');
     cta.setAttribute('href', `iletisim.html?from=config&sector=${state.sector}&pkg=${encodeURIComponent(data.pkg.tr)}`);
+
+    // WhatsApp paylaş — otomatik mesaj
+    const waBtn = root.querySelector('.cfg-result-cta .cfg-wa');
+    if (waBtn) {
+      const msg = `Konfigüratör üzerinden ${data.pkg.tr} paketi için teklif istiyorum.\n` +
+                  `Sektör: ${data.pkg.tr}\n` +
+                  `Personel: ${state.staff}\n` +
+                  `Alan: ${state.m2} m²\n` +
+                  (state.rooms > 0 ? `Oda/Yatak: ${state.rooms}\n` : '') +
+                  `Trafik: ${state.traffic}\n` +
+                  `Tahmini bütçe: ₺${fmt(min)} – ₺${fmt(max)}/ay`;
+      waBtn.setAttribute('href', `https://wa.me/905436835765?text=${encodeURIComponent(msg)}`);
+    }
   }
 
   // Olay bağlayıcıları
@@ -188,11 +260,20 @@ export function initConfigurator() {
     });
   });
 
-  nextBtn.addEventListener('click', () => { if (state.step < TOTAL_STEPS) { state.step++; render(); refreshLabels(); }});
-  prevBtn.addEventListener('click', () => { if (state.step > 1) { state.step--; render(); refreshLabels(); }});
+  nextBtn.addEventListener('click', () => {
+    if (state.step < TOTAL_STEPS) { state.dir = 1; state.step++; render(); refreshLabels(); }
+  });
+  prevBtn.addEventListener('click', () => {
+    if (state.step > 1) { state.dir = -1; state.step--; render(); refreshLabels(); }
+  });
   restartBtn.addEventListener('click', () => {
-    state.step = 1; state.sector = null; state.traffic = 'mid';
+    state.step = 1; state.sector = null; state.traffic = 'mid'; state.dir = -1;
     root.querySelectorAll('.cfg-opt.is-selected').forEach(o => o.classList.remove('is-selected'));
+    // Reset price counter cache so next render tweens from 0
+    const minEl = root.querySelector('[data-cfg-min]');
+    const maxEl = root.querySelector('[data-cfg-max]');
+    if (minEl) { minEl.dataset.cur = '0'; minEl.textContent = '0'; }
+    if (maxEl) { maxEl.dataset.cur = '0'; maxEl.textContent = '0'; }
     render(); refreshLabels();
   });
 
