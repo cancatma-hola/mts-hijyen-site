@@ -302,7 +302,7 @@
 }
 .sc-chart-unit {
   font-size: 0.78rem;
-  color: rgba(255,255,255,0.85);
+  color: #fff;
   font-family: 'DM Sans', sans-serif;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -512,7 +512,7 @@
 .sc-trust-item {
   display: inline-flex; align-items: center; gap: 0.4rem;
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.95);
+  color: #fff;
   font-weight: 600;
   letter-spacing: 0.01em;
 }
