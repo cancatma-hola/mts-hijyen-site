@@ -355,7 +355,7 @@
   min-height: 1.5rem;
 }
 .sc-bar--retail .sc-bar-amount { color: #fca5a5; }
-.sc-bar--mts .sc-bar-amount { color: #67e8f9; }
+.sc-bar--mts .sc-bar-amount { color: #ffffff; text-shadow: 0 0 12px rgba(34,211,238,0.55); }
 
 .sc-bar-track {
   height: 140px;
@@ -365,6 +365,22 @@
   position: relative;
   overflow: hidden;
 }
+/* MTS tarafı: track'i hafif vurgula (avantajlı taraf önde görünsün) */
+.sc-bar--mts .sc-bar-track {
+  border-color: rgba(34,211,238,0.35);
+  background:
+    radial-gradient(120% 80% at 50% 100%, rgba(6,182,212,0.18) 0%, rgba(255,255,255,0.04) 60%);
+  box-shadow:
+    0 0 0 1px rgba(34,211,238,0.18),
+    0 8px 28px -8px rgba(6,182,212,0.45);
+}
+/* Retail tarafı: "ağır/pahalı" hissi — sönük çerçeve */
+.sc-bar--retail .sc-bar-track {
+  border-color: rgba(248,113,113,0.18);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(255,255,255,0.02) 100%);
+}
+
 .sc-bar-fill {
   position: absolute; bottom: 0; left: 0; right: 0;
   border-radius: 10px;
@@ -373,18 +389,88 @@
 .sc-bar--retail .sc-bar-fill {
   background:
     linear-gradient(180deg, #f87171 0%, #ef4444 60%, #dc2626 100%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 0 18px rgba(239,68,68,0.25);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.12),
+    inset 0 -20px 30px -10px rgba(0,0,0,0.45),
+    0 0 18px rgba(239,68,68,0.22);
+  opacity: 0.92;
 }
 .sc-bar--mts .sc-bar-fill {
   background:
-    linear-gradient(180deg, #38bdf8 0%, #06b6d4 60%, #0891b2 100%);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), 0 0 24px rgba(6,182,212,0.45);
+    linear-gradient(180deg, #5eead4 0%, #22d3ee 45%, #06b6d4 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.55),
+    inset 0 -2px 0 rgba(255,255,255,0.12),
+    0 0 32px rgba(34,211,238,0.65),
+    0 0 64px rgba(6,182,212,0.35);
 }
-/* Subtle diagonal pattern for retail (premium "expensive" feel) */
+/* Retail: pahalı/ağır hissi — koyu çapraz tarama + üstten karartma */
 .sc-bar--retail .sc-bar-fill::after {
   content: '';
   position: absolute; inset: 0;
-  background-image: repeating-linear-gradient(135deg, rgba(255,255,255,0.06) 0 8px, transparent 8px 16px);
+  background-image: repeating-linear-gradient(135deg, rgba(0,0,0,0.18) 0 6px, transparent 6px 14px);
+  pointer-events: none;
+}
+/* MTS: yukarıdan aşağı kayan parlama (shimmer) — avantaj enerjisi */
+.sc-bar--mts .sc-bar-fill::before {
+  content: '';
+  position: absolute;
+  left: -20%; right: -20%;
+  top: -40%;
+  height: 60%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+  filter: blur(6px);
+  transform: translateY(0);
+  animation: sc-mts-shimmer 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes sc-mts-shimmer {
+  0%   { transform: translateY(0);     opacity: 0; }
+  20%  { opacity: 0.9; }
+  80%  { opacity: 0.9; }
+  100% { transform: translateY(280px); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sc-bar--mts .sc-bar-fill::before { animation: none; opacity: 0.35; transform: translateY(40px); }
+}
+
+/* MTS "AVANTAJLI" madalyonu — track'in sağ üstünde sabit kalır */
+.sc-bar--mts .sc-bar-track::after {
+  content: '✓ AVANTAJLI';
+  position: absolute;
+  top: 8px; right: 8px;
+  z-index: 2;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #0F172A;
+  background: linear-gradient(135deg, #f0fdfa 0%, #67e8f9 100%);
+  padding: 4px 8px;
+  border-radius: 999px;
+  box-shadow: 0 4px 14px rgba(34,211,238,0.55), inset 0 1px 0 rgba(255,255,255,0.7);
+}
+[lang="en"] .sc-bar--mts .sc-bar-track::after { content: '✓ BEST PRICE'; }
+[lang="de"] .sc-bar--mts .sc-bar-track::after { content: '✓ VORTEILHAFT'; }
+[lang="ar"] .sc-bar--mts .sc-bar-track::after { content: '✓ الأفضل'; left: 8px; right: auto; }
+
+/* Karşılaştırma container'ına "↓ daha az" hissi veren ince ok */
+.sc-bar-comparison::after {
+  content: '↓';
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 28px; height: 28px;
+  display: grid; place-items: center;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #22d3ee 0%, #06b6d4 100%);
+  color: #0F172A;
+  font-weight: 900;
+  font-size: 0.9rem;
+  line-height: 1;
+  box-shadow: 0 6px 18px rgba(6,182,212,0.55), inset 0 1px 0 rgba(255,255,255,0.6);
   pointer-events: none;
 }
 
