@@ -105,11 +105,25 @@ function makePlane(img) {
   }
   window.addEventListener('resize', resize);
 
+  // Görünür değilken veya hover sönmüşken draw çağrısı yapma — RAF tick eder ama GPU işi atlanır
+  let visible = false;
+  const io = new IntersectionObserver(
+    (entries) => { visible = entries[0].isIntersecting; },
+    { threshold: 0 }
+  );
+  io.observe(img);
+
   function frame(t) {
-    program.uniforms.uTime.value = t * 0.001;
-    program.uniforms.uMouse.value = mouse;
-    program.uniforms.uHover.value += (hovered - program.uniforms.uHover.value) * 0.1;
-    renderer.render({ scene: mesh });
+    const uH = program.uniforms.uHover.value;
+    const target = hovered;
+    // Hover sönükken ve hedef de sıfırken çiz: hayır. Animasyon settle olunca tamamen durur.
+    const animating = Math.abs(target - uH) > 0.001 || target > 0.001;
+    if (visible && !document.hidden && animating) {
+      program.uniforms.uTime.value = t * 0.001;
+      program.uniforms.uMouse.value = mouse;
+      program.uniforms.uHover.value = uH + (target - uH) * 0.1;
+      renderer.render({ scene: mesh });
+    }
     requestAnimationFrame(frame);
   }
   requestAnimationFrame(frame);

@@ -137,7 +137,7 @@ export function initFooterDistortion() {
   io.observe(footer);
 
   function frame(t) {
-    if (visible) {
+    if (visible && !document.hidden) {
       program.uniforms.uTime.value = t * 0.001;
       program.uniforms.uResolution.value = [gl.canvas.width, gl.canvas.height];
       program.uniforms.uMouse.value = [mouse.x, mouse.y];

@@ -128,25 +128,40 @@ export function initHeroShader() {
     mouse.strength = 0;
   });
 
+  // Hero görünür değilse GL çağrılarını atla — RAF tick eder ama draw etmez
+  let visible = true;
+  const io = new IntersectionObserver(
+    (entries) => { visible = entries[0].isIntersecting; },
+    { threshold: 0 }
+  );
+  io.observe(hero);
+
   let raf;
   function frame(t) {
-    program.uniforms.uTime.value = t * 0.001;
-    program.uniforms.uResolution.value = [gl.canvas.width, gl.canvas.height];
-    program.uniforms.uMouse.value = [mouse.x, mouse.y];
-    // smooth decay
-    program.uniforms.uMouseStrength.value += (mouse.strength - program.uniforms.uMouseStrength.value) * 0.08;
-    renderer.render({ scene: mesh });
+    if (visible && !document.hidden) {
+      program.uniforms.uTime.value = t * 0.001;
+      program.uniforms.uResolution.value = [gl.canvas.width, gl.canvas.height];
+      program.uniforms.uMouse.value = [mouse.x, mouse.y];
+      program.uniforms.uMouseStrength.value += (mouse.strength - program.uniforms.uMouseStrength.value) * 0.08;
+      renderer.render({ scene: mesh });
+    }
     raf = requestAnimationFrame(frame);
   }
   raf = requestAnimationFrame(frame);
 
-  // Scroll'la opaklığı azalt
+  // Scroll'la opaklığı azalt — rAF coalescing ile layout read tek frame'e indirildi
+  let scrollPending = false;
   window.addEventListener(
     'scroll',
     () => {
-      const rect = hero.getBoundingClientRect();
-      const progress = Math.max(0, Math.min(1, 1 - rect.bottom / window.innerHeight));
-      canvas.style.opacity = String(0.55 * (1 - progress * 1.2));
+      if (scrollPending) return;
+      scrollPending = true;
+      requestAnimationFrame(() => {
+        scrollPending = false;
+        const rect = hero.getBoundingClientRect();
+        const progress = Math.max(0, Math.min(1, 1 - rect.bottom / window.innerHeight));
+        canvas.style.opacity = String(0.55 * (1 - progress * 1.2));
+      });
     },
     { passive: true }
   );

@@ -33,6 +33,7 @@ import { initPageTransitions } from './modules/transitions.js';
 import { initFooterDistortion } from './modules/footer-distortion.js';
 import { initSavingsCalc } from './modules/savings-calc.js';
 import { initConfigurator } from './modules/configurator.js';
+import { initAnimPause } from './modules/anim-pause.js';
 
 function boot() {
   autoDecorate();
@@ -48,6 +49,8 @@ function boot() {
   initPageTransitions();
   initSavingsCalc();
   initConfigurator();
+  // En son: yukarıdaki modüller DOM'a dekoratif elementler ekledikten sonra observe et
+  requestAnimationFrame(() => initAnimPause());
 }
 
 if (document.readyState === 'loading') {
