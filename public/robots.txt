@@ -1,4 +1,49 @@
+# MTS Hijyen — robots.txt
+# Toptan hijyen ürünleri tedarikçisi | https://www.mtshijyen.com
+
 User-agent: *
 Allow: /
 
+# Google özelinde — image/video preview izinleri
+User-agent: Googlebot
+Allow: /
+Allow: /img/
+Allow: /video/
+
+User-agent: Googlebot-Image
+Allow: /img/
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# AI/LLM crawlers — kataloğa erişime izin (markaya görünürlük için)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Geliştirme/iç dosyalar
+Disallow: /src/
+Disallow: /node_modules/
+Disallow: /*.json$
+Disallow: /public/section-preview.html
+Disallow: /public/gonderici.php
+
+# Sitemap
 Sitemap: https://www.mtshijyen.com/sitemap.xml
