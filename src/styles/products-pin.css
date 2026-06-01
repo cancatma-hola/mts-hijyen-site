@@ -5,6 +5,16 @@
   position: relative;
 }
 
+/* Compositor promotion — yatay scroll sırasında repaint yerine sadece transform */
+.products-section--pinned .products-grid {
+  will-change: transform;
+  transform: translateZ(0);
+}
+.products-pin-viewport {
+  transform: translateZ(0);
+  contain: layout paint;
+}
+
 .products-section--pinned .container {
   max-width: none !important;
   padding-left: 0 !important;
@@ -36,6 +46,10 @@
   isolation: isolate;
   box-shadow: 0 24px 80px -20px rgba(15, 23, 42, 0.18);
   transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.5s ease;
+  /* Her kart kendi compositor layer'ına — grid translate olunca çocukları repaint etmesin */
+  will-change: transform;
+  transform: translateZ(0);
+  contain: layout paint style;
 }
 
 .products-section--pinned .product-card:hover {
@@ -80,7 +94,7 @@
   backdrop-filter: blur(8px);
 }
 
-/* Devasa arka plan harfi */
+/* Devasa arka plan harfi — kendi layer'ında rasterize edilsin, transform-only hareket */
 .pc-big-letter {
   position: absolute;
   right: -2vw;
@@ -95,6 +109,10 @@
   pointer-events: none;
   user-select: none;
   font-style: italic;
+  /* Glyph bir kez rasterize edilsin, sonra sadece compositor'la taşınsın */
+  will-change: transform;
+  transform: translateZ(0);
+  contain: paint;
 }
 
 /* İkon */
