@@ -47,3 +47,9 @@ Disallow: /public/gonderici.php
 
 # Sitemap
 Sitemap: https://www.mtshijyen.com/sitemap.xml
+
+# LLM/AI knowledge files — emerging standard for generative AI assistants
+# (ChatGPT, Claude, Perplexity, Gemini, Copilot, Meta AI vb. tarama için)
+# https://llmstxt.org/
+LLMs: https://www.mtshijyen.com/llms.txt
+LLMs-Full: https://www.mtshijyen.com/llms-full.txt
