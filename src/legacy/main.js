@@ -17,7 +17,10 @@
   let lastY   = window.scrollY;
   let ticking = false;
 
-  if (hasHero) header.classList.add('cinematic');
+  if (hasHero) {
+    header.classList.add('cinematic');
+    if (topbar) topbar.classList.add('cinematic');
+  }
 
   function setHidden(hidden) {
     header.classList.toggle('nav-hidden', hidden);
@@ -30,9 +33,14 @@
 
     /* Scrolled (glassmorphism) */
     header.classList.toggle('scrolled', y > 10);
+    if (topbar) topbar.classList.toggle('scrolled', y > 10);
 
-    /* Cinematic şeffaf mod */
-    if (hasHero) header.classList.toggle('cinematic', y < CINEMATIC_OFF);
+    /* Cinematic şeffaf mod — header + topbar senkron */
+    if (hasHero) {
+      const inCinematic = y < CINEMATIC_OFF;
+      header.classList.toggle('cinematic', inCinematic);
+      if (topbar) topbar.classList.toggle('cinematic', inCinematic);
+    }
 
     /* Yön bazlı gizle / göster */
     if (y < HIDE_THRESHOLD) {
@@ -396,7 +404,6 @@
   function update() {
     const rect    = stage.getBoundingClientRect();
     const viewH   = window.innerHeight;
-    // progress: 0 when element enters viewport, 1 when element top reaches ~25% from viewport top
     const raw     = (viewH - rect.top) / (viewH * 0.72);
     const progress = Math.max(0, Math.min(1, raw));
 
@@ -408,7 +415,6 @@
     card.style.opacity   = opacity;
   }
 
-  // Initial state
   card.style.transition = 'transform 0.05s linear, opacity 0.1s linear';
   update();
   window.addEventListener('scroll', update, { passive: true });

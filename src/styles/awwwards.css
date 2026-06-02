@@ -122,32 +122,35 @@ html.has-custom-cursor textarea {
 /* Hero başlık ↔ açıklama arasındaki boşluğu sıkılaştır */
 .hero h1 {
   margin-bottom: 0.4rem !important;
-  line-height: 1.02 !important;
+  line-height: 1.14 !important;
 }
 .hero h1 em,
 .hero h1 span {
-  line-height: 1.02 !important;
+  line-height: 1.14 !important;
   margin: 0 !important;
+  padding-bottom: 0.08em;
 }
 .hero-desc {
   margin-top: 0.6rem !important;
 }
-/* Split sonrası kelime sarmalayıcılar */
+/* Split sonrası kelime sarmalayıcılar — descender (ğ, g, y) için pay bırak */
 .hero-word-wrap {
-  line-height: 1.02 !important;
+  line-height: 1.14 !important;
+  padding-bottom: 0.08em;
+  overflow: visible !important;
 }
 
 /* em içindeki gradient text → child span'lere de uygula
    (split sonrası em boş kalır, gerçek metin hero-word içinde) */
 .hero h1 em .hero-word-wrap,
 .hero h1 em .hero-word {
-  background: linear-gradient(135deg, #1B3FC4 0%, #3B82F6 50%, #1B3FC4 100%);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: gradientShift 4s ease-in-out infinite;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+  -webkit-text-fill-color: #5AC8FA;
+  color: #5AC8FA;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.4);
+  animation: none;
 }
 
 /* === Hero Badge — Premium Holographic === */

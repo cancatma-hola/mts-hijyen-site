@@ -42,6 +42,22 @@
   --topbar-h: 36px;
   --header-h: 74px;
   --max-w: 1180px;
+
+  /* ---- Apple Style Reference Tokens (Precise Canvas, Vivid Product) ---- */
+  --color-midnight-graphite: #1d1d1f;
+  --color-cloud-mist: #6b6c6c;
+  --color-pure-white: #ffffff;
+  --color-frost-gray: #f3f6f6;
+  --color-steel-accent: #cccfcf;
+  --color-alabaster: #e8e8ed;
+  --color-ocean-blue: #0066cc;
+  --color-vivid-blue: #0071e3;
+  --color-sky-teal: #00a1b3;
+  --color-flame-orange: #b64400;
+  --font-sf-pro-display: 'SF Pro Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-sf-pro-text: 'SF Pro Text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --apple-radius: 28px;
+  --apple-section-gap: 70px;
 }
 
 /* ---- RTL Desteği ---- */
@@ -101,16 +117,42 @@ body {
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--blue-950);
-  letter-spacing: -0.02em;
+  font-family: var(--font-sf-pro-display);
+  font-weight: 600;
+  line-height: 1.07;
+  color: var(--color-midnight-graphite);
+  letter-spacing: -0.025em;
 }
-h1 { font-size: clamp(2.4rem, 5.5vw, 4rem); }
-h2 { font-size: clamp(1.9rem, 3.8vw, 2.9rem); }
-h3 { font-size: clamp(1.2rem, 2.5vw, 1.5rem); }
-h4 { font-size: 1rem; }
+h1 { font-size: clamp(2.6rem, 6vw, 4.5rem); line-height: 1.05; letter-spacing: -0.03em; }
+h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); line-height: 1.07; letter-spacing: -0.025em; }
+h3 { font-size: clamp(1.25rem, 2.4vw, 1.6rem); line-height: 1.14; letter-spacing: -0.02em; }
+h4 { font-size: 1.05rem; line-height: 1.24; letter-spacing: -0.015em; font-weight: 600; }
+
+/* ---- Apple Display Heading — section headlines ---- */
+.apple-display {
+  font-family: var(--font-sf-pro-display);
+  font-weight: 600;
+  line-height: 1.07;
+  letter-spacing: -0.025em;
+  color: var(--color-midnight-graphite);
+  font-size: clamp(2.4rem, 5.4vw, 4.5rem);
+}
+.apple-eyebrow {
+  font-family: var(--font-sf-pro-text);
+  font-weight: 600;
+  font-size: clamp(0.95rem, 1.4vw, 1.15rem);
+  letter-spacing: -0.01em;
+  color: var(--color-vivid-blue);
+  text-transform: none;
+}
+.apple-body {
+  font-family: var(--font-sf-pro-text);
+  font-weight: 400;
+  color: var(--color-cloud-mist);
+  font-size: clamp(1rem, 1.35vw, 1.15rem);
+  line-height: 1.47;
+  letter-spacing: -0.011em;
+}
 
 p { color: var(--text-mid); }
 a { text-decoration: none; color: inherit; }
@@ -168,14 +210,16 @@ input, textarea, select { font-family: inherit; }
   border: 2px solid transparent;
 }
 .btn-primary {
-  background: var(--blue-800);
-  color: var(--white);
-  box-shadow: var(--shadow-blue);
+  background: var(--color-vivid-blue);
+  color: var(--color-pure-white);
+  border-radius: 980px;
+  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.25);
+  letter-spacing: -0.01em;
 }
 .btn-primary:hover {
-  background: var(--blue-900);
+  background: #0077ed;
   transform: translateY(-2px);
-  box-shadow: 0 12px 40px rgba(37,99,235,0.4);
+  box-shadow: 0 10px 32px rgba(0, 113, 227, 0.35);
 }
 .btn-outline {
   background: transparent;
@@ -602,10 +646,23 @@ body.has-hero .hero-topbar { }
   z-index: 1001;
   display: flex;
   align-items: center;
-  transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background 0.5s ease, color 0.5s ease, border-color 0.5s ease,
+              box-shadow 0.4s ease, backdrop-filter 0.5s ease,
+              transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .hero-topbar.nav-hidden {
   transform: translateY(-100%);
+}
+/* ---- Sinematik: hero üzerindeyken topbar arkaplanı eriyik ---- */
+.hero-topbar.cinematic {
+  background: linear-gradient(180deg, rgba(8,15,40,0.45) 0%, rgba(8,15,40,0.18) 100%) !important;
+  backdrop-filter: blur(6px) saturate(140%);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
+  box-shadow: none !important;
+  color: rgba(255,255,255,0.92);
+}
+.hero-topbar.cinematic .htb-item svg {
+  stroke: rgba(255,255,255,0.85);
 }
 .hero-topbar-inner {
   display: flex;
@@ -699,19 +756,21 @@ body.has-hero .hero-topbar { }
   animation: fadeUp 0.7s 0.45s var(--ease) both;
 }
 .hero-stat-num {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-sf-pro-display);
   font-size: clamp(1.8rem, 3.5vw, 2.6rem);
-  font-weight: 700;
+  font-weight: 600;
+  letter-spacing: -0.025em;
   color: #FFFFFF;
   line-height: 1;
 }
 .hero-stat-num sup { font-size: 0.55em; color: rgba(255,255,255,0.75); vertical-align: super; }
 .hero-stat-label {
+  font-family: var(--font-sf-pro-text);
   font-size: 0.78rem;
   color: var(--text-light);
   font-weight: 600;
   margin-top: 0.3rem;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.01em;
 }
 
 .hero-scroll {
@@ -2888,14 +2947,15 @@ a.cc-value:hover { color: var(--blue-700); }
   to   { opacity: 1;   transform: scale(1.04); }
 }
 
-/* Gradient text for hero headline accent */
+/* Gradient text for hero headline accent — açık ton (koyu video üzerinde okunabilir) */
 .hero h1 em {
-  background: linear-gradient(135deg, #1B3FC4 0%, #3B82F6 50%, #1B3FC4 100%);
+  background: linear-gradient(135deg, #EAF4FF 0%, #FFFFFF 50%, #EAF4FF 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-style: normal;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
   animation: gradientShift 4s ease-in-out infinite;
   display: block;
 }

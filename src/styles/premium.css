@@ -149,12 +149,14 @@ body { animation: pageReveal 0.5s ease both; }
   line-height: 1.08 !important;
 }
 .hero h1 em {
-  background: linear-gradient(135deg, var(--blue-700), #4F95FF, var(--blue-600));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  background: linear-gradient(135deg, #EAF4FF 0%, #FFFFFF 50%, #EAF4FF 100%) !important;
+  background-size: 200% auto !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
   display: block;
   font-style: normal !important;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.45);
 }
 
 .hero-badge {
@@ -194,7 +196,7 @@ body { animation: pageReveal 0.5s ease both; }
 /* ============================================================
    HERO TOPBAR — Premium strip
    ============================================================ */
-.hero-topbar {
+.hero-topbar:not(.cinematic) {
   background: linear-gradient(90deg, var(--blue-950), var(--blue-900), #0F2A8A) !important;
 }
 
