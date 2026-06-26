@@ -1,28 +1,30 @@
 import { gsap } from 'gsap';
 
 export function initPreloader() {
-  // Preloader yalnızca ilk dış girişte veya hard reload'da gösterilsin.
-  // İç sayfa geçişlerinde (curtain animasyonu zaten var) atla — içeriği hemen göster.
+  // Preloader yalnızca oturumun ilk yüklemesinde veya hard reload'da gösterilsin.
+  // Site içi sayfa geçişlerinde (curtain animasyonu zaten var) atla — içeriği hemen göster.
   let isReload = false;
   const navEntry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
   if (navEntry) isReload = navEntry.type === 'reload';
   else if (performance.navigation) isReload = performance.navigation.type === 1;
 
-  let fromInternal = false;
-  try {
-    fromInternal = !!document.referrer && new URL(document.referrer).origin === location.origin;
-  } catch {
-    fromInternal = false;
-  }
+  // Oturumda preloader daha önce gösterildi mi? sessionStorage sekme başınadır:
+  // site içi geçişlerde korunur, yeni sekme/oturumda sıfırlanır — referrer'a göre çok daha güvenilir.
+  let seen = false;
+  try { seen = sessionStorage.getItem('mts_preloaded') === '1'; } catch {}
 
-  if (fromInternal && !isReload) {
-    // Preloader'ı hiç gösterme; ama içeriğin görünmesi için gereken sınıf/event'leri ver.
+  // Atla: oturumda zaten gösterildiyse VE bu bir hard reload değilse → site içi geçiş.
+  if (seen && !isReload) {
+    // Preloader'ı hiç gösterme; içeriğin görünmesi için gereken sınıf/event'leri ver.
     document.documentElement.classList.remove('is-loading');
     document.documentElement.classList.add('is-loaded');
     document.body.classList.add('hero-ready');
     window.dispatchEvent(new Event('mts:loaded'));
     return;
   }
+
+  // Bu yüklemede preloader gösterilecek — oturum bayrağını işaretle (sonraki geçişler atlasın).
+  try { sessionStorage.setItem('mts_preloaded', '1'); } catch {}
 
   const root = document.createElement('div');
   root.className = 'mts-preloader';
