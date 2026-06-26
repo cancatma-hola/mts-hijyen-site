@@ -13,7 +13,6 @@
   /* iOS Safari'de viewport yüksekliği için */
   .hero {
     min-height: 100svh;
-    height: 100svh !important;
   }
 }
 
