@@ -1,20 +1,24 @@
 import { gsap } from 'gsap';
 
 export function initPreloader() {
-  // Preloader yalnızca oturumun ilk yüklemesinde veya hard reload'da gösterilsin.
-  // Site içi sayfa geçişlerinde (curtain animasyonu zaten var) atla — içeriği hemen göster.
+  // Preloader yalnızca ANASAYFADA gösterilir. İç sayfalar (hakkımızda/ürünler/iletişim)
+  // hiçbir koşulda göstermez — doğrudan açılış veya F5 dahil.
+  // Anasayfada ise: ilk oturum yüklemesinde + hard reload'da gelir; site içi geri dönüşte gelmez.
+  const path = location.pathname;
+  const isHome = path === '/' || path === '/index.html' || path.endsWith('/index.html');
+
+  // Reload mı? (hard reload anasayfada preloader'ı tekrar göstermeli)
   let isReload = false;
   const navEntry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
   if (navEntry) isReload = navEntry.type === 'reload';
   else if (performance.navigation) isReload = performance.navigation.type === 1;
 
-  // Oturumda preloader daha önce gösterildi mi? sessionStorage sekme başınadır:
-  // site içi geçişlerde korunur, yeni sekme/oturumda sıfırlanır — referrer'a göre çok daha güvenilir.
+  // Oturumda preloader daha önce gösterildi mi? (sessionStorage sekme başına)
   let seen = false;
   try { seen = sessionStorage.getItem('mts_preloaded') === '1'; } catch {}
 
-  // Atla: oturumda zaten gösterildiyse VE bu bir hard reload değilse → site içi geçiş.
-  if (seen && !isReload) {
+  // Atla: anasayfa DEĞİLSE her zaman; anasayfadaysa zaten gösterildiyse ve reload değilse.
+  if (!isHome || (seen && !isReload)) {
     // Preloader'ı hiç gösterme; içeriğin görünmesi için gereken sınıf/event'leri ver.
     document.documentElement.classList.remove('is-loading');
     document.documentElement.classList.add('is-loaded');
@@ -23,7 +27,7 @@ export function initPreloader() {
     return;
   }
 
-  // Bu yüklemede preloader gösterilecek — oturum bayrağını işaretle (sonraki geçişler atlasın).
+  // Anasayfada gösterilecek — oturum bayrağını işaretle (sonraki geçişlerde gelmesin).
   try { sessionStorage.setItem('mts_preloaded', '1'); } catch {}
 
   const root = document.createElement('div');
