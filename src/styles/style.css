@@ -500,6 +500,7 @@ body.has-hero .hero-topbar { }
   margin-top: 1rem;
 }
 .mobile-lang .lang-btn { font-size: 0.85rem; padding: 0.4rem 0.9rem; }
+.mobile-panel-btn { margin-top: 0.5rem; font-size: 1rem; padding: 0.9rem 2.4rem; }
 
 /* ============================================================
    HERO — Beyaz tabanlı, mavi dekoratif element

@@ -85,6 +85,8 @@
 
   btn.addEventListener('click', () => set(!open));
   nav.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', () => set(false)));
+  // Dil seçilince menüyü kapat — kullanıcı çevrilen sayfayı görsün (yoksa "tepki vermiyor" hissi)
+  nav.querySelectorAll('.mobile-lang .lang-btn').forEach(l => l.addEventListener('click', () => set(false)));
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && open) set(false); });
 })();
 
