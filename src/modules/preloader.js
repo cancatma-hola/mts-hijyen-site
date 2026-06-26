@@ -1,6 +1,29 @@
 import { gsap } from 'gsap';
 
 export function initPreloader() {
+  // Preloader yalnızca ilk dış girişte veya hard reload'da gösterilsin.
+  // İç sayfa geçişlerinde (curtain animasyonu zaten var) atla — içeriği hemen göster.
+  let isReload = false;
+  const navEntry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+  if (navEntry) isReload = navEntry.type === 'reload';
+  else if (performance.navigation) isReload = performance.navigation.type === 1;
+
+  let fromInternal = false;
+  try {
+    fromInternal = !!document.referrer && new URL(document.referrer).origin === location.origin;
+  } catch {
+    fromInternal = false;
+  }
+
+  if (fromInternal && !isReload) {
+    // Preloader'ı hiç gösterme; ama içeriğin görünmesi için gereken sınıf/event'leri ver.
+    document.documentElement.classList.remove('is-loading');
+    document.documentElement.classList.add('is-loaded');
+    document.body.classList.add('hero-ready');
+    window.dispatchEvent(new Event('mts:loaded'));
+    return;
+  }
+
   const root = document.createElement('div');
   root.className = 'mts-preloader';
   root.innerHTML = `
