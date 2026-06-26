@@ -122,11 +122,11 @@ html.has-custom-cursor textarea {
 /* Hero başlık ↔ açıklama arasındaki boşluğu sıkılaştır */
 .hero h1 {
   margin-bottom: 0.4rem !important;
-  line-height: 1.14 !important;
+  line-height: 1.02 !important;
 }
 .hero h1 em,
 .hero h1 span {
-  line-height: 1.14 !important;
+  line-height: 1.02 !important;
   margin: 0 !important;
   padding-bottom: 0.08em;
 }
@@ -135,7 +135,7 @@ html.has-custom-cursor textarea {
 }
 /* Split sonrası kelime sarmalayıcılar — descender (ğ, g, y) için pay bırak */
 .hero-word-wrap {
-  line-height: 1.14 !important;
+  line-height: 1.02 !important;
   padding-bottom: 0.08em;
   overflow: visible !important;
 }

@@ -100,9 +100,18 @@ export function initHeroShader() {
   function resize() {
     const rect = hero.getBoundingClientRect();
     renderer.setSize(rect.width, rect.height);
+    // OGL setSize canvas'a sabit px inline style yazıyor; %100'e geri zorla ki
+    // renk katmanı boyut değişse de her zaman hero'yu tam kaplasın (alttan kesilmesin).
+    canvas.style.width = '100%';
+    canvas.style.height = '100%';
   }
   resize();
   window.addEventListener('resize', resize);
+  // Hero yüksekliği font/içerik yüklemesiyle ilk yüklemeden SONRA değişiyor; canvas'ı
+  // ResizeObserver ile senkronla — yoksa fontlar oturunca renk katmanı kısa kalıyor.
+  if (typeof ResizeObserver !== 'undefined') new ResizeObserver(resize).observe(hero);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(resize);
+  window.addEventListener('load', resize);
 
   const geometry = new Triangle(gl);
   const program = new Program(gl, {

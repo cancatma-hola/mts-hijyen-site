@@ -345,7 +345,7 @@ body.has-hero .hero-topbar { }
   min-width: 0;
 }
 .logo-img {
-  height: 52px;
+  height: 60px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -507,15 +507,16 @@ body.has-hero .hero-topbar { }
    ============================================================ */
 .hero {
   position: relative;
-  min-height: 100vh;
-  min-height: 100dvh;
+  /* Hero içerik yüksekliğinde — zorla 100dvh DEĞİL. Böylece b2b-ticker her zaman
+     içeriğin hemen altında durur; uzun ekranlarda stat'ların altında boşluk oluşmaz. */
+  min-height: auto;
   display: flex;
   align-items: center;
   background: var(--white);
   overflow: hidden;
-  /* Extra 4rem → badge menüden uzaklaşır, içerik aşağı kayar */
-  padding-top: calc(var(--topbar-h) + var(--header-h) + 4rem);
-  padding-bottom: 2.5rem;
+  /* Header'ı net geçecek kadar üst boşluk */
+  padding-top: calc(var(--topbar-h) + var(--header-h) + 1.25rem);
+  padding-bottom: 2rem;
 }
 
 /* Nokta ızgara arka plan */
@@ -707,7 +708,7 @@ body.has-hero .hero-topbar { }
 .hero h1 {
   color: var(--blue-950);
   margin-top: 0;
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.85rem;
   animation: fadeUp 0.7s 0.1s var(--ease) both;
 }
 .hero h1 em {
@@ -720,7 +721,7 @@ body.has-hero .hero-topbar { }
   font-size: 1.08rem;
   color: var(--text-mid);
   max-width: 520px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   animation: fadeUp 0.7s 0.2s var(--ease) both;
 }
 
@@ -751,8 +752,8 @@ body.has-hero .hero-topbar { }
 .hero-stats {
   display: flex;
   gap: clamp(1.5rem, 4vw, 3rem);
-  margin-top: 1rem;
-  padding-top: 0.85rem;
+  margin-top: 0.6rem;
+  padding-top: 0.7rem;
   border-top: 1px solid var(--border);
   animation: fadeUp 0.7s 0.45s var(--ease) both;
 }
