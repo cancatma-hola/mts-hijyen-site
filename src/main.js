@@ -54,7 +54,7 @@ async function loadPageSpecific() {
     const mod = await import('./modules/testimonials-3d.js');
     mod.initTestimonials3D();
   }
-  if (document.querySelector('.configurator-section, [data-configurator]')) {
+  if (document.querySelector('.cfg-section, .configurator-section, [data-configurator]')) {
     const mod = await import('./modules/configurator.js');
     mod.initConfigurator();
   }

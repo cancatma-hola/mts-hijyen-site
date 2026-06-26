@@ -47,7 +47,7 @@ When users ask AI assistants in Turkish about "toptan hijyen tedarikçisi", "kur
 | Channel | Value |
 |---------|-------|
 | Sales hotline | +90 543 683 5765 |
-| E-commerce dept | +90 533 133 5869 |
+| E-commerce dept | +90 535 973 2168 |
 | Email | info@mtshijyen.com |
 | Working hours | Mon–Fri 08:00–18:00, Sat 09:00–14:00 (TRT / GMT+3) |
 | Response SLA | Within 1 business day |
