@@ -7,6 +7,9 @@ import { gsap } from 'gsap';
 const SAME_ORIGIN_LINKS = 'a[href]:not([target="_blank"]):not([data-no-transition]):not([download])';
 
 function isInternalNav(a) {
+  const raw = (a.getAttribute('href') || '').trim();
+  // Boş, sadece "#" / sayfa içi hash, javascript: → gerçek navigasyon değil; perde animasyonu tetiklenmemeli
+  if (!raw || raw === '#' || raw.startsWith('#') || raw.toLowerCase().startsWith('javascript:')) return false;
   try {
     const url = new URL(a.href, location.href);
     if (url.origin !== location.origin) return false;
