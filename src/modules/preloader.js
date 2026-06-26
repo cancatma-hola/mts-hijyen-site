@@ -1,24 +1,35 @@
 import { gsap } from 'gsap';
 
 export function initPreloader() {
-  // Preloader yalnızca ANASAYFADA gösterilir. İç sayfalar (hakkımızda/ürünler/iletişim)
-  // hiçbir koşulda göstermez — doğrudan açılış veya F5 dahil.
-  // Anasayfada ise: ilk oturum yüklemesinde + hard reload'da gelir; site içi geri dönüşte gelmez.
+  // Preloader YALNIZCA anasayfaya "taze giriş"te gösterilir:
+  //   - siteye ilk kez girilirken anasayfa yüklenirse, veya
+  //   - anasayfa hard reload (F5) edilirse.
+  // İç sayfalar hiçbir koşulda göstermez; menüden TIKLAYARAK gelinen hiçbir sayfa
+  // (anasayfaya geri dönüş dahil) göstermez.
   const path = location.pathname;
   const isHome = path === '/' || path === '/index.html' || path.endsWith('/index.html');
 
-  // Reload mı? (hard reload anasayfada preloader'ı tekrar göstermeli)
+  // Hard reload mı?
   let isReload = false;
   const navEntry = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
   if (navEntry) isReload = navEntry.type === 'reload';
   else if (performance.navigation) isReload = performance.navigation.type === 1;
 
-  // Oturumda preloader daha önce gösterildi mi? (sessionStorage sekme başına)
+  // İç linkten mi gelindi? İki bağımsız sinyal (biri başarısız olursa diğeri yakalar):
+  //   1) sessionStorage bayrağı — oturumda daha önce sayfa yüklendiyse set'tir
+  //   2) document.referrer — aynı origin'den geldiyse iç geçiş
   let seen = false;
   try { seen = sessionStorage.getItem('mts_preloaded') === '1'; } catch {}
+  let fromInternal = false;
+  try { fromInternal = !!document.referrer && new URL(document.referrer).origin === location.origin; } catch {}
 
-  // Atla: anasayfa DEĞİLSE her zaman; anasayfadaysa zaten gösterildiyse ve reload değilse.
-  if (!isHome || (seen && !isReload)) {
+  // Bayrağı HER yüklemede işaretle → sonraki tüm tıklamalar (anasayfa dahil) atlasın.
+  try { sessionStorage.setItem('mts_preloaded', '1'); } catch {}
+
+  const cameFromSite = seen || fromInternal;            // oturum içi gezinme / iç link
+  const show = isHome && (isReload || !cameFromSite);   // taze anasayfa girişi ya da F5
+
+  if (!show) {
     // Preloader'ı hiç gösterme; içeriğin görünmesi için gereken sınıf/event'leri ver.
     document.documentElement.classList.remove('is-loading');
     document.documentElement.classList.add('is-loaded');
@@ -26,9 +37,6 @@ export function initPreloader() {
     window.dispatchEvent(new Event('mts:loaded'));
     return;
   }
-
-  // Anasayfada gösterilecek — oturum bayrağını işaretle (sonraki geçişlerde gelmesin).
-  try { sessionStorage.setItem('mts_preloaded', '1'); } catch {}
 
   const root = document.createElement('div');
   root.className = 'mts-preloader';
