@@ -301,7 +301,7 @@ body { animation: pageReveal 0.5s ease both; }
 
 /* Beyaz arka plan üzerinde okunaklı metin renkleri */
 .tilt-card h3 { color: var(--blue-950) !important; }
-.tilt-card .tilt-card-inner > p { color: var(--text-mid) !important; }
+.tilt-card .tilt-body > p { color: var(--text-mid) !important; }
 .tilt-card .tilt-list li { color: var(--text-mid) !important; }
 .tilt-card .tilt-list li::before { background: var(--blue-600) !important; }
 .tilt-card::before { display: none !important; }

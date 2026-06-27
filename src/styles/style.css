@@ -2069,12 +2069,16 @@ a.cc-value:hover { color: var(--blue-700); }
   margin-bottom: 0.5rem;
 }
 
-.tilt-card > .tilt-card-inner > p {
+.tilt-card .tilt-body > p {
   font-size: 0.8rem;
   color: rgba(255,255,255,0.45);
   margin-bottom: 1.25rem;
   line-height: 1.55;
 }
+
+/* Akordeon başlık/gövde — masaüstünde nötr: yapı eskisiyle birebir aynı,
+   chevron gizli, gövde her zaman açık. Mobil görünüm mobile.css'te. */
+.tilt-chevron { display: none; }
 
 .tilt-list {
   display: flex;
