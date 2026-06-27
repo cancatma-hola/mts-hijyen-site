@@ -537,9 +537,9 @@
   <div class="hero-video-bg" aria-hidden="true">
     <!-- CSS animasyonlu temsili placeholder — gerçek video geldiğinde üzerini örter -->
     <div class="hero-cinematic-placeholder"></div>
-    <video class="hero-video-full" autoplay loop muted playsinline preload="metadata" poster="https://www.mtshijyen.com/img/hero-poster.jpg">
-      <!-- Önce küçük WebM, browser destekliyorsa onu çalsın (ekledikçe MP4 fallback öncelikli olmasın) -->
-      <source src="video/hero.webm" type="video/webm">
+    <video class="hero-video-full" autoplay loop muted playsinline webkit-playsinline preload="auto" poster="https://www.mtshijyen.com/img/hero-poster.jpg">
+      <!-- hero.webm henüz yok; dosya eklenince bu satırı mp4'ün ÜSTÜNE geri aç:
+           <source src="video/hero.webm" type="video/webm"> -->
       <source src="video/hero.mp4" type="video/mp4">
     </video>
     <div class="hero-overlay"></div>

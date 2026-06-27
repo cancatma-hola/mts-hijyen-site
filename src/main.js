@@ -28,6 +28,7 @@ import { initCursor } from './modules/cursor.js';
 import { autoDecorate } from './modules/auto-decorate.js';
 import { initHeroShader } from './modules/hero-shader.js';
 import { initHeroAnim } from './modules/hero-anim.js';
+import { initHeroVideo } from './modules/hero-video.js';
 import { initWebglHover } from './modules/webgl-hover.js';
 import { initPageTransitions } from './modules/transitions.js';
 import { initFooterDistortion } from './modules/footer-distortion.js';
@@ -65,6 +66,7 @@ function boot() {
   initLenis();
   initReveal();
   initCursor();
+  initHeroVideo();
   initHeroShader();
   initHeroAnim();
   initWebglHover();
