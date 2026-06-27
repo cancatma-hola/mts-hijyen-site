@@ -611,11 +611,14 @@
 /* Responsive */
 @media (max-width: 900px) {
   .sc-grid { grid-template-columns: 1fr; }
-  .sc-result { position: static; }
+  /* relative (static değil) — yoksa absolute .sc-pct-badge panelden kaçıp
+     sayfa başlığının altına düşüyordu. relative sticky davranışı olmadan
+     badge'i panel içinde tutar; overflow:hidden glow'ları kırpar. */
+  .sc-result { position: relative; top: auto; }
 }
 @media (max-width: 600px) {
   .sc-preset { padding: 0.5rem 0.9rem; font-size: 0.78rem; }
-  .sc-pct-badge { font-size: 0.95rem; padding: 0.4rem 0.7rem; top: 150px; }
+  .sc-pct-badge { font-size: 0.95rem; padding: 0.4rem 0.7rem; top: 186px; } /* barların dikey ortası */
 }
 @media (max-width: 480px) {
   .sc-cta { flex-direction: column; }

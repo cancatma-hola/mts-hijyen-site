@@ -102,6 +102,13 @@
 @media (max-width: 900px) {
   .site-header {
     padding: 0.6rem 1rem !important;
+    /* topbar (mavi şerit) mobilde gizli; header'ı tepeye yapıştır ki üstünde
+       36px'lik boşluk (topbar'ın yeri) kalmasın */
+    top: 0 !important;
+  }
+  /* Gizli durumda da topbar yüksekliği kadar fazladan yukarı çekme gerekmez */
+  .site-header.nav-hidden {
+    transform: translateY(-100%) !important;
   }
   .hero-topbar {
     display: none !important;
@@ -110,7 +117,7 @@
     padding: 0 !important;
   }
   .logo-img {
-    max-height: 48px !important;
+    max-height: 56px !important;
     width: auto;
   }
 }
@@ -199,18 +206,28 @@
 @media (max-width: 768px) {
   .sector-grid,
   .benefits-grid,
-  .why-grid,
-  .b2b-grid,
   .product-groups {
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
   }
+  /* Kompakt ikon-kartlar mobilde 2'li kalsın — tek sütun sayfayı aşırı uzatıyordu */
+  .why-grid,
+  .b2b-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.8rem !important;
+  }
 }
 
 @media (min-width: 600px) and (max-width: 900px) {
-  .sector-grid,
-  .b2b-grid {
+  .sector-grid {
     grid-template-columns: 1fr 1fr !important;
+  }
+}
+
+/* Çok dar telefonlarda (≤360px) b2b kartları metinli olduğu için tek sütun */
+@media (max-width: 360px) {
+  .b2b-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -260,18 +277,23 @@
 
 /* === Sticky CTA mobilde === */
 @media (max-width: 768px) {
+  /* Sol altta kompakt pill — metin görünür, sağdaki WhatsApp float ile çakışmaz */
   .sticky-cta {
-    bottom: 0.6rem !important;
-    left: 0.6rem !important;
-    right: 0.6rem !important;
+    bottom: 1.25rem !important;
+    left: 1rem !important;
+    right: auto !important;
   }
   .sticky-cta-btn {
-    flex: 1;
-    text-align: center;
+    width: auto;
+    height: auto;
+    border-radius: 100px !important;
+    gap: 0.5rem;
     justify-content: center;
-    font-size: 0.85rem !important;
-    padding: 0.7rem 0.5rem !important;
+    font-size: 0.84rem !important;
+    padding: 0.72rem 1.15rem !important;
   }
+  .sticky-cta-btn span { display: inline !important; } /* style.css ≤600 display:none'ı geçersiz kıl */
+  .sticky-cta-btn svg { width: 16px !important; height: 16px !important; }
 }
 
 /* === Tıklama hedefleri en az 44px === */
@@ -331,9 +353,9 @@
   .cat-quick-grid { grid-template-columns: 1fr !important; }
 }
 
-/* Showcase product grid — 480px altında tek sütun */
+/* Showcase product grid — dar telefonda da 2'li kalsın (1'li sayfayı uzatıyordu) */
 @media (max-width: 480px) {
-  .showcase-product-grid { grid-template-columns: 1fr !important; }
+  .showcase-product-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
 /* Hamburger — WCAG 44x44 dokunma alanı */
