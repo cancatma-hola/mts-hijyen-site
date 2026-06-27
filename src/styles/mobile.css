@@ -215,6 +215,7 @@
     grid-template-columns: 1fr 1fr !important;
     gap: 0.8rem !important;
   }
+  .why-card-num { display: none !important; }   /* 01-04 dev numaralar mobilde gizli */
 
   /* === Sektörler — mobilde AKORDEON liste (3D tilt grid yerine) === */
   .sectors-tilt-grid { display: block !important; gap: 0 !important; }
