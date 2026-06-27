@@ -202,7 +202,7 @@ input, textarea, select { font-family: inherit; }
   align-items: center;
   gap: 0.5rem;
   padding: 0.85rem 2rem;
-  border-radius: var(--radius);
+  border-radius: 100px;   /* tüm butonlar pill — primary/secondary/outline/white aynı radius */
   font-size: 0.95rem;
   font-weight: 700;
   transition: var(--t);
@@ -212,7 +212,6 @@ input, textarea, select { font-family: inherit; }
 .btn-primary {
   background: var(--color-vivid-blue);
   color: var(--color-pure-white);
-  border-radius: 980px;
   box-shadow: 0 4px 14px rgba(0, 113, 227, 0.25);
   letter-spacing: -0.01em;
 }
@@ -813,7 +812,7 @@ body.has-hero .hero-topbar { }
   animation: tickerScroll 30s linear infinite;
   white-space: nowrap;
 }
-.ticker-track:hover { animation-play-state: paused; }
+@media (hover: hover) { .ticker-track:hover { animation-play-state: paused; } }
 @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 .ticker-item {
   display: flex;
@@ -1252,13 +1251,20 @@ body.has-hero .hero-topbar { }
   color: var(--blue-800);
   padding: 0.65rem 1.25rem;
   border: 1.5px solid var(--blue-100);
-  border-radius: var(--radius);
+  border-radius: 100px;
   background: var(--blue-50);
   transition: var(--t);
   margin-top: auto;
 }
 .catalog-dl:hover { background: var(--blue-800); color: var(--white); border-color: var(--blue-800); }
 .catalog-dl svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+/* Akordeon wrapper'ları (b2b + katalog) masaüstünde ŞEFFAF — display:contents ile
+   kart yapısı/dizilimi eskisiyle birebir aynı kalır (catalog-dl margin-top:auto çalışır).
+   Mobil akordeon görünümü mobile.css'te. Chevron yalnızca mobilde görünür. */
+.acc-chevron { display: none; }
+.catalog-head, .catalog-body, .catalog-htext,
+.b2b-head, .b2b-body { display: contents; }
 
 /* ============================================================
    İLETİŞİM
@@ -1938,7 +1944,7 @@ a.cc-value:hover { color: var(--blue-700); }
   width: max-content;
   animation: smqScroll 40s linear infinite;
 }
-.smq-track:hover { animation-play-state: paused; }
+@media (hover: hover) { .smq-track:hover { animation-play-state: paused; } }
 
 @keyframes smqScroll {
   from { transform: translateX(0); }
@@ -3884,7 +3890,9 @@ a.cc-value:hover { color: var(--blue-700); }
   width: max-content;
   padding-bottom: 0.5rem;
 }
-.testimonials-track:hover { animation-play-state: paused; }
+/* Hover-pause SADECE gerçek hover'da (dokunmatikte tap → :hover yapışıp marquee'yi
+   kalıcı durduruyordu — mobilde devre dışı) */
+@media (hover: hover) { .testimonials-track:hover { animation-play-state: paused; } }
 @keyframes testimonialsScroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }

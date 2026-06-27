@@ -29,7 +29,7 @@ import { autoDecorate } from './modules/auto-decorate.js';
 import { initHeroShader } from './modules/hero-shader.js';
 import { initHeroAnim } from './modules/hero-anim.js';
 import { initHeroVideo } from './modules/hero-video.js';
-import { initSectorsAccordion } from './modules/sectors-accordion.js';
+import { initAccordions } from './modules/accordion.js';
 import { initWebglHover } from './modules/webgl-hover.js';
 import { initPageTransitions } from './modules/transitions.js';
 import { initFooterDistortion } from './modules/footer-distortion.js';
@@ -71,7 +71,7 @@ function boot() {
   initHeroShader();
   initHeroAnim();
   initWebglHover();
-  initSectorsAccordion();
+  initAccordions();
   initFooterDistortion();
   initPageTransitions();
   loadPageSpecific();

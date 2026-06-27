@@ -210,10 +210,8 @@
     grid-template-columns: 1fr !important;
     gap: 1rem !important;
   }
-  /* Kompakt ikon-kartlar mobilde 2'li kalsın — tek sütun sayfayı aşırı uzatıyordu */
-  .why-grid,
-  .b2b-grid,
-  .catalogs-grid {
+  /* why kartları mobilde 2'li (kompakt ikon kartları) */
+  .why-grid {
     grid-template-columns: 1fr 1fr !important;
     gap: 0.8rem !important;
   }
@@ -250,11 +248,11 @@
     display: flex !important;
     align-items: center; justify-content: center;
     width: 22px; height: 22px; flex-shrink: 0;
-    color: rgba(255,255,255,0.4);
+    color: rgba(15,30,64,0.32);   /* beyaz kart üzerinde koyu (kapalıyken de görünür) */
     transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), color 0.3s ease;
   }
   .tilt-chevron svg { width: 18px; height: 18px; }
-  .tilt-card.is-open .tilt-chevron { transform: rotate(180deg); color: #60a5fa; }
+  .tilt-card.is-open .tilt-chevron { transform: rotate(180deg); color: var(--blue-700); }
 
   /* Açılır gövde */
   .tilt-body {
@@ -267,6 +265,64 @@
   .tilt-card.is-open .tilt-body { max-height: 340px; opacity: 1; padding-bottom: 1.1rem; }
   .tilt-body > p { margin-bottom: 0.8rem !important; }
   .sectors-tilt-grid .tilt-card.is-open { border-color: rgba(59,130,246,0.32) !important; }
+
+  /* === Toptan Alım Avantajları (b2b) — AKORDEON === */
+  .b2b-grid { display: block !important; }
+  .b2b-grid .b2b-card { margin-bottom: 0.7rem; padding: 0 !important; overflow: hidden; }
+  .b2b-num { display: none !important; }   /* mobilde dev serif numara gizli */
+  .b2b-head {
+    display: flex !important;
+    align-items: center; gap: 0.85rem;
+    padding: 1rem 1.1rem;
+    cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+  }
+  .b2b-head .b2b-icon { width: 42px; height: 42px; flex-shrink: 0; margin: 0 !important; }
+  .b2b-head h4 { margin: 0 !important; flex: 1; font-size: 1rem; }
+  .b2b-body {
+    display: block;
+    max-height: 0; overflow: hidden; opacity: 0;
+    padding: 0 1.1rem 0 4.35rem;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, padding 0.35s ease;
+  }
+  .b2b-card.is-open .b2b-body { max-height: 260px; opacity: 1; padding-bottom: 1.1rem; }
+  .b2b-card.is-open { border-color: rgba(59,130,246,0.32) !important; }
+
+  /* === Kataloglar — AKORDEON === */
+  .catalogs-grid { display: block !important; }
+  .catalogs-grid .catalog-card { margin-bottom: 0.7rem; padding: 0 !important; gap: 0 !important; }
+  .catalog-head {
+    display: flex !important;
+    align-items: center; gap: 0.85rem;
+    padding: 1rem 1.1rem;
+    cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+  }
+  .catalog-head .catalog-icon { width: 42px; height: 42px; flex-shrink: 0; border-radius: 11px; }
+  .catalog-head .catalog-icon svg { width: 22px; height: 22px; }
+  .catalog-htext { display: flex !important; flex-direction: column; gap: 0.1rem; flex: 1; min-width: 0; }
+  .catalog-htext .catalog-cat { font-size: 0.62rem; }
+  .catalog-head h4 { margin: 0 !important; font-size: 0.95rem; }
+  .catalog-body {
+    display: block;
+    max-height: 0; overflow: hidden; opacity: 0;
+    padding: 0 1.1rem 0 4.35rem;
+    transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s ease, padding 0.35s ease;
+  }
+  .catalog-card.is-open .catalog-body { max-height: 170px; opacity: 1; padding-bottom: 1.1rem; }
+  .catalog-body .catalog-meta { margin-bottom: 0.7rem; }
+  .catalog-body .catalog-dl { margin-top: 0 !important; }
+  .catalog-card.is-open { border-color: rgba(59,130,246,0.32) !important; }
+
+  /* Ortak chevron (b2b + katalog) — beyaz kart üzerinde koyu */
+  .acc-chevron {
+    display: flex !important;
+    align-items: center; justify-content: center;
+    width: 22px; height: 22px; flex-shrink: 0;
+    color: rgba(15,30,64,0.32);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), color 0.3s ease;
+  }
+  .acc-chevron svg { width: 18px; height: 18px; }
+  .b2b-card.is-open .acc-chevron,
+  .catalog-card.is-open .acc-chevron { transform: rotate(180deg); color: var(--blue-700); }
 }
 
 @media (min-width: 600px) and (max-width: 900px) {
@@ -275,11 +331,45 @@
   }
 }
 
-/* Çok dar telefonlarda (≤360px) b2b kartları metinli olduğu için tek sütun */
-@media (max-width: 360px) {
-  .b2b-grid {
-    grid-template-columns: 1fr !important;
+/* === "Hammaddeden Rafınıza Kadar" (üretim süreci) — mobilde kompakt sol-rail timeline === */
+@media (max-width: 768px) {
+  .mfg-process {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    margin-bottom: 2.5rem;
   }
+  .mfg-connector { display: none !important; }   /* rail'i .mfg-step::before çiziyor */
+  .mfg-step {
+    display: grid !important;
+    grid-template-columns: 46px 1fr;
+    grid-template-areas: "icon num" "icon title" "icon desc";
+    column-gap: 1rem;
+    row-gap: 0.12rem;
+    align-items: start;
+    text-align: left !important;
+    max-width: none !important;
+    padding-bottom: 1.5rem;
+    position: relative;
+  }
+  .mfg-step:last-child { padding-bottom: 0; }
+  /* sol dikey rail — ikonların arasını birleştirir */
+  .mfg-step:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 22px; top: 52px; bottom: -2px;
+    width: 2px;
+    background: rgba(16,185,129,0.22);
+  }
+  .mfg-step-icon {
+    grid-area: icon;
+    width: 46px !important; height: 46px !important;
+    margin: 0 !important;
+  }
+  .mfg-step-icon svg { width: 20px !important; height: 20px !important; }
+  .mfg-step-num { grid-area: num; font-size: 0.6rem !important; margin: 0 !important; }
+  .mfg-step h4 { grid-area: title; margin: 0 0 0.15rem !important; }
+  .mfg-step p { grid-area: desc; margin: 0 !important; }
 }
 
 /* === Testimonials === */
