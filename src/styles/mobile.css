@@ -212,9 +212,18 @@
   }
   /* Kompakt ikon-kartlar mobilde 2'li kalsın — tek sütun sayfayı aşırı uzatıyordu */
   .why-grid,
-  .b2b-grid {
+  .b2b-grid,
+  .sectors-tilt-grid,
+  .catalogs-grid {
     grid-template-columns: 1fr 1fr !important;
     gap: 0.8rem !important;
+  }
+}
+
+/* Çok dar telefonlarda (≤360px) metinli sektör kartları tek sütun (taşmasın) */
+@media (max-width: 360px) {
+  .sectors-tilt-grid {
+    grid-template-columns: 1fr !important;
   }
 }
 
@@ -356,6 +365,20 @@
 /* Showcase product grid — dar telefonda da 2'li kalsın (1'li sayfayı uzatıyordu) */
 @media (max-width: 480px) {
   .showcase-product-grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+/* Showcase "ekran görüntüsü" mockup'ı mobilde dikeyde kısalt — tek bakışta
+   anlaşılır olsun (yükseklik düşür, padding'leri sıkılaştır, 6 yerine 4 ürün) */
+@media (max-width: 600px) {
+  .showcase-body { min-height: 0 !important; }
+  .showcase-main { padding: 1rem 0.85rem !important; }
+  .showcase-product-grid { gap: 0.5rem !important; }
+  .spg-item { padding: 0.7rem !important; }
+  .spg-icon { width: 28px !important; height: 28px !important; margin-bottom: 0.4rem !important; }
+  .spg-bar { margin-top: 0.45rem !important; }
+  /* 6 yerine 4 ürün (2 satır) göster — gereksiz dikey uzunluğu kaldırır */
+  .showcase-product-grid .spg-item:nth-child(n+5) { display: none !important; }
+  .showcase-statusbar { padding: 0.5rem 0.85rem !important; }
 }
 
 /* Hamburger — WCAG 44x44 dokunma alanı */
